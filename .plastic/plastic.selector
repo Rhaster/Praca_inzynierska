@@ -1,0 +1,4 @@
+repository "Praca_inzynierska@zedkontakt@cloud"
+  path "/"
+    br "/main"
+    co "/main"
