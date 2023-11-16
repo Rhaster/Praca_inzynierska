@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d47d9c34950bfca48877d0eeb250c202, type: 3}
-  m_Name: Niszczyciel
+  m_Script: {fileID: 11500000, guid: 15c8bd9a5a2bfd648b8a333f60a6ba1c, type: 3}
+  m_Name: Wrogowie_Lista
   m_EditorClassIdentifier: 
-  wrog_Nazwa: Niszczyciel
-  wrog_Transform: {fileID: 6516838316992819135, guid: 1def1def585defd4797c3ce9420680e2, type: 3}
-  wrog_rozdaj_pancerza_Lista:
-  - 0.5
-  - 0.5
-  - 1
+  wrogowie_so_Lista:
+  - {fileID: 11400000, guid: 04531e31db5335347ae645d1b76d33f3, type: 2}
+  - {fileID: 11400000, guid: 700e5fa3418b502429fa478c905d1bf2, type: 2}

@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Teren
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Teren
+    uniqueID: 2727195253
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Jednostki
+    uniqueID: 1188916939
+    locked: 0
+  - name: Obiekty
+    uniqueID: 294560543
     locked: 0
