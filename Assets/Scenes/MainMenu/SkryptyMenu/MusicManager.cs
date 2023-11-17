@@ -31,6 +31,16 @@ public class MusicManager : MonoBehaviour
         Instance = this;
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            Debug.Log("pobraie sound");
+            soundVolume = PlayerPrefs.GetFloat("Volume");
+        }
+        if (PlayerPrefs.HasKey("Volume1"))
+        {
+            Debug.Log("pobraie music");
+            musicVolume = PlayerPrefs.GetFloat("Volume1");
+        }
     }
     
 
@@ -45,6 +55,8 @@ public class MusicManager : MonoBehaviour
         sliderSoundFill = volumeMusicSlider.fillRect.GetComponent<Image>();
         sliderFill.color = highVolumeColor;
         sliderSoundFill.color = highVolumeColor;
+        ChangeColorByVolume1(musicVolume, volumeMusicSlider);
+        ChangeColorByVolume(soundVolume, volumeSoundSlider);
     }
 
     private void SetMusicVolume(float volume)
@@ -53,6 +65,8 @@ public class MusicManager : MonoBehaviour
         musicAudioGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
         musicVolume= volume;
         ChangeColorByVolume1(volume, volumeMusicSlider);
+        PlayerPrefs.SetFloat("Volume1", musicVolume);
+        PlayerPrefs.Save();
     }
     private void SetSoundVolume(float volume)
     {
@@ -60,18 +74,22 @@ public class MusicManager : MonoBehaviour
         soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
         soundVolume = volume;
         ChangeColorByVolume(volume, volumeSoundSlider);
+        PlayerPrefs.SetFloat("Volume", soundVolume);
+        PlayerPrefs.Save();
     }
 
     void ChangeColorByVolume(float volume1, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume1);
         Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        x.value = volume1;
         sliderFill.color = newColor;
     }
     void ChangeColorByVolume1(float volume, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume);
         Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        x.value = volume;
         sliderSoundFill.color = newColor;
     }
     public float GetSoundVolume()

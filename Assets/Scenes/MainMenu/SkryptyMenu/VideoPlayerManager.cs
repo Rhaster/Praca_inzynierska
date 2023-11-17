@@ -5,20 +5,23 @@ using UnityEngine.Video;
 using UnityEngine.UI;
 using System.IO;
 
+
+
 public class VideoPlayerManager : MonoBehaviour
 {
-
-    public VideoClip[] videoClips;  // Lista obiektów Video Clip
+    public VideoClip[] videoClips;
     private int currentClipIndex = 0;
     private VideoPlayer videoPlayer;
-    private float timer;
-    [SerializeField]private float timermax;
-    void Start()
+    [SerializeField]private float timer;
+    [SerializeField] private float timermax;
+
+    void Awake()
     {
+        Time.timeScale = 1f;
         timer = timermax;
         videoPlayer = GetComponent<VideoPlayer>();
-        videoPlayer.SetDirectAudioMute(0, true); // mute dzwieku 
-        // SprawdŸ, czy istniej¹ jakiekolwiek Video Clip w liœcie
+        videoPlayer.SetDirectAudioMute(0, true);
+
         if (videoClips.Length > 0)
         {
             PlayNextVideo();
@@ -32,8 +35,7 @@ public class VideoPlayerManager : MonoBehaviour
     void Update()
     {
         timer -= Time.deltaTime;
-        // SprawdŸ, czy odtwarzacz wideo zakoñczy³ odtwarzanie aktualnego klipu
-        if(timer<=0f)
+        if (timer <= 0f)
         {
             PlayNextVideo();
         }
@@ -41,11 +43,18 @@ public class VideoPlayerManager : MonoBehaviour
 
     void PlayNextVideo()
     {
+        // Zatrzymaj odtwarzanie poprzedniego klipu
+        videoPlayer.Stop();
+
+        // Ustaw nowy klip i rozpocznij odtwarzanie
         videoPlayer.clip = videoClips[currentClipIndex];
         videoPlayer.Play();
-        
+
         // PrzejdŸ do nastêpnego klipu w liœcie
         currentClipIndex = (currentClipIndex + 1) % videoClips.Length;
-        timer= timermax;
+        timer = timermax;
+
+        // Zwolnij pamiêæ podrêczn¹
+        videoPlayer.GetComponent<VideoPlayer>().Prepare();
     }
 }

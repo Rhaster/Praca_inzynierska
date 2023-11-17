@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class MechanikaFal : MonoBehaviour
 {
+    public Wyznacznik_fali wyznacznik_fali;
     public static MechanikaFal Instance { get; private set; }
-
+    [SerializeField] public event EventHandler zmianaFali_event;
 
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
-    [SerializeField] public event EventHandler OnWaveNumberChanged;
-
+    [SerializeField] private List<string> AktualnySk³adFali;
     private enum State
     {
         Oczekiwanie,
@@ -28,15 +28,16 @@ public class MechanikaFal : MonoBehaviour
     [SerializeField] private float PredkoscWroga;
     private void Awake()
     {
+        Instance = this;
         holderPozycji = new Transform[spawnPositionTransformList.Count];
         wrog_lista = Resources.Load<Lista_Wrogowie_SO>("Wrogowie_Lista");
-        Instance = this;
         int i = 0;
         foreach(Transform t in spawnPositionTransformList)
         {
             holderPozycji[i] = t;
             i++;
         }
+        Debug.Log("lista wrogów");
         foreach(Wrogowie_SO x in wrog_lista.wrogowie_so_Lista)
         {
             Debug.Log(x.wrog_Nazwa);
@@ -47,11 +48,14 @@ public class MechanikaFal : MonoBehaviour
         // oblicz jesli gracz ma wiecej wiez obszarowych to wyslij wiecej silniejszych jednostek 
 
     }
+    
     private void Start()
     {
+        waveNumber = 1;
         state = State.Oczekiwanie;
         spawnPosition = spawnPositionTransformList[UnityEngine.Random.Range(0, spawnPositionTransformList.Count)].position;
         nextWaveSpawnTimer = 10f;
+        zmianaFali_event?.Invoke(this, EventArgs.Empty);
     }
 
     private void Update()
@@ -72,13 +76,19 @@ public class MechanikaFal : MonoBehaviour
                     if (nextEnemySpawnTimer < 0f)
                     {
                         nextEnemySpawnTimer = UnityEngine.Random.Range(1f, 3f);
-                        wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa , holderPozycji,PredkoscWroga); //UtilsClass.GetRandomDir() 
+                        wrog.Create(spawnPosition * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
+                            holderPozycji, PredkoscWroga); ; //UtilsClass.GetRandomDir() 
+                        AktualnySk³adFali.RemoveAt(0);
+                        //old wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa ,
+                        //holderPozycji,PredkoscWroga); //UtilsClass.GetRandomDir() 
                         remainingEnemySpawnAmount--;
                         if (remainingEnemySpawnAmount <= 0)
                         {
                             state = State.Oczekiwanie;
+                            
                             spawnPosition = spawnPositionTransformList[UnityEngine.Random.Range(0, spawnPositionTransformList.Count)].position;
                             nextWaveSpawnTimer = Mathf.Clamp(30f - 4f * waveNumber, 10f, 30f);
+                            zmianaFali_event?.Invoke(this, EventArgs.Empty);
                         }
                     }
                 }
@@ -88,17 +98,19 @@ public class MechanikaFal : MonoBehaviour
     private void SpawnWave()
     {
         remainingEnemySpawnAmount = 3 + 2 * waveNumber;
+        AktualnySk³adFali = wyznacznik_fali.ustalfale(remainingEnemySpawnAmount,1); // holder do zmiany przy imp budynków 
         state = State.TworzenieFali;
         waveNumber++;
-        OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
+        zmianaFali_event?.Invoke(this, EventArgs.Empty);
+        //OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public int GetWaveNumber()
+    public int GetNumerFali()
     {
         return waveNumber;
     }
 
-    public float GetNextWaveSpawnTimer()
+    public float GetCzasSpawnuFali()
     {
         return nextWaveSpawnTimer;
     }

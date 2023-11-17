@@ -52,24 +52,4 @@ public class Pathing : MonoBehaviour
         }
     }
 
-void MoveToWaypoint()
-    {
-        if (currentWaypointIndex < waypoints.Length)
-        {
-            // Poruszanie siê w kierunku bie¿¹cego waypointu
-            transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, Time.deltaTime * speed);
-            Debug.Log("ide do " + waypoints[currentWaypointIndex].position);
-            // SprawdŸ, czy jednostka dotar³a do waypointu
-            if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
-            {
-                currentWaypointIndex++;
-
-                // Jeœli to ostatni waypoint, zniszcz jednostkê
-                if (currentWaypointIndex == waypoints.Length)
-                {
-                    Destroy(gameObject);
-                }
-            }
-        }
-    }
 }

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
+
 
 [CreateAssetMenu(menuName = ("ScriptableObjects/Wieze"))]
 public class Wieze_SO : ScriptableObject

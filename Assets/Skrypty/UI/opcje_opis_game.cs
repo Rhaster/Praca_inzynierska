@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class opcje_opis_game : MonoBehaviour
         //przycisk_transform = transform.Find("")
         gameObject.SetActive(false);
     }
+    
     private void Start()
     {
         //transform.Find("T³o").gameObject.SetActive(false);
@@ -42,20 +44,24 @@ public class opcje_opis_game : MonoBehaviour
     }
     private void Update()
     {
-
+        if(Time.timeScale > 0)
+        {
+            PauseGame();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ResumeGame();
+            UIController.instance.ReaktuywujUI();
             gameObject.SetActive(false);
 
         }
     }
-    void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0f; // Ustaw czas gry na 0, co zatrzyma wiêkszoœæ aktywnoœci w grze
     }
 
-    void ResumeGame()
+    private void ResumeGame()
     {
         Time.timeScale = 1f; // Wznowienie czasu gry
     }

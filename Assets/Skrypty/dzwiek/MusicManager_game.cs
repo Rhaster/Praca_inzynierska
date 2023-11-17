@@ -28,11 +28,26 @@ public class MusicManager_game : MonoBehaviour
 
     private void Awake()
     {
+        DisplayAllPlayerPrefs();
         Instance = this;
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
-        soundVolume = GetVolumeFromAudioMixerGroup(soundEffectsGroup,true);
-        musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup,false);
+        if (PlayerPrefs.HasKey("Volume"))
+        {Debug.Log("pobraie sound z gry");
+            soundVolume = PlayerPrefs.GetFloat("Volume");
+        }
+        else
+        {
+            soundVolume = GetVolumeFromAudioMixerGroup(soundEffectsGroup, true);
+        }
+        if(PlayerPrefs.HasKey("Volume1"))
+        {Debug.Log("pobraie sound z gry");
+            musicVolume = PlayerPrefs.GetFloat("Volume1");
+        }
+        else
+        {
+            musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup, false);
+        }
     }
     float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup,bool x)
     {
@@ -63,6 +78,7 @@ public class MusicManager_game : MonoBehaviour
         sliderSoundFill = volumeMusicSlider.fillRect.GetComponent<Image>();
         sliderFill.color = highVolumeColor;
         sliderSoundFill.color = highVolumeColor;
+
         ChangeColorByVolume(musicVolume, volumeMusicSlider);
         ChangeColorByVolume1(soundVolume, volumeSoundSlider);
     }
@@ -71,8 +87,10 @@ public class MusicManager_game : MonoBehaviour
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
         musicAudioGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
-        musicVolume= volume;
+        musicVolume = volume;
         ChangeColorByVolume1(volume, volumeMusicSlider);
+        PlayerPrefs.SetFloat("Volume1", musicVolume);
+        PlayerPrefs.Save();
     }
     private void SetSoundVolume(float volume)
     {
@@ -80,18 +98,22 @@ public class MusicManager_game : MonoBehaviour
         soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
         soundVolume = volume;
         ChangeColorByVolume(volume, volumeSoundSlider);
+        PlayerPrefs.SetFloat("Volume", soundVolume);
+        PlayerPrefs.Save();
     }
 
     void ChangeColorByVolume(float volume1, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume1);
         Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        x.value = volume1;
         sliderFill.color = newColor;
     }
     void ChangeColorByVolume1(float volume, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume);
         Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        x.value = volume;
         sliderSoundFill.color = newColor;
     }
 
@@ -106,6 +128,21 @@ public class MusicManager_game : MonoBehaviour
     public float GetMusicVolume()
     {
         return 1;//MusicVolume;
+    }
+    void DisplayAllPlayerPrefs()
+    {
+        // Pobierz wszystkie klucze
+        string[] allKeys = PlayerPrefs.GetString("allKeys", "").Split(';');
+
+        // PrzejdŸ przez klucze i wyœwietl ich wartoœci
+        foreach (var key in allKeys)
+        {
+            if (!string.IsNullOrEmpty(key))
+            {
+                string value = PlayerPrefs.GetString(key);
+                Debug.Log("Klucz: " + key + ", Wartoœæ: " + value);
+            }
+        }
     }
 }
  
