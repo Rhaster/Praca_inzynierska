@@ -17,7 +17,7 @@ public class VideoPlayerManager : MonoBehaviour
 
     void Awake()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // anty prze³adowanie
         timer = timermax;
         videoPlayer = GetComponent<VideoPlayer>();
         videoPlayer.SetDirectAudioMute(0, true);

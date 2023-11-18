@@ -101,7 +101,7 @@ public class MechanikaFal : MonoBehaviour
         AktualnySk³adFali = wyznacznik_fali.ustalfale(remainingEnemySpawnAmount,1); // holder do zmiany przy imp budynków 
         state = State.TworzenieFali;
         waveNumber++;
-        zmianaFali_event?.Invoke(this, EventArgs.Empty);
+        //zmianaFali_event?.Invoke(this, EventArgs.Empty);
         //OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
     }
 

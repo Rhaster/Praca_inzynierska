@@ -27,10 +27,13 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        #region Grabbery transformów 
         czasUI = transform.Find("UI_czas");
         Licznikczasu_transform = czasUI.Find("czas_gry_mod").GetComponent<TextMeshProUGUI>();
         UI_wavemanager_transfrom = transform.Find("UI_Wavemanager");
         opcje_transform = transform.Find("OpcjeExpander");
+        #endregion
+
     }
     void Start()
     {
@@ -58,8 +61,9 @@ public class UIController : MonoBehaviour
             if (timer <= 0f)
             {
                 timer = 1;
-                UstawTimerCzasuFali(((timemax).ToString("F1") + " sekund"));
+                
                 timemax -= i;
+                UstawTimerCzasuFali(((timemax).ToString("F0") + " sekund"));
             }
             yield return null; // Oczekaj na nastêpn¹ klatkê
         }
@@ -88,7 +92,8 @@ public class UIController : MonoBehaviour
         {
             int minutes = Mathf.FloorToInt(gameTime / 60);
             int seconds = Mathf.FloorToInt(gameTime % 60);
-            Licznikczasu_transform.SetText(minutes + ":"+seconds);
+           
+            Licznikczasu_transform.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
             timer = 0f; // Zresetuj licznik czasu
         }
         #endregion

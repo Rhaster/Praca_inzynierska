@@ -8,6 +8,7 @@ public class Pathing : MonoBehaviour
     private int currentWaypointIndex = 0;
     public float speed;
     public Rigidbody2D rigidbody2d;
+
     private void Awake()
     {
         rigidbody2d= GetComponent<Rigidbody2D>();

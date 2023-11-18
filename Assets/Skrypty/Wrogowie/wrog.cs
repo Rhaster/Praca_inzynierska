@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class wrog : MonoBehaviour
-{ 
-        public static wrog Create(Vector3 position,string nazwa, Transform[] way ,float speed)
+{
+  
+    public static wrog Create(Vector3 position,string nazwa, Transform[] way ,float speed)
         {
             Transform pfEnemy = Resources.Load<Transform>(nazwa);
             pfEnemy.GetComponent<Pathing>().waypoints = way;  // ustalenie trasy dla danego przeciwnika 
@@ -16,8 +17,4 @@ public class wrog : MonoBehaviour
         }
 
         // Update is called once per frame
-        void Update()
-    {
-        
-    }
 }
