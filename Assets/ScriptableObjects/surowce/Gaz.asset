@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9049b288a75a1fc4596070b98e5ff4c4, type: 3}
   m_Name: Gaz
   m_EditorClassIdentifier: 
-  surowiec_nazwa_String: 
+  surowiec_nazwa_String: Gaz
   surowiec_nazwa_Transform: {fileID: 0}
-  surowiec_sprite: {fileID: 0}
+  surowiec_sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}

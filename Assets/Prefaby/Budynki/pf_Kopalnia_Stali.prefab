@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4669470916455708339}
+  - component: {fileID: 1977587035137521537}
   m_Layer: 0
   m_Name: pf_Kopalnia_Stali
   m_TagString: Untagged
@@ -116,3 +117,17 @@ Transform:
   - {fileID: 9150189159773915213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1977587035137521537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4112405412378820262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724f2e5051b2c584eb90a410d4c77c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surowiecGenerowany: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
+  IloscEnergi: 2

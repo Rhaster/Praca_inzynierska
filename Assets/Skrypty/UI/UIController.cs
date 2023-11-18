@@ -15,6 +15,9 @@ public class UIController : MonoBehaviour
     private TextMeshProUGUI Licznikczasu_transform;
     private Transform czasUI;
     #endregion
+    #region ZasobyUI
+    private Transform zasoby_Transform;
+    #endregion
     public static UIController instance;
     #region Kontrola tekstu w UI 
     [SerializeField] private TextMeshProUGUI czas_do_nast_fali_TMPRO;
@@ -28,6 +31,7 @@ public class UIController : MonoBehaviour
     {
         instance = this;
         #region Grabbery transformów 
+        zasoby_Transform = transform.Find("UI_Ekonomia");
         czasUI = transform.Find("UI_czas");
         Licznikczasu_transform = czasUI.Find("czas_gry_mod").GetComponent<TextMeshProUGUI>();
         UI_wavemanager_transfrom = transform.Find("UI_Wavemanager");
@@ -99,6 +103,7 @@ public class UIController : MonoBehaviour
         #endregion
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            zasoby_Transform.gameObject.SetActive(false);
             czasUI.gameObject.SetActive(false);
             UI_wavemanager_transfrom.gameObject.SetActive(false);
             opcje_transform.gameObject.SetActive(true);
@@ -107,6 +112,7 @@ public class UIController : MonoBehaviour
     }
     public void ReaktuywujUI()
     {
+        zasoby_Transform.gameObject.SetActive(true) ;
         czasUI.gameObject.SetActive(true);
         UI_wavemanager_transfrom.gameObject.SetActive(true);
     }

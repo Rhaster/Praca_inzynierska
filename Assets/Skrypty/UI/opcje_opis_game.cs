@@ -32,6 +32,7 @@ public class opcje_opis_game : MonoBehaviour
         {
             ResumeGame();
             ButtonHandler_game xd = wyjscie_transform.GetComponent<ButtonHandler_game>();
+            UIController.instance.ReaktuywujUI();
             gameObject.SetActive(false);
             
         });

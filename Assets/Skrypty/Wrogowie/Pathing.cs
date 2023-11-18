@@ -1,19 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Pathing : MonoBehaviour
 {
-    public Transform[] waypoints;
+
+ 
+public Transform[] waypoints;
     private int currentWaypointIndex = 0;
     public float speed;
     public Rigidbody2D rigidbody2d;
 
     private void Awake()
-    {
-        rigidbody2d= GetComponent<Rigidbody2D>();
-    }
-    void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
     }
@@ -25,17 +24,15 @@ public class Pathing : MonoBehaviour
 
     private void HandleMovement(Transform[] target)
     {
-        if (currentWaypointIndex < target.Length)
+        if (currentWaypointIndex <= target.Length)
         {
             Transform currentWaypoint = target[currentWaypointIndex];
 
             float distanceToWaypoint = Vector3.Distance(transform.position, currentWaypoint.position);
-
             if (distanceToWaypoint > 0.1f)
             {
                 Vector3 moveDir = (currentWaypoint.position - transform.position).normalized;
-                float moveSpeed = 6f;
-                rigidbody2d.velocity = moveDir * moveSpeed;
+                rigidbody2d.velocity = moveDir * speed;
             }
             else
             {
@@ -43,7 +40,7 @@ public class Pathing : MonoBehaviour
 
                 if (currentWaypointIndex == target.Length)
                 {
-                    Destroy(gameObject);
+                    Destroy(gameObject); // dodac powiazanie z uszkodzeniem obiektu 
                 }
             }
         }

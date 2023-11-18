@@ -7,62 +7,59 @@ using UnityEngine;
 public class MechanikaEkonomi : MonoBehaviour
 {
     public static MechanikaEkonomi Instance { get; private set; }
+    public event EventHandler ZmianaIlosciSurowcow;
+    [SerializeField] private List<StartowaIloscSur> Lista_startowych_Surowcow;
 
-
-    public event EventHandler OnResourceAmountChanged;
-
-    [SerializeField] private List<StartowaIloscSur> startingResourceAmountList;
-
-    private Dictionary<Surowce_SO, int> resourceAmountDictionary;
+    private Dictionary<Surowce_SO, int> IloscSurowcow_slownik;
 
     private void Awake()
     { 
       
         Instance = this;
 
-        resourceAmountDictionary = new Dictionary<Surowce_SO, int>();
+        IloscSurowcow_slownik = new Dictionary<Surowce_SO, int>();
 
-        Lista_Surowce_SO resourceTypeList = Resources.Load<Lista_Surowce_SO>(typeof(Lista_Surowce_SO).Name);
+        Lista_Surowce_SO resourceTypeList = Resources.Load<Lista_Surowce_SO>("Surowce_Lista");
 
         foreach (Surowce_SO resourceType in resourceTypeList.surowce_lista)
         {
-            resourceAmountDictionary[resourceType] = 0;
+            IloscSurowcow_slownik[resourceType] = 0;
         }
 
-        foreach (StartowaIloscSur resourceAmount in startingResourceAmountList)
+        foreach (StartowaIloscSur resourceAmount in Lista_startowych_Surowcow)
         {
-            AddResource(resourceAmount.surowiec, resourceAmount.ilosc);
+            DodajSurowiec(resourceAmount.surowiec, resourceAmount.ilosc);
         }
     }
 
     private void TestLogResourceAmountDictionary()
     {
-        foreach (Surowce_SO resourceType in resourceAmountDictionary.Keys)
+        foreach (Surowce_SO resourceType in IloscSurowcow_slownik.Keys)
         {
-            Debug.Log(resourceType.surowiec_nazwa_String + ": " + resourceAmountDictionary[resourceType]);
+            Debug.Log(resourceType.surowiec_nazwa_String + ": " + IloscSurowcow_slownik[resourceType]);
         }
     }
     private void Update()
     {
-        TestLogResourceAmountDictionary();
+        
     }
-    public void AddResource(Surowce_SO resourceType, int amount)
+    public void DodajSurowiec(Surowce_SO resourceType, int amount)
     {
-        resourceAmountDictionary[resourceType] += amount;
+        IloscSurowcow_slownik[resourceType] += amount;
 
-        OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
+        ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
     }
 
-    public int GetResourceAmount(Surowce_SO resourceType)
+    public int GetIloscSurowca(Surowce_SO resourceType)
     {
-        return resourceAmountDictionary[resourceType];
+        return IloscSurowcow_slownik[resourceType];
     }
 
-    public bool CanAfford(StartowaIloscSur[] resourceAmountArray)
+    public bool CzyStac(StartowaIloscSur[] resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
-            if (GetResourceAmount(resourceAmount.surowiec) >= resourceAmount.ilosc)
+            if (GetIloscSurowca(resourceAmount.surowiec) >= resourceAmount.ilosc)
             {
                 // Can afford
             }
@@ -77,11 +74,11 @@ public class MechanikaEkonomi : MonoBehaviour
         return true;
     }
 
-    public void SpendResources(StartowaIloscSur[] resourceAmountArray)
+    public void WydajSurowce(StartowaIloscSur[] resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
-            resourceAmountDictionary[resourceAmount.surowiec] -= resourceAmount.ilosc;
+            IloscSurowcow_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
         }
     }
 }

@@ -10,7 +10,7 @@ public class MusicManager : MonoBehaviour
 {
 
     public static MusicManager Instance { get; private set; }
-
+    #region Ustawienia muzyki
     public Slider volumeMusicSlider;
     public Slider volumeSoundSlider;
     public AudioMixerGroup musicAudioGroup;
@@ -25,24 +25,26 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private float soundVolume;
     [SerializeField] private float musicVolume;
+    #endregion
+ 
 
     private void Awake()
     {
         Instance = this;
+        #region Ustawienia muzyki
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
         if (PlayerPrefs.HasKey("Volume"))
         {
-            Debug.Log("pobraie sound");
             soundVolume = PlayerPrefs.GetFloat("Volume");
         }
         if (PlayerPrefs.HasKey("Volume1"))
         {
-            Debug.Log("pobraie music");
             musicVolume = PlayerPrefs.GetFloat("Volume1");
         }
+        #endregion
     }
-    
+
 
     void Start()
     {

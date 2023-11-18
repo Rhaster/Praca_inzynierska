@@ -93,6 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7729282015441679916}
+  - component: {fileID: 6202147721864599427}
   m_Layer: 0
   m_Name: pf_Wiertnia_gazu
   m_TagString: Untagged
@@ -116,3 +117,17 @@ Transform:
   - {fileID: 7292610222368621255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6202147721864599427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6871806035172479925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724f2e5051b2c584eb90a410d4c77c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surowiecGenerowany: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
+  IloscEnergi: 3

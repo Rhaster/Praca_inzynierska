@@ -26,9 +26,24 @@ public class MusicManager_game : MonoBehaviour
     [SerializeField] private float soundVolume;
     [SerializeField] private float musicVolume;
 
+    [SerializeField]private AudioClip[] audioClips;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
-        DisplayAllPlayerPrefs();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioClips.Length > 0)
+        {
+            // Uruchom funkcjê odtwarzaj¹c¹ listê w nieskoñczonoœæ
+            PlayAudioListInLoop();
+        }
+        else
+        {
+            Debug.LogWarning("Audio list is empty. Add audio clips in the inspector.");
+        }
+        
         Instance = this;
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
@@ -48,6 +63,7 @@ public class MusicManager_game : MonoBehaviour
         {
             musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup, false);
         }
+        audioSource.volume = musicVolume;
     }
     float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup,bool x)
     {
@@ -89,6 +105,7 @@ public class MusicManager_game : MonoBehaviour
         musicAudioGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
         musicVolume = volume;
         ChangeColorByVolume1(volume, volumeMusicSlider);
+        audioSource.volume = musicVolume;
         PlayerPrefs.SetFloat("Volume1", musicVolume);
         PlayerPrefs.Save();
     }
@@ -97,6 +114,7 @@ public class MusicManager_game : MonoBehaviour
         volume = Mathf.Clamp(volume, (float)0.001, 1);
         soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
         soundVolume = volume;
+
         ChangeColorByVolume(volume, volumeSoundSlider);
         PlayerPrefs.SetFloat("Volume", soundVolume);
         PlayerPrefs.Save();
@@ -144,5 +162,30 @@ public class MusicManager_game : MonoBehaviour
             }
         }
     }
+    #region Muzyka
+    private void PlayAudioListInLoop()
+    {
+        // Uruchom coroutine do odtwarzania w nieskoñczonoœæ
+        StartCoroutine(PlayAudioListCoroutine());
+    }
+
+    private System.Collections.IEnumerator PlayAudioListCoroutine()
+    {
+        while (true)
+        {
+            // PrzejdŸ przez wszystkie pliki audio w liœcie
+            for (int i = 0; i < audioClips.Length; i++)
+            {
+                // Ustaw aktualny plik audio
+                audioSource.clip = audioClips[i];
+
+                // Odtwórz dŸwiêk
+                audioSource.Play();
+
+                // Poczekaj na zakoñczenie odtwarzania
+                yield return new WaitForSeconds(audioSource.clip.length);
+            }
+        }
+    }
+    #endregion
 }
- 
