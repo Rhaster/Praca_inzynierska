@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class MusicManager : MonoBehaviour
 {
 
-    public static MusicManager Instance { get; private set; }
+
     #region Ustawienia muzyki
     public Slider volumeMusicSlider;
     public Slider volumeSoundSlider;
@@ -30,17 +30,21 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+
         #region Ustawienia muzyki
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
         if (PlayerPrefs.HasKey("Volume"))
         {
             soundVolume = PlayerPrefs.GetFloat("Volume");
+            volumeSoundSlider.value = soundVolume;
+            //ChangeColorByVolume1(soundVolume, volumeSoundSlider);
         }
         if (PlayerPrefs.HasKey("Volume1"))
         {
             musicVolume = PlayerPrefs.GetFloat("Volume1");
+            volumeMusicSlider.value = musicVolume;
+            //ChangeColorByVolume1(musicVolume, volumeSoundSlider);
         }
         #endregion
     }

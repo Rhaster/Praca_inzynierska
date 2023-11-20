@@ -36,32 +36,24 @@ public class MusicManager_game : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioClips.Length > 0)
         {
-            // Uruchom funkcjê odtwarzaj¹c¹ listê w nieskoñczonoœæ
             PlayAudioListInLoop();
         }
         else
         {
             Debug.LogWarning("Audio list is empty. Add audio clips in the inspector.");
         }
-        
         Instance = this;
         volumeSoundSlider.value = 1;
         volumeMusicSlider.value = 1;
         if (PlayerPrefs.HasKey("Volume"))
-        {Debug.Log("pobraie sound z gry");
-            soundVolume = PlayerPrefs.GetFloat("Volume");
-        }
-        else
         {
-            soundVolume = GetVolumeFromAudioMixerGroup(soundEffectsGroup, true);
+            soundVolume = PlayerPrefs.GetFloat("Volume");
+            volumeSoundSlider.value = soundVolume;
         }
         if(PlayerPrefs.HasKey("Volume1"))
-        {Debug.Log("pobraie sound z gry");
-            musicVolume = PlayerPrefs.GetFloat("Volume1");
-        }
-        else
         {
-            musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup, false);
+            musicVolume = PlayerPrefs.GetFloat("Volume1");
+            volumeMusicSlider.value = musicVolume;
         }
         audioSource.volume = musicVolume;
     }
@@ -95,8 +87,8 @@ public class MusicManager_game : MonoBehaviour
         sliderFill.color = highVolumeColor;
         sliderSoundFill.color = highVolumeColor;
 
-        ChangeColorByVolume(musicVolume, volumeMusicSlider);
-        ChangeColorByVolume1(soundVolume, volumeSoundSlider);
+        ChangeColorByVolume1(musicVolume, volumeMusicSlider);
+        ChangeColorByVolume(soundVolume, volumeSoundSlider);
     }
 
     private void SetMusicVolume(float volume)
@@ -138,30 +130,6 @@ public class MusicManager_game : MonoBehaviour
 
 
 
-
-    public float GetSoundVolume()
-    {
-        return 1;//return SoundVolume;
-    }
-    public float GetMusicVolume()
-    {
-        return 1;//MusicVolume;
-    }
-    void DisplayAllPlayerPrefs()
-    {
-        // Pobierz wszystkie klucze
-        string[] allKeys = PlayerPrefs.GetString("allKeys", "").Split(';');
-
-        // PrzejdŸ przez klucze i wyœwietl ich wartoœci
-        foreach (var key in allKeys)
-        {
-            if (!string.IsNullOrEmpty(key))
-            {
-                string value = PlayerPrefs.GetString(key);
-                Debug.Log("Klucz: " + key + ", Wartoœæ: " + value);
-            }
-        }
-    }
     #region Muzyka
     private void PlayAudioListInLoop()
     {
