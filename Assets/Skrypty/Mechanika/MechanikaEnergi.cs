@@ -12,8 +12,9 @@ public class MechanikaEnergi : MonoBehaviour
     public static MechanikaEnergi Instance { get;private set; }
     private void Awake()
     {
-        ilosc_energi_Int = ilosc_energi_Startowa_Int;
         Instance = this;
+        ilosc_energi_Int = ilosc_energi_Startowa_Int;
+        zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
     }
     public int Get_Obecna_ilosc_energi()
     {

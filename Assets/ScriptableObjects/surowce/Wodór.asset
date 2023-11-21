@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surowiec_nazwa_String: "Wod\xF3r"
   surowiec_nazwa_Transform: {fileID: 0}
-  surowiec_sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
+  surowiec_sprite: {fileID: 21300000, guid: 977267d765c841f439f05ac1e3cac4f7, type: 3}

@@ -27,6 +27,8 @@ public class UIController : MonoBehaviour
     private Transform UI_wavemanager_transfrom;
     private Transform opcje_transform;
     #endregion
+    private Transform UI_elektrka;
+    private Transform UI_amunicja;
     private void Awake()
     {
         instance = this;
@@ -36,6 +38,8 @@ public class UIController : MonoBehaviour
         Licznikczasu_transform = czasUI.Find("czas_gry_mod").GetComponent<TextMeshProUGUI>();
         UI_wavemanager_transfrom = transform.Find("UI_Wavemanager");
         opcje_transform = transform.Find("OpcjeExpander");
+        UI_elektrka = transform.Find("UI_Energia");
+        UI_amunicja = transform.Find("UI_Amunicja");
         #endregion
 
     }
@@ -103,6 +107,8 @@ public class UIController : MonoBehaviour
         #endregion
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            UI_amunicja.gameObject.SetActive(false);
+            UI_elektrka.gameObject.SetActive(false);
             zasoby_Transform.gameObject.SetActive(false);
             czasUI.gameObject.SetActive(false);
             UI_wavemanager_transfrom.gameObject.SetActive(false);
@@ -112,6 +118,8 @@ public class UIController : MonoBehaviour
     }
     public void ReaktuywujUI()
     {
+        UI_amunicja.gameObject.SetActive(true);
+        UI_elektrka.gameObject.SetActive(true);
         zasoby_Transform.gameObject.SetActive(true) ;
         czasUI.gameObject.SetActive(true);
         UI_wavemanager_transfrom.gameObject.SetActive(true);
