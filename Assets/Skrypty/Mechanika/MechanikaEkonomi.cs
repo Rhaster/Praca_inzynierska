@@ -65,7 +65,7 @@ public class MechanikaEkonomi : MonoBehaviour
             }
             else
             {
-                // Cannot afford this!
+                // Cannot afford 
                 return false;
             }
         }
