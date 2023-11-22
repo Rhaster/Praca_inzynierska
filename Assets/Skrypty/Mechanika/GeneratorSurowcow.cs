@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
@@ -7,24 +8,32 @@ public class GeneratorSurowcow : MonoBehaviour
 {
     [SerializeField] public Surowce_SO surowiecGenerowany;
     [SerializeField] public int IloscEnergi;
-    [SerializeField] private string nazwa_kopalni;
+    [SerializeField] public string nazwa_kopalni;
+    [SerializeField] public int IloscEnergiMax;
     private float timer;
     private float timerMax;
     public static GeneratorSurowcow Instance { get; private set; }
+    public event EventHandler ZmianaTimeraEvent;
 
     private void Awake()
     {
+        
         Instance= this;
+
         timerMax = IloscEnergi;
     }
 
 
-
+    private void Start()
+    {
+        IloscEnergiMax = MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
+    }
     private void Update()
     {
         if (timerMax > 0)
         {
             timer -= Time.deltaTime;
+            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
             if (timer <= 0f)
             {
                 timer += timerMax;
@@ -43,13 +52,24 @@ public class GeneratorSurowcow : MonoBehaviour
     {
         return 1 / timerMax;
     }
+    public float getTimerMax()
+    {
+        return IloscEnergi;
+    }
     public float getIloscEnergi()
     {
-        return timerMax;
+        return IloscEnergi;
     }
     public void zmienIloscEnergi(int ilosc)
     {
-        timerMax= ilosc;
-        IloscEnergi= ilosc;
+        IloscEnergi += ilosc;
+        if(IloscEnergi == 0)
+        {
+            timerMax = IloscEnergi;
+        }
+        else
+        {
+            timerMax = IloscEnergiMax -IloscEnergi;
+        }
     }
 }

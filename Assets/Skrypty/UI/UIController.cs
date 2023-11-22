@@ -50,7 +50,6 @@ public class UIController : MonoBehaviour
         // wylaczenie ui budynkow na starcie
         czybylootwarte = false;
         UI_budynkow.gameObject.SetActive(false);
-
     }
     void Start()
     {
