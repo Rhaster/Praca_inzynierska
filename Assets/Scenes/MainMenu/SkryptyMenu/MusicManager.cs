@@ -26,7 +26,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private float soundVolume;
     [SerializeField] private float musicVolume;
     #endregion
- 
+
 
     private void Awake()
     {
@@ -40,11 +40,21 @@ public class MusicManager : MonoBehaviour
             volumeSoundSlider.value = soundVolume;
             //ChangeColorByVolume1(soundVolume, volumeSoundSlider);
         }
+        else
+        {
+            soundVolume = 1;
+            volumeSoundSlider.value = soundVolume;
+        }
         if (PlayerPrefs.HasKey("Volume1"))
         {
             musicVolume = PlayerPrefs.GetFloat("Volume1");
             volumeMusicSlider.value = musicVolume;
             //ChangeColorByVolume1(musicVolume, volumeSoundSlider);
+        }
+        else
+        {
+            musicVolume = 1;
+            volumeMusicSlider.value = musicVolume;
         }
         #endregion
     }
@@ -61,15 +71,17 @@ public class MusicManager : MonoBehaviour
         sliderSoundFill = volumeMusicSlider.fillRect.GetComponent<Image>();
         sliderFill.color = highVolumeColor;
         sliderSoundFill.color = highVolumeColor;
+        SetSoundVolume(soundVolume);
+            SetMusicVolume(musicVolume);
         ChangeColorByVolume1(musicVolume, volumeMusicSlider);
         ChangeColorByVolume(soundVolume, volumeSoundSlider);
     }
-
+    
     private void SetMusicVolume(float volume)
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
         musicAudioGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
-        musicVolume= volume;
+        musicVolume = volume;
         ChangeColorByVolume1(volume, volumeMusicSlider);
         PlayerPrefs.SetFloat("Volume1", musicVolume);
         PlayerPrefs.Save();
@@ -107,4 +119,3 @@ public class MusicManager : MonoBehaviour
         return 1;//MusicVolume;
     }
 }
- 

@@ -7,19 +7,18 @@ public class GeneratorSurowcow : MonoBehaviour
 {
     [SerializeField] public Surowce_SO surowiecGenerowany;
     [SerializeField] public int IloscEnergi;
+    [SerializeField] private string nazwa_kopalni;
     private float timer;
     private float timerMax;
-
+    public static GeneratorSurowcow Instance { get; private set; }
 
     private void Awake()
     {
+        Instance= this;
         timerMax = IloscEnergi;
     }
 
-    private void Start()
-    {
-        
-    }
+
 
     private void Update()
     {
@@ -33,7 +32,7 @@ public class GeneratorSurowcow : MonoBehaviour
             }
         }
     }
-
+    
 
     public float GetTimerNormalized()
     {
@@ -43,5 +42,14 @@ public class GeneratorSurowcow : MonoBehaviour
     public float GetAmountGeneratedPerSecond()
     {
         return 1 / timerMax;
+    }
+    public float getIloscEnergi()
+    {
+        return timerMax;
+    }
+    public void zmienIloscEnergi(int ilosc)
+    {
+        timerMax= ilosc;
+        IloscEnergi= ilosc;
     }
 }

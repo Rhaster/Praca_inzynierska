@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9049b288a75a1fc4596070b98e5ff4c4, type: 3}
-  m_Name: Stal
+  m_Script: {fileID: 11500000, guid: d47d9c34950bfca48877d0eeb250c202, type: 3}
+  m_Name: Example
   m_EditorClassIdentifier: 
-  surowiec_nazwa_String: Stal
-  surowiec_nazwa_Transform: {fileID: 0}
-  surowiec_sprite: {fileID: 21300000, guid: c926d2a20ee5845459d0d99195855723, type: 3}
+  wrog_Nazwa: Example
+  wrog_Transform: {fileID: 0}
+  wrog_rozdaj_pancerza_Lista: []

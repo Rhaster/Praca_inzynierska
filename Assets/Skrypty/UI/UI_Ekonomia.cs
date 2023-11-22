@@ -20,7 +20,7 @@ public class UI_Ekonomia : MonoBehaviour
         {
             Transform resourceTransform = Instantiate(resourceTemplate, transform);
             resourceTransform.gameObject.SetActive(true);
-
+            
             float offsetAmount = -105f;
             resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
 
@@ -43,7 +43,6 @@ public class UI_Ekonomia : MonoBehaviour
     {
         UpdateResourceAmount();
     }
-
 
     private void UpdateResourceAmount()
     {

@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +26,7 @@ public class MusicManager_game : MonoBehaviour
     [SerializeField] private float soundVolume;
     [SerializeField] private float musicVolume;
 
-    [SerializeField]private AudioClip[] audioClips;
+    [SerializeField] private AudioClip[] audioClips;
 
     private AudioSource audioSource;
 
@@ -50,26 +50,34 @@ public class MusicManager_game : MonoBehaviour
             soundVolume = PlayerPrefs.GetFloat("Volume");
             volumeSoundSlider.value = soundVolume;
         }
-        if(PlayerPrefs.HasKey("Volume1"))
+        else
+        {
+            soundVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup,true);
+        }
+        if (PlayerPrefs.HasKey("Volume1"))
         {
             musicVolume = PlayerPrefs.GetFloat("Volume1");
             volumeMusicSlider.value = musicVolume;
         }
+        else
+        {
+            musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup, false);
+        }
         audioSource.volume = musicVolume;
     }
-    float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup,bool x)
+    float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup, bool x)
     {
         float volumeValue = 0f;
 
         if (audioMixerGroup != null && x == true)
         {
-            audioMixerGroup.audioMixer.GetFloat("Volume", out volumeValue); // "Volume" to nazwa parametru g≥oúnoúci w mikserze audio
-            volumeValue = Mathf.Pow(10f, volumeValue / 20f); // Konwersja z decybeli do wartoúci normalizowanej (0-1)
+            audioMixerGroup.audioMixer.GetFloat("Volume", out volumeValue); // "Volume" to nazwa parametru g¬≥o≈ìno≈ìci w mikserze audio
+            volumeValue = Mathf.Pow(10f, volumeValue / 20f); // Konwersja z decybeli do warto≈ìci normalizowanej (0-1)
         }
-        else if(audioMixerGroup != null && x != true)
+        else if (audioMixerGroup != null && x != true)
         {
-            audioMixerGroup.audioMixer.GetFloat("Volume1", out volumeValue); // "Volume" to nazwa parametru g≥oúnoúci w mikserze audio
-            volumeValue = Mathf.Pow(10f, volumeValue / 20f); // Konwersja z decybeli do wartoúci normalizowanej (0-1)
+            audioMixerGroup.audioMixer.GetFloat("Volume1", out volumeValue); // "Volume" to nazwa parametru g¬≥o≈ìno≈ìci w mikserze audio
+            volumeValue = Mathf.Pow(10f, volumeValue / 20f); // Konwersja z decybeli do warto≈ìci normalizowanej (0-1)
         }
 
         return volumeValue;
@@ -133,7 +141,7 @@ public class MusicManager_game : MonoBehaviour
     #region Muzyka
     private void PlayAudioListInLoop()
     {
-        // Uruchom coroutine do odtwarzania w nieskoÒczonoúÊ
+        // Uruchom coroutine do odtwarzania w niesko√±czono≈ì√¶
         StartCoroutine(PlayAudioListCoroutine());
     }
 
@@ -141,16 +149,16 @@ public class MusicManager_game : MonoBehaviour
     {
         while (true)
         {
-            // Przejdü przez wszystkie pliki audio w liúcie
+            // Przejd≈∏ przez wszystkie pliki audio w li≈ìcie
             for (int i = 0; i < audioClips.Length; i++)
             {
                 // Ustaw aktualny plik audio
                 audioSource.clip = audioClips[i];
 
-                // OdtwÛrz düwiÍk
+                // Odtw√≥rz d≈∏wi√™k
                 audioSource.Play();
 
-                // Poczekaj na zakoÒczenie odtwarzania
+                // Poczekaj na zako√±czenie odtwarzania
                 yield return new WaitForSeconds(audioSource.clip.length);
             }
         }

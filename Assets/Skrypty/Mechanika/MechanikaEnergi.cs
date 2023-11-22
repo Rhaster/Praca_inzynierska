@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+
 
 public class MechanikaEnergi : MonoBehaviour
 {
@@ -51,6 +51,7 @@ public class MechanikaEnergi : MonoBehaviour
         if (!Czy_Jest_osi¹gnieto_limit())
         {
             ilosc_energi_Int += ilosc;
+            SoundManager_game.Instance.PlaySound(SoundManager_game.Sound.DodanieEnergi);
             zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
         }
         else
@@ -64,6 +65,7 @@ public class MechanikaEnergi : MonoBehaviour
         {
 
             ilosc_energi_Int -= ilosc;
+            SoundManager_game.Instance.PlaySound(SoundManager_game.Sound.ZmianaElektryki);
             zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
         }
         else
