@@ -10,16 +10,19 @@ public class GeneratorSurowcow : MonoBehaviour
     [SerializeField] public int IloscEnergi;
     [SerializeField] public string nazwa_kopalni;
     [SerializeField] public int IloscEnergiMax;
-    private float timer;
+    private float elapsedTime = 0f;
+    private float desiredTime = 0.25f; // Sekundy
+    [SerializeField]private float timer;
     private float timerMax;
     public static GeneratorSurowcow Instance { get; private set; }
     public event EventHandler ZmianaTimeraEvent;
 
+    private bool flaga;
     private void Awake()
     {
         
         Instance= this;
-
+        flaga = false;
         timerMax = IloscEnergi;
     }
 
@@ -33,28 +36,40 @@ public class GeneratorSurowcow : MonoBehaviour
         if (timerMax > 0)
         {
             timer -= Time.deltaTime;
-            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
-            if (timer <= 0f)
+            elapsedTime += Time.deltaTime;
+            if (CzyMineloJednaSekunda())
             {
+                ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
+                elapsedTime = 0;
+            }
+            if (timer <= 0f && flaga)
+            {
+                Debug.Log("xdd"+  flaga);
                 timer += timerMax;
                 MechanikaEkonomi.Instance.DodajSurowiec(surowiecGenerowany, 1);
             }
         }
     }
-    
 
+    bool CzyMineloJednaSekunda()
+    {
+        return elapsedTime >= desiredTime;
+    }
     public float GetTimerNormalized()
     {
         return timer / timerMax;
     }
-
+    public float GetTimer()
+    {
+        return timer ;
+    }
     public float GetAmountGeneratedPerSecond()
     {
         return 1 / timerMax;
     }
     public float getTimerMax()
     {
-        return IloscEnergi;
+        return timerMax;
     }
     public float getIloscEnergi()
     {
@@ -65,11 +80,16 @@ public class GeneratorSurowcow : MonoBehaviour
         IloscEnergi += ilosc;
         if(IloscEnergi == 0)
         {
-            timerMax = IloscEnergi;
+            flaga = false;
+            timerMax = 0;
+            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
         }
         else
         {
+            timer = IloscEnergiMax - IloscEnergi;
+            flaga = true;
             timerMax = IloscEnergiMax -IloscEnergi;
+            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

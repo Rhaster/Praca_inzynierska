@@ -15,6 +15,7 @@ public class UI_Budynkow : MonoBehaviour
     private Transform statystykaTransform;
     public TextMeshProUGUI Statystyka_Text;
     public GeneratorSurowcow generator;
+    public Image pasek_image;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,16 +55,25 @@ public class UI_Budynkow : MonoBehaviour
 
 
         #region Statystyki generatora UI 
-        statystykaTransform = transform.Find("Sekcja_generatora");
-        Statystyka_Text.transform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
+        statystykaTransform = templateTransform.Find("Sekcja_generatora");
+        Statystyka_Text = statystykaTransform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
+        pasek_image = statystykaTransform.Find("Image").Find("pasek").GetComponent<Image>();
         generator.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
         #endregion
     }
 
     private void Generator_ZmianaTimeraEvent(object sender, System.EventArgs e)
     {
-        Debug.Log("event wywolany");
-        Statystyka_Text.SetText("1 /"+ generator.getTimerMax().ToString());
+        if (generator.getTimerMax() != 0)
+        {
+            Statystyka_Text.SetText("1 /" + generator.getTimerMax().ToString() + "s");
+            pasek_image.fillAmount = 1 - (generator.GetTimer() / generator.getTimerMax());
+        }
+        else
+        {
+            Statystyka_Text.SetText("Wy³¹czony");
+            pasek_image.fillAmount = 0;
+        }
     }
 
     private void AktualizacjaIloscEnergiWObiekcie()

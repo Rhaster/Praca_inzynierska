@@ -36,16 +36,7 @@ public class MechanikaEnergi : MonoBehaviour
     {
         return ilosc_energi_Int > ilosc_energi_Startowa_Int-1;
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L)) {
-            Odejmij_Energi(1);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Dodaj_Energi(1);
-        }
-    }
+
     public void Dodaj_Energi(int ilosc)
     {
         if (!Czy_Jest_osi¹gnieto_limit())
