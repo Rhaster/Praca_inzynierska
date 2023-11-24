@@ -29,7 +29,7 @@ public Transform[] waypoints;
             Transform currentWaypoint = target[currentWaypointIndex];
 
             float distanceToWaypoint = Vector3.Distance(transform.position, currentWaypoint.position);
-            if (distanceToWaypoint > 0.1f)
+            if (distanceToWaypoint > 0.4f)
             {
                 Vector3 moveDir = (currentWaypoint.position - transform.position).normalized;
                 rigidbody2d.velocity = moveDir * speed;

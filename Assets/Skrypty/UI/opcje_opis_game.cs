@@ -64,6 +64,7 @@ public class opcje_opis_game : MonoBehaviour
 
     private void ResumeGame()
     {
-        Time.timeScale = 1f; // Wznowienie czasu gry
+        float xd = UI_Czasmanager.instance.getCurrentTimeScale();
+        Time.timeScale = xd; // Wznowienie czasu gry
     }
 }

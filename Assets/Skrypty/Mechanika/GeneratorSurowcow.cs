@@ -11,7 +11,7 @@ public class GeneratorSurowcow : MonoBehaviour
     [SerializeField] public string nazwa_kopalni;
     [SerializeField] public int IloscEnergiMax;
     private float elapsedTime = 0f;
-    private float desiredTime = 0.25f; // Sekundy
+    private float desiredTime = 0.1f; // Sekundy
     [SerializeField]private float timer;
     private float timerMax;
     public static GeneratorSurowcow Instance { get; private set; }

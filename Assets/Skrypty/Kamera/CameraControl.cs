@@ -54,7 +54,11 @@ public class CameraControl : MonoBehaviour
             }
         Vector3 moveDir = new Vector3(x, y).normalized;
         float moveSpeed = 30f;
-        Vector3 holder = transform.position += moveDir * moveSpeed * Time.deltaTime;
+        Vector3 holder;
+
+             holder = transform.position += (moveDir * moveSpeed * Time.unscaledDeltaTime); // anty przyspieszenie kamery
+
+
         Vector3 clampedPosition = Vector3.zero;
         clampedPosition.x = Mathf.Clamp(holder.x,minOgraniczenieX, maxOgraniczenieX);
         clampedPosition.y = Mathf.Clamp(holder.y, minOgraniczenieX, maxOgraniczenieX);
