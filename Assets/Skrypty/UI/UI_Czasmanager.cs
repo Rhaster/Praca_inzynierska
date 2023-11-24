@@ -35,7 +35,8 @@ public class UI_Czasmanager : MonoBehaviour
         stopButton.onClick.AddListener(StopTime);
         startButton.onClick.AddListener(StartTime);
         doubleStartButton.onClick.AddListener(DoubleStartTime);
-        start_Image.color = podswietlenie_Color.WithAlpha(100);
+        start_Image.color = podswietlenie_Color;
+        start_Image.color = new Color(start_Image.color.r, start_Image.color.g, start_Image.color.b, 0.39f);
         Debug_czasu = 1;
 
     }
@@ -46,7 +47,8 @@ public class UI_Czasmanager : MonoBehaviour
         // Zatrzymaj czas
         Time.timeScale = 0;
         Debug_czasu = Time.timeScale;
-        stop_Image.color = podswietlenie_Color.WithAlpha(100);
+        stop_Image.color = podswietlenie_Color;
+        stop_Image.color = new Color(start_Image.color.r, start_Image.color.g, start_Image.color.b, 0.39f);
     }
 
     void StartTime()
@@ -55,7 +57,8 @@ public class UI_Czasmanager : MonoBehaviour
         // Wznów czas
         Time.timeScale = 1;
         Debug_czasu = Time.timeScale;
-        start_Image.color = podswietlenie_Color.WithAlpha(100); ;
+        start_Image.color = podswietlenie_Color;
+        start_Image.color = new Color(start_Image.color.r, start_Image.color.g, start_Image.color.b, 0.39f);
     }
 
     void DoubleStartTime()
@@ -64,7 +67,8 @@ public class UI_Czasmanager : MonoBehaviour
         // Ustaw czas na dwukrotnie szybszy
         Time.timeScale = 2;
         Debug_czasu = Time.timeScale;
-        doublestart_Image.color= podswietlenie_Color.WithAlpha(100); ;
+        doublestart_Image.color = podswietlenie_Color;
+        doublestart_Image.color = new Color(start_Image.color.r, start_Image.color.g, start_Image.color.b, 0.39f);
     }
     private void Reset()
     {

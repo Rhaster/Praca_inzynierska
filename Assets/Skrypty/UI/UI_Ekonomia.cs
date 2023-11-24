@@ -21,7 +21,7 @@ public class UI_Ekonomia : MonoBehaviour
             Transform resourceTransform = Instantiate(resourceTemplate, transform);
             resourceTransform.gameObject.SetActive(true);
             
-            float offsetAmount = -105f;
+            float offsetAmount = -120f;
             resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
 
             resourceTransform.Find("icon").GetComponent<Image>().sprite = resourceType.surowiec_sprite;
