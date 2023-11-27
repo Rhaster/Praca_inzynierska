@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Grid0
+    uniqueID: 2020663663
+    locked: 0
   - name: Teren
     uniqueID: 2727195253
     locked: 0

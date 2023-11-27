@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 99d9152f889bb3544bc0e0faa30d0c23, type: 3}
-  m_Name: Obszarownica
+  m_Name: Destruktor
   m_EditorClassIdentifier: 
-  wieza_Nazwa: Obszarownica
-  wieza_Transform: {fileID: 572898511041158051, guid: 3df1bfec71518114e99069fbddb96c13, type: 3}
+  wieza_Nazwa: Destruktor
+  wieza_Transform: {fileID: 9166983747188634945, guid: 119adaacc8eff324691e9c6dfc46a7c7, type: 3}
   wieza_zasiegataku_float: 0
   wieza_rodzajataku_Enum: 0
-  wieza_Sprite: {fileID: -1847055787, guid: 6ffcaade505f37d42948cddc565e023b, type: 3}
+  wieza_Sprite: {fileID: -661868656, guid: 5724641410e1f8c459d3c4e234b1325e, type: 3}

@@ -7,10 +7,10 @@ public class CameraControl : MonoBehaviour
 {
     public static CameraControl Instance { get; private set; }
 
-    public float minOgraniczenieX = -10f;
-    public float maxOgraniczenieX = 10f;
-    public float minOgraniczenieY = -10f;
-    public float maxOgraniczenieY = 10f;
+    public float minOgraniczenieX;
+    public float maxOgraniczenieX;
+    public float minOgraniczenieY ;
+    public float maxOgraniczenieY;
 
 
     [SerializeField] private CinemachineVirtualCamera cinemachineVirtualCamera;
@@ -28,10 +28,10 @@ public class CameraControl : MonoBehaviour
     }
     private void Update()
     {
-        HandleMovement();
-        HandleZoom();
+        Poruszanie();
+        Przyblizenie();
     }
-    private void HandleMovement()
+    private void Poruszanie()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
@@ -61,11 +61,11 @@ public class CameraControl : MonoBehaviour
 
         Vector3 clampedPosition = Vector3.zero;
         clampedPosition.x = Mathf.Clamp(holder.x,minOgraniczenieX, maxOgraniczenieX);
-        clampedPosition.y = Mathf.Clamp(holder.y, minOgraniczenieX, maxOgraniczenieX);
+        clampedPosition.y = Mathf.Clamp(holder.y, minOgraniczenieY, maxOgraniczenieY);
         transform.position = clampedPosition;
     }
 
-    private void HandleZoom()
+    private void Przyblizenie()
     {
         float zoomAmount = 2f;
         targetOrthographicSize += -Input.mouseScrollDelta.y * zoomAmount;

@@ -6,17 +6,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_Ekonomia : MonoBehaviour
 {
-    private Lista_Surowce_SO resourceTypeList;
-    private Dictionary<Surowce_SO, Transform> resourceTypeTransformDictionary;
+    private Lista_Surowce_SO surowce_Lista;
+    private Dictionary<Surowce_SO, Transform> surowce_Slownik;
 
     private void Awake()
     {
-        resourceTypeList = Resources.Load<Lista_Surowce_SO>("Surowce_Lista");
-        resourceTypeTransformDictionary = new Dictionary<Surowce_SO, Transform>();
+        #region Logika pobierania i tworzenia obiektów w ui
+        surowce_Lista = Resources.Load<Lista_Surowce_SO>("Surowce_Lista");
+        surowce_Slownik = new Dictionary<Surowce_SO, Transform>();
         Transform resourceTemplate = transform.Find("SurowceTemplate"); 
         resourceTemplate.gameObject.SetActive(false);
         int index = 0;
-        foreach (Surowce_SO resourceType in resourceTypeList.surowce_lista)
+        foreach (Surowce_SO surowiec in surowce_Lista.surowce_lista)
         {
             Transform resourceTransform = Instantiate(resourceTemplate, transform);
             resourceTransform.gameObject.SetActive(true);
@@ -24,34 +25,35 @@ public class UI_Ekonomia : MonoBehaviour
             float offsetAmount = -120f;
             resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
 
-            resourceTransform.Find("icon").GetComponent<Image>().sprite = resourceType.surowiec_sprite;
+            resourceTransform.Find("icon").GetComponent<Image>().sprite = surowiec.surowiec_sprite;
 
-            resourceTypeTransformDictionary[resourceType] = resourceTransform;
+            surowce_Slownik[surowiec] = resourceTransform;
 
             index++;
         }
+        #endregion
     }
 
     private void Start()
     {
         MechanikaEkonomi.Instance.ZmianaIlosciSurowcow += Instance_ZmianaIlosciSurowcow;
 
-        UpdateResourceAmount();
+        Aktualizuj_Ilosc_surowcow();
     }
 
     private void Instance_ZmianaIlosciSurowcow(object sender, System.EventArgs e)
     {
-        UpdateResourceAmount();
+        Aktualizuj_Ilosc_surowcow();
     }
 
-    private void UpdateResourceAmount()
+    private void Aktualizuj_Ilosc_surowcow()
     {
-        foreach (Surowce_SO resourceType in resourceTypeList.surowce_lista)
+        foreach (Surowce_SO surowiec in surowce_Lista.surowce_lista)
         {
-            Transform resourceTransform = resourceTypeTransformDictionary[resourceType];
+            Transform resourceTransform = surowce_Slownik[surowiec];
 
-            int resourceAmount =MechanikaEkonomi.Instance.GetIloscSurowca(resourceType);
-            resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(resourceAmount.ToString());
+            int surowce_Ilosc_Int =MechanikaEkonomi.Instance.GetIloscSurowca(surowiec);
+            resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(surowce_Ilosc_Int.ToString());
         }
     }
 }

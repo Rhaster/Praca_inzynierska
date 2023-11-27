@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfe4f270e69c76a4f8d06ca64fd505b2, type: 3}
+  m_Name: Wieze_Lista
+  m_EditorClassIdentifier: 
+  Wieze_Lista:
+  - {fileID: 11400000, guid: d6ac81801726db949bb1da131224332b, type: 2}
+  - {fileID: 11400000, guid: 9ef15e525edc4314385f7be832ad8846, type: 2}
+  - {fileID: 11400000, guid: c6f24af19181a504f8110dea6153545c, type: 2}

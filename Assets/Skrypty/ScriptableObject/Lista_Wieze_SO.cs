@@ -1,18 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Lista_Wieze_SO : MonoBehaviour
+[CreateAssetMenu(menuName =("ScriptableObjects/Wieze_Lista"))]
+public class Lista_Wieze_SO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public List<Wieze_SO> Wieze_Lista;
 }

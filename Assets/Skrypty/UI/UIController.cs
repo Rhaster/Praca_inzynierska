@@ -33,6 +33,10 @@ public class UIController : MonoBehaviour
     private Boolean czybylootwarte;
     private Transform UI_budynkow;
     #endregion
+    #region UI wiez
+
+    private Transform UI_wiez;
+    #endregion
     private void Awake()
     {
         instance = this;
@@ -45,7 +49,7 @@ public class UIController : MonoBehaviour
         UI_elektrka = transform.Find("UI_Energia");
         UI_amunicja = transform.Find("UI_Amunicja");
         UI_budynkow = transform.Find("UI_budynkow");
-
+        UI_wiez = transform.Find("UI_wieze");
         #endregion
         // wylaczenie ui budynkow na starcie
         czybylootwarte = false;
@@ -118,7 +122,8 @@ public class UIController : MonoBehaviour
             if (UI_budynkow.gameObject.activeSelf)
             {
                 czybylootwarte = true;
-            }    
+            }
+            UI_wiez.gameObject.SetActive(false);
             UI_budynkow.gameObject.SetActive(false);
             UI_amunicja.gameObject.SetActive(false);
             UI_elektrka.gameObject.SetActive(false);
@@ -135,6 +140,7 @@ public class UIController : MonoBehaviour
         {
             UI_budynkow.gameObject.SetActive(true);
         }
+        UI_wiez.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);
         UI_elektrka.gameObject.SetActive(true);
         zasoby_Transform.gameObject.SetActive(true) ;

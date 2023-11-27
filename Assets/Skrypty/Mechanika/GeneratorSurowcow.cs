@@ -44,13 +44,12 @@ public class GeneratorSurowcow : MonoBehaviour
             }
             if (timer <= 0f && flaga)
             {
-                Debug.Log("xdd"+  flaga);
                 timer += timerMax;
                 MechanikaEkonomi.Instance.DodajSurowiec(surowiecGenerowany, 1);
             }
         }
     }
-
+    
     bool CzyMineloJednaSekunda()
     {
         return elapsedTime >= desiredTime;
