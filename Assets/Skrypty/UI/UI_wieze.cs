@@ -6,8 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_wieze : MonoBehaviour
 {
-    [SerializeField] private Sprite arrowSprite;
-    [SerializeField] private List<Wieze_SO> ignoreBuildingTypeList;
     private Image wybrana_wieza_Transform;
     private Dictionary<Wieze_SO, Transform> btnTransformDictionary;
     private Transform arrowBtn;
@@ -60,6 +58,7 @@ public class UI_wieze : MonoBehaviour
 
     private void Start()
     {
+        gameObject.SetActive(false);
         //MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
         //UpdateActiveBuildingTypeButton();
     }
@@ -89,5 +88,9 @@ public class UI_wieze : MonoBehaviour
             Debug.Log("aktywna wieza to"+activeBuildingType.wieza_Nazwa);
         }
     }
-
+    private void OnEnable()
+    {
+        MechanikaBudowania.Instance.SetActiveBuildingType(null);
+        UpdateActiveBuildingTypeButton();
+    }
 }

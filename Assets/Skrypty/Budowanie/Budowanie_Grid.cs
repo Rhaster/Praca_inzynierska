@@ -41,8 +41,13 @@ public class Budowanie_Grid : MonoBehaviour
 
     private void Instance_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.OnActiveBuildingTypeChangedEventArgs e)
     {
-        Debug.Log("wywolano" + e.aktywna_wieza_so.wieza_Transform);
-        Ustaw_aktywna_wieze(e.aktywna_wieza_so.wieza_Transform);
+        //Debug.Log("wywolano" + e.aktywna_wieza_so.wieza_Transform);
+        if (e.aktywna_wieza_so != null)
+        {
+            Ustaw_aktywna_wieze(e.aktywna_wieza_so.wieza_Transform);
+            AktywujBudowanie();
+        }
+
     }
     #region Metody Budowanie
     public bool czyMenuBudowaniaOtwarte()
@@ -158,8 +163,7 @@ public class Budowanie_Grid : MonoBehaviour
             }
             else
             {
-                Debug.Log("poza strefa budowy");
-                WylaczPodswietlenie();
+               WylaczPodswietlenie();
             }
         }
     }

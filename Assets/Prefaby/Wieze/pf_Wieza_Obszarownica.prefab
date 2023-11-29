@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5582334724361071534}
   - component: {fileID: 9183413967694022315}
   m_Layer: 0
-  m_Name: gora
+  m_Name: wieza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -177,6 +177,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572898511041158051}
+  - component: {fileID: 3155837033529793587}
   m_Layer: 0
   m_Name: pf_Wieza_Obszarownica
   m_TagString: Untagged
@@ -201,3 +202,16 @@ Transform:
   - {fileID: 5582334724361071534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3155837033529793587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8829144177907062769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd9dca9f9464054cb817d5cbedaa0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootTimerMax: 1

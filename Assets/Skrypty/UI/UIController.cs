@@ -18,28 +18,41 @@ public class UIController : MonoBehaviour
     #region ZasobyUI
     private Transform zasoby_Transform;
     #endregion
+    #region Deklaracja instancji skryptu
     public static UIController instance;
+    #endregion
     #region Kontrola tekstu w UI 
     [SerializeField] private TextMeshProUGUI czas_do_nast_fali_TMPRO;
     [SerializeField] private TextMeshProUGUI nr_fali_TMPRO;
     #endregion
-    #region Kontrola widocznosci UI
+    #region Kontrola widocznosci UI opcji i fal
     private Transform UI_wavemanager_transfrom;
     private Transform opcje_transform;
     #endregion
+    #region kontrola ui pokazujacego wskaznik energi
     private Transform UI_elektrka;
     private Transform UI_amunicja;
+    #endregion
     #region UI budynków
-    private Boolean czybylootwarte;
-    private Transform UI_budynkow;
+    [SerializeField] private Boolean UI_budynkow_czybylootwarte_bool;
+    private Transform UI_budynkow_transform;
     #endregion
     #region UI wiez
-
+    [SerializeField] private Boolean UI_wieze_czybylootwarte_bool;
     private Transform UI_wiez;
+    #endregion
+    #region UI przyciski rozwijane
+    private Transform UI_Menu_Przycisk_rozwin;
+    #endregion
+    #region UI Menadzera energi
+    private Transform UI_Menadzera_energi;
+    [SerializeField]private Boolean UI_menadzera_energi_czybylootwarte_bool;
     #endregion
     private void Awake()
     {
+        #region Przypisanie instancji
         instance = this;
+        #endregion
         #region Grabbery transformów 
         zasoby_Transform = transform.Find("UI_Ekonomia");
         czasUI = transform.Find("UI_czas");
@@ -48,16 +61,22 @@ public class UIController : MonoBehaviour
         opcje_transform = transform.Find("OpcjeExpander");
         UI_elektrka = transform.Find("UI_Energia");
         UI_amunicja = transform.Find("UI_Amunicja");
-        UI_budynkow = transform.Find("UI_budynkow");
+        UI_budynkow_transform = transform.Find("UI_budynkow");
         UI_wiez = transform.Find("UI_wieze");
+        UI_Menu_Przycisk_rozwin = transform.Find("UI_Przycisk_rozwin");
+        UI_Menadzera_energi = transform.Find("UI_MenadzerEnergi");
         #endregion
-        // wylaczenie ui budynkow na starcie
-        czybylootwarte = false;
-        UI_budynkow.gameObject.SetActive(false);
+        #region wylaczenie ui budynkow na starcie
+        UI_budynkow_czybylootwarte_bool = false;
+        UI_budynkow_transform.gameObject.SetActive(false);
+        UI_Menadzera_energi.gameObject.SetActive(false) ;
+        #endregion
     }
     void Start()
     {
+        #region Przypisanie sluchacza do eventu zmiany fali
         MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
+        #endregion
     }
 
     #region Zmiana fali update tekstu 
@@ -117,34 +136,74 @@ public class UIController : MonoBehaviour
             timer = 0f; // Zresetuj licznik czasu
         }
         #endregion
-        if (Input.GetKeyDown(KeyCode.Escape))
+        #region obsluga przycisku escape 
+        if (Input.GetKeyDown(KeyCode.Escape) && (opcje_transform.gameObject.activeSelf == false))
         {
-            if (UI_budynkow.gameObject.activeSelf)
+            if (UI_budynkow_transform.gameObject.activeSelf)
             {
-                czybylootwarte = true;
+                Debug.Log("ui bud by³o");
+                UI_budynkow_czybylootwarte_bool = true;
+            }
+            else
+            {
+                Debug.Log("ui bud nie");
+                UI_budynkow_czybylootwarte_bool = false;
+            }
+            if(UI_Menadzera_energi.gameObject.activeSelf)
+            {
+                UI_menadzera_energi_czybylootwarte_bool =true;
+            }
+            else
+            {
+                UI_menadzera_energi_czybylootwarte_bool =false;
+            }
+            if(UI_wiez.gameObject.activeSelf)
+            {
+                UI_wieze_czybylootwarte_bool = true;
+            }
+            else
+            {
+                UI_wieze_czybylootwarte_bool = false;
             }
             UI_wiez.gameObject.SetActive(false);
-            UI_budynkow.gameObject.SetActive(false);
             UI_amunicja.gameObject.SetActive(false);
             UI_elektrka.gameObject.SetActive(false);
             zasoby_Transform.gameObject.SetActive(false);
-            czasUI.gameObject.SetActive(false);
+            //czasUI.gameObject.SetActive(false); 
             UI_wavemanager_transfrom.gameObject.SetActive(false);
             opcje_transform.gameObject.SetActive(true);
-   
+            UI_Menu_Przycisk_rozwin.gameObject.SetActive(false);
+            UI_budynkow_transform.gameObject.SetActive(false);
+            UI_Menadzera_energi.gameObject.SetActive(false);
+
         }
+        #endregion
     }
+    #region Funkcja reaktywujaca interfejs uzytkownika
     public void ReaktuywujUI()
     {
-        if (czybylootwarte)
+        if (UI_budynkow_czybylootwarte_bool == true)
         {
-            UI_budynkow.gameObject.SetActive(true);
+            UI_budynkow_transform.gameObject.SetActive(true);
+            Debug.Log(1);
         }
-        UI_wiez.gameObject.SetActive(true);
+        if (UI_menadzera_energi_czybylootwarte_bool == true)
+        {
+            Debug.Log(2);
+            UI_Menadzera_energi.gameObject.SetActive(true);
+        }
+        if (UI_wieze_czybylootwarte_bool == true)
+        {
+            Debug.Log(3);
+            UI_wiez.gameObject.SetActive(true);
+        }
+        UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);
         UI_elektrka.gameObject.SetActive(true);
         zasoby_Transform.gameObject.SetActive(true) ;
-        czasUI.gameObject.SetActive(true);
+        //czasUI.gameObject.SetActive(true);
         UI_wavemanager_transfrom.gameObject.SetActive(true);
+
     }
+    #endregion
 }
