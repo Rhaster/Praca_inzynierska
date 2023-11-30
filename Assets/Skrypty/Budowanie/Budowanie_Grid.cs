@@ -74,15 +74,6 @@ public class Budowanie_Grid : MonoBehaviour
                 StawiajNaGridzie();
             }
         }
-        if(Input.GetKeyDown(KeyCode.V))
-        {
-            trybBudowania = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Z))
-        {
-            trybBudowania= false;
-            WylaczPodswietlenie();
-        }
     }
 
     public void AktywujBudowanie()

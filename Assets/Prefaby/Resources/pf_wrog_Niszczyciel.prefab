@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3730145670888109513}
   - component: {fileID: 7669260844230177837}
   - component: {fileID: 2942263287916598904}
+  - component: {fileID: -7638059250968953013}
   m_Layer: 0
   m_Name: pf_wrog_Niszczyciel
   m_TagString: Untagged
@@ -140,6 +141,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c00d92f9a9da3544bc2a804b1fab939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7638059250968953013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421996572983600753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90addffb05896ad4ba6702cd2bf3c679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmountMax: 12
 --- !u!1 &3040807699160003475
 GameObject:
   m_ObjectHideFlags: 0

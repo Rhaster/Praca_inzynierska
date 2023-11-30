@@ -5,18 +5,21 @@ using UnityEngine;
 public class Wieza : MonoBehaviour
 {
     [SerializeField] private float shootTimerMax;
-
+   
     private float shootTimer_Float;
-    private wrog targetEnemy_Wrog;
+    [SerializeField] private wrog targetEnemy_Wrog;
     private float lookForTargetTimer;
-    private float lookForTargetTimerMax = .2f;
+    private float lookForTargetTimerMax = .1f;
     private Vector3 projectileSpawnPosition_Vector3;
-    public float zasieg_wiezy_Float = 30f;
-    private Transform wieza_sprite_rotacja_Transform;
+    public float zasieg_wiezy_Float;
+    [SerializeField]private Transform wieza_sprite_rotacja_Transform;
+    [SerializeField] private Transform Punkt_wystrzalu_Transform;
+    [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     private Vector3 lastMoveDir;
     private void Awake()
     {
         wieza_sprite_rotacja_Transform = transform.Find("wieza");
+        Punkt_wystrzalu_Transform = wieza_sprite_rotacja_Transform.Find("pozycja_strzalu");
         //projectileSpawnPosition = transform.Find("projectileSpawnPosition").position;
     }
 
@@ -40,6 +43,10 @@ public class Wieza : MonoBehaviour
     {
 
         shootTimer_Float -= Time.deltaTime;
+        if(targetEnemy_Wrog!= null)
+        {
+            rotacja();
+        }
         if (shootTimer_Float <= 0f)
         {
             shootTimer_Float += shootTimerMax;
@@ -47,13 +54,18 @@ public class Wieza : MonoBehaviour
             {
                 rotacja();
                 Debug.Log("strzelom");
-                //ArrowProjectile.Create(projectileSpawnPosition, targetEnemy);
+                Pociski.Create(PrefabPocisku_Testy_Transform,Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
             }
         }
     }
     private void rotacja()
     {
         Vector3 moveDir;
+
+        if (targetEnemy_Wrog == null)
+        {
+            return;
+        }
         if (targetEnemy_Wrog != null)
         {
             moveDir = (targetEnemy_Wrog.transform.position - transform.position).normalized;
@@ -63,20 +75,29 @@ public class Wieza : MonoBehaviour
         {
             moveDir = lastMoveDir;
         }
-        wieza_sprite_rotacja_Transform.eulerAngles = new Vector3(0, 0, Uzyteczne.GetAngleFromVector(moveDir));
+
+        if (moveDir != Vector3.zero)
+        {
+            float angle = Uzyteczne.GetAngleFromVector(moveDir);
+            wieza_sprite_rotacja_Transform.eulerAngles = new Vector3(0, 0, angle - 90);
+
+        }
+        
     }
     private void LookForTargets()
     {
         Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, zasieg_wiezy_Float);
-
+        bool check = false;
+        wrog enemy=null;
         foreach (Collider2D collider2D in collider2DArray)
         {
-            wrog enemy = collider2D.GetComponent<wrog>();
+            enemy = collider2D.GetComponent<wrog>();
             if (enemy != null)
             {
                 // Is a enemy!
                 if (targetEnemy_Wrog == null)
                 {
+                    check = true;
                     targetEnemy_Wrog = enemy;
                 }
                 else
@@ -86,9 +107,14 @@ public class Wieza : MonoBehaviour
                     {
                         // Closer!
                         targetEnemy_Wrog = enemy;
+                        check = true;
                     }
                 }
             }
+        }
+        if(check == false)
+        {
+            targetEnemy_Wrog = null;
         }
     }
 }

@@ -190,16 +190,14 @@ public class UIController : MonoBehaviour
         if (UI_budynkow_czybylootwarte_bool == true)
         {
             UI_budynkow_transform.gameObject.SetActive(true);
-            Debug.Log(1);
         }
         if (UI_menadzera_energi_czybylootwarte_bool == true)
         {
-            Debug.Log(2);
             UI_Menadzera_energi.gameObject.SetActive(true);
         }
         if (UI_wieze_czybylootwarte_bool == true)
         {
-            Debug.Log(3);
+  
             UI_wiez.gameObject.SetActive(true);
         }
         UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);

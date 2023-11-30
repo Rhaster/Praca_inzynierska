@@ -46,7 +46,10 @@ public class GeneratorAmunicji : MonoBehaviour
             {
                 timer += timerMax;
                 // dodac gen amunicji
-                //MechanikaEkonomi.Instance.DodajSurowiec(surowiecGenerowany, 1);
+                if (amunicjaGenerowany != null)
+                {
+                    MechanikaAmunicji.Instance.DodajAmunicji(amunicjaGenerowany, 1);
+                }
             }
         }
     }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510ea4a592602a04f98eb5483ea76675, type: 3}
-  m_Name: Skazeniacz
+  m_Name: Rozdrabniacz
   m_EditorClassIdentifier: 
-  amunicja_nazwa_String: Skazeniacz
-  amunicja_Transform: {fileID: 3659639981443106985, guid: 2e8a6691838bfa342b88181ee196bb30, type: 3}
-  amunicja_rodzaj_obrazen_Enum: 2
-  amunicja_Sprite: {fileID: 21300000, guid: eb1c5be466d871f418f285df7be7b67b, type: 3}
+  amunicja_nazwa_String: Rozdrabniacz
+  amunicja_Transform: {fileID: 2455982682799163746, guid: 074ac3fb63db6b747a86fc7b4ca375fb, type: 3}
+  amunicja_rodzaj_obrazen_Enum: 1
+  amunicja_Sprite: {fileID: 21300000, guid: fa15892ae8401584d87b45f8baf49407, type: 3}

@@ -45,9 +45,9 @@ public class UI_Fabryka_klikalnosc : MonoBehaviour
     {
         if (!isactive)
         {
-            Debug.Log("aktyw");
             InstancjonujObiekt();
 
         }
     }
+    
 }

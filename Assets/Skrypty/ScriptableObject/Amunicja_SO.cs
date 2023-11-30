@@ -15,4 +15,5 @@ public class Amunicja_SO : ScriptableObject
         Sieczny,
         Chemiczny,
     }
+    public Sprite amunicja_Sprite;
 }

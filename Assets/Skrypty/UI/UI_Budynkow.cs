@@ -18,7 +18,16 @@ public class UI_Budynkow : MonoBehaviour
     public GeneratorAmunicji generatorAmunicji;
     public Image pasek_image;
     public bool czyFabryka_Bool; // do zmiany zachowania gdy bedzie to fabryka
-    // Start is called before the first frame update
+                                 // Start is called before the first frame update
+    #region przyciski dla fabryk
+    public Button przycisk_produkuj_amunicje1_button;
+    public Button przycisk_produkuj_amunicje2_button;
+    public Button przycisk_produkuj_amunicje3_button;
+    #endregion
+    #region amunicja
+    private Lista_Amunicja_SO surowce_Lista;
+    
+    #endregion
     void Start()
     {
 
@@ -117,13 +126,27 @@ public class UI_Budynkow : MonoBehaviour
             generatorAmunicji.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
         }
         #endregion
-    }
+        #region Kontrola Fabryki
+        if(czyFabryka_Bool)
+        {
+            przycisk_produkuj_amunicje1_button = statystykaTransform.Find("Button_1").GetComponent<Button>();
+            przycisk_produkuj_amunicje2_button = statystykaTransform.Find("Button_2").GetComponent<Button>();
+            przycisk_produkuj_amunicje3_button = statystykaTransform.Find("Button_3").GetComponent<Button>();
 
+            przycisk_produkuj_amunicje1_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[0]; });
+            przycisk_produkuj_amunicje2_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[1]; });
+            przycisk_produkuj_amunicje3_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[2]; });
+        }
+        #endregion
+    }
+    private void Awake()
+    {
+        surowce_Lista = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista");
+    }
     private void Generator_ZmianaTimeraEvent(object sender, System.EventArgs e)
     {
         if (!czyFabryka_Bool)
         {
-
 
             if (generator.getTimerMax() != 0)
             {
@@ -140,6 +163,7 @@ public class UI_Budynkow : MonoBehaviour
         {
             if (generatorAmunicji.getTimerMax() != 0)
             {
+                Debug.Log("x");
                 Statystyka_Text.SetText("1/" + generatorAmunicji.getTimerMax().ToString() + "s");
                 pasek_image.fillAmount = 1 - (generatorAmunicji.GetTimer() / generatorAmunicji.getTimerMax());
             }
