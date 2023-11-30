@@ -15,42 +15,92 @@ public class UI_Budynkow : MonoBehaviour
     private Transform statystykaTransform;
     public TextMeshProUGUI Statystyka_Text;
     public GeneratorSurowcow generator;
+    public GeneratorAmunicji generatorAmunicji;
     public Image pasek_image;
+    public bool czyFabryka_Bool; // do zmiany zachowania gdy bedzie to fabryka
     // Start is called before the first frame update
     void Start()
     {
-        
-        templateTransform = transform.Find("Sekcja_zasilania_"+generator.surowiecGenerowany.surowiec_nazwa_String);
-        Debug.Log("Sekcja_zasilania_" + generator.surowiecGenerowany.surowiec_nazwa_String);
+
+ 
+        if (!czyFabryka_Bool)
+        {
+            templateTransform = transform.Find("Sekcja_zasilania_" + generator.surowiecGenerowany.surowiec_nazwa_String);
+        }
+        else
+        {
+            templateTransform = transform.Find("Sekcja_Fabryki");
+        }
         aktualnailoscenergi_kopalni_Text = templateTransform.transform.Find("aktualna_ilosc_energi_wkopalni_text").GetComponent<TextMeshProUGUI>();
         przycisk_odejmij_energia_button = templateTransform.Find("odejmij_energi_button").GetComponent<Button>();
         przycisk_dodaj_energia_button = templateTransform.Find("dodaj_energi_button").GetComponent<Button>();
         przycisk_dodaj_energia_button.onClick.AddListener(() =>
         {
-            if (generator.getIloscEnergi() >= 0 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() >0)
+            if (!czyFabryka_Bool)
             {
-                generator.zmienIloscEnergi(1);
-                MechanikaEnergi.Instance.Odejmij_Energi(1);
-                AktualizacjaIloscEnergiWObiekcie();
+                if (generator.getIloscEnergi() >= 0 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
+                {
+
+                    generator.zmienIloscEnergi(1);
+                    MechanikaEnergi.Instance.Odejmij_Energi(1);
+                    AktualizacjaIloscEnergiWObiekcie();
+
+                }
+                else
+                {
+                    Debug.Log("brak energi w obiekcie");
+                }
             }
             else
             {
-                Debug.Log("brak energi w obiekcie");
+                if (generatorAmunicji.getIloscEnergi() >= 0 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
+                {
+
+                    generatorAmunicji.zmienIloscEnergi(1);
+                    MechanikaEnergi.Instance.Odejmij_Energi(1);
+                    AktualizacjaIloscEnergiWObiekcie();
+
+                }
+                else
+                {
+                    Debug.Log("brak energi w obiekcie");
+                }
             }
         });
         przycisk_odejmij_energia_button.onClick.AddListener(() =>
          {
-             if (generator.getIloscEnergi() >= 1)
+             if (!czyFabryka_Bool)
              {
-                 generator.zmienIloscEnergi(-1);
-                 MechanikaEnergi.Instance.Dodaj_Energi(1);
-                 AktualizacjaIloscEnergiWObiekcie();
+                 if (generator.getIloscEnergi() >= 1)
+                 {
+
+
+                     generator.zmienIloscEnergi(-1);
+                     MechanikaEnergi.Instance.Dodaj_Energi(1);
+                     AktualizacjaIloscEnergiWObiekcie();
+
+                 }
+                 else
+                 {
+                     Debug.Log("brak energi w obiekcie");
+                 }
              }
              else
              {
-                 Debug.Log("brak energi w obiekcie");
-             }
+                 if (generatorAmunicji.getIloscEnergi() >= 1)
+                 {
 
+
+                     generatorAmunicji.zmienIloscEnergi(-1);
+                     MechanikaEnergi.Instance.Dodaj_Energi(1);
+                     AktualizacjaIloscEnergiWObiekcie();
+
+                 }
+                 else
+                 {
+                     Debug.Log("brak energi w obiekcie");
+                 }
+             }
          });
 
 
@@ -58,27 +108,58 @@ public class UI_Budynkow : MonoBehaviour
         statystykaTransform = templateTransform.Find("Sekcja_generatora");
         Statystyka_Text = statystykaTransform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
         pasek_image = statystykaTransform.Find("Image").Find("pasek").GetComponent<Image>();
-        generator.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
+        if(!czyFabryka_Bool)
+        {
+            generator.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
+        }
+        else
+        {
+            generatorAmunicji.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
+        }
         #endregion
     }
 
     private void Generator_ZmianaTimeraEvent(object sender, System.EventArgs e)
     {
-        if (generator.getTimerMax() != 0)
+        if (!czyFabryka_Bool)
         {
-            Statystyka_Text.SetText("1 /" + generator.getTimerMax().ToString() + "s");
-            pasek_image.fillAmount = 1 - (generator.GetTimer() / generator.getTimerMax());
+
+
+            if (generator.getTimerMax() != 0)
+            {
+                Statystyka_Text.SetText("1/" + generator.getTimerMax().ToString() + "s");
+                pasek_image.fillAmount = 1 - (generator.GetTimer() / generator.getTimerMax());
+            }
+            else
+            {
+                Statystyka_Text.SetText("Wy³¹czony");
+                pasek_image.fillAmount = 0;
+            }
         }
         else
         {
-            Statystyka_Text.SetText("Wy³¹czony");
-            pasek_image.fillAmount = 0;
+            if (generatorAmunicji.getTimerMax() != 0)
+            {
+                Statystyka_Text.SetText("1/" + generatorAmunicji.getTimerMax().ToString() + "s");
+                pasek_image.fillAmount = 1 - (generatorAmunicji.GetTimer() / generatorAmunicji.getTimerMax());
+            }
+            else
+            {
+                Statystyka_Text.SetText("Wy³¹czony");
+                pasek_image.fillAmount = 0;
+            }
         }
     }
 
     private void AktualizacjaIloscEnergiWObiekcie()
     {
-        aktualnailoscenergi_kopalni_Text.SetText(generator.getIloscEnergi().ToString());
+        if (!czyFabryka_Bool)
+        {
+            aktualnailoscenergi_kopalni_Text.SetText(generator.getIloscEnergi().ToString());
+        }
+        else {
+            aktualnailoscenergi_kopalni_Text.SetText(generatorAmunicji.getIloscEnergi().ToString());
+                }
     }
  
     // Update is called once per frame

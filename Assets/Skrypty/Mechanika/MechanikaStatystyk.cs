@@ -21,7 +21,7 @@ public class MechanikaStatystyk : MonoBehaviour
         // Odczytaj iloœæ zabitych jednostek przy uruchamianiu gry
         int initialKilledUnits = PlayerPrefs.GetInt(KilledUnitsKey, 0);
         PlayerPrefs.SetInt(KilledUnitsKey, 0);
-        Debug.Log("Initial Killed Units: " + initialKilledUnits);
+        //Debug.Log("Initial Killed Units: " + initialKilledUnits);
     }
 
     // Funkcja do zwiêkszania liczby zabitych jednostek
@@ -36,6 +36,6 @@ public class MechanikaStatystyk : MonoBehaviour
         // Zapisz now¹ wartoœæ
         PlayerPrefs.SetInt(KilledUnitsKey, currentKilledUnits);
         PlayerPrefs.Save(); // Wa¿ne: zapisz zmiany
-        Debug.Log("Killed Units: " + currentKilledUnits);
+        //Debug.Log("Killed Units: " + currentKilledUnits);
     }
 }

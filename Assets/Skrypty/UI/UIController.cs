@@ -48,6 +48,10 @@ public class UIController : MonoBehaviour
     private Transform UI_Menadzera_energi;
     [SerializeField]private Boolean UI_menadzera_energi_czybylootwarte_bool;
     #endregion
+    #region UI Fabryki
+    private Transform UI_Fabryki_Transform;
+    private Boolean UI_Fabryki_Transform_CzyOtwarte;
+    #endregion
     private void Awake()
     {
         #region Przypisanie instancji
@@ -65,11 +69,13 @@ public class UIController : MonoBehaviour
         UI_wiez = transform.Find("UI_wieze");
         UI_Menu_Przycisk_rozwin = transform.Find("UI_Przycisk_rozwin");
         UI_Menadzera_energi = transform.Find("UI_MenadzerEnergi");
+        UI_Fabryki_Transform = transform.Find("UI_Fabryki");
         #endregion
         #region wylaczenie ui budynkow na starcie
         UI_budynkow_czybylootwarte_bool = false;
         UI_budynkow_transform.gameObject.SetActive(false);
         UI_Menadzera_energi.gameObject.SetActive(false) ;
+        UI_Fabryki_Transform.gameObject.SetActive(false) ;
         #endregion
     }
     void Start()
@@ -141,12 +147,10 @@ public class UIController : MonoBehaviour
         {
             if (UI_budynkow_transform.gameObject.activeSelf)
             {
-                Debug.Log("ui bud by³o");
                 UI_budynkow_czybylootwarte_bool = true;
             }
             else
             {
-                Debug.Log("ui bud nie");
                 UI_budynkow_czybylootwarte_bool = false;
             }
             if(UI_Menadzera_energi.gameObject.activeSelf)
@@ -165,6 +169,7 @@ public class UIController : MonoBehaviour
             {
                 UI_wieze_czybylootwarte_bool = false;
             }
+            UI_Fabryki_Transform.gameObject.SetActive(false);
             UI_wiez.gameObject.SetActive(false);
             UI_amunicja.gameObject.SetActive(false);
             UI_elektrka.gameObject.SetActive(false);

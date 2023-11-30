@@ -80,12 +80,12 @@ public class UI_wieze : MonoBehaviour
         Wieze_SO activeBuildingType = MechanikaBudowania.Instance.GetActiveBuildingType();
         if (activeBuildingType == null)
         {
-            Debug.Log("aktywna wieza to null");
+            //Debug.Log("aktywna wieza to null");
         }
         else
         {
             btnTransformDictionary[activeBuildingType].Find("wybrany").gameObject.SetActive(true);
-            Debug.Log("aktywna wieza to"+activeBuildingType.wieza_Nazwa);
+            //Debug.Log("aktywna wieza to"+activeBuildingType.wieza_Nazwa);
         }
     }
     private void OnEnable()

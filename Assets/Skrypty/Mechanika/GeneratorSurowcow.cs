@@ -16,7 +16,11 @@ public class GeneratorSurowcow : MonoBehaviour
     private float timerMax;
     public static GeneratorSurowcow Instance { get; private set; }
     public event EventHandler ZmianaTimeraEvent;
-
+    //public event EventHandler<ZmianaElektrykiHolder> ZmianaElektrykiEvent;
+    public class ZmianaElektrykiHolder
+     {
+        public GeneratorSurowcow aktywnyGenerator;
+    }
     private bool flaga;
     private void Awake()
     {
@@ -82,13 +86,22 @@ public class GeneratorSurowcow : MonoBehaviour
             flaga = false;
             timerMax = 0;
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
+            UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this,null);
+            Debug.Log("zmiana");
         }
         else
         {
             timer = IloscEnergiMax - IloscEnergi;
             flaga = true;
-            timerMax = IloscEnergiMax -IloscEnergi;
+            timerMax = IloscEnergiMax-IloscEnergi;
+            if (timerMax == 0)
+            {
+                timerMax = 0.5f;
+            }
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
+            UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
+            Debug.Log("zmiana");
         }
     }
+
 }

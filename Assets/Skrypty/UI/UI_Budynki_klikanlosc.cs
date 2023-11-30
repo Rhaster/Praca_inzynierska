@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Budynki_klikanlosc : MonoBehaviour
 {
+    public static Budynki_klikanlosc instance { get; private set; } 
     public Transform ui_budowy_transform_parent;
     public Transform ui_budowy_transform;
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
@@ -22,6 +23,7 @@ public class Budynki_klikanlosc : MonoBehaviour
         generator = GetComponent<GeneratorSurowcow>();
         ui_budowy_transform_parent.gameObject.SetActive(true);
         DezaktywujDzieci();
+        UI_Fabryka_klikalnosc.instance.DezaktywujDzieci();
         ui_budowy_transform.gameObject.SetActive(true);
         UI_budynkow_holder = ui_budowy_transform.GetComponent<UI_Budynkow>();
         UI_budynkow_holder.surowiec = generator.surowiecGenerowany;
@@ -29,7 +31,11 @@ public class Budynki_klikanlosc : MonoBehaviour
         UI_budynkow_holder.nazwa_kopalni_Text.SetText(generator.nazwa_kopalni);
         UI_budynkow_holder.generator= generator;
     }
-    void DezaktywujDzieci()
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void DezaktywujDzieci()
     {
         foreach (Transform dziecko in ui_budowy_transform_parent)
         {
@@ -40,6 +46,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     {
         if (!isactive)
         {
+            Debug.Log("kli");
             InstancjonujObiekt();
            
         }

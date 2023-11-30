@@ -37,10 +37,10 @@ public class MechanikaFal : MonoBehaviour
             holderPozycji[i] = t;
             i++;
         }
-        Debug.Log("lista wrogów");
+        //Debug.Log("lista wrogów");
         foreach(Wrogowie_SO x in wrog_lista.wrogowie_so_Lista)
         {
-            Debug.Log(x.wrog_Nazwa);
+            //Debug.Log(x.wrog_Nazwa);
         }
     }
     private void WyznaczFale()
