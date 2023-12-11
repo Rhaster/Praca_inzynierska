@@ -24,6 +24,7 @@ public class Budowanie_Grid : MonoBehaviour
     private Transform Wieza_Transform;
     private Vector3Int PodswietlonaPozycja_Vector3;
     private bool podswietlono;
+    private Wieze_SO holder_Wieza;
     #endregion
     #region zmienne timera do oszczedzenia zasobów 
     private float timer=0;
@@ -44,6 +45,7 @@ public class Budowanie_Grid : MonoBehaviour
         //Debug.Log("wywolano" + e.aktywna_wieza_so.wieza_Transform);
         if (e.aktywna_wieza_so != null)
         {
+            holder_Wieza = e.aktywna_wieza_so;
             Ustaw_aktywna_wieze(e.aktywna_wieza_so.wieza_Transform);
             AktywujBudowanie();
         }
@@ -102,17 +104,22 @@ public class Budowanie_Grid : MonoBehaviour
         // Pozyskaj pozycjê œrodka komórki na siatce
         Vector3Int roundedPosition_Vector3 = grid.WorldToCell(clickPosition);
         // SprawdŸ, czy na danej komórce ju¿ jest obiekt
-        if (grid != null && Dodatkowy_TileMap != null)
+        if (MechanikaEkonomi.Instance.CzyStac(holder_Wieza.koszt_StartowaIloscSur_Lista))
         {
-            // SprawdŸ, czy komórka jest pusta
-            if (Dodatkowy_TileMap.GetTile(roundedPosition_Vector3) == null)
+            if (grid != null && Dodatkowy_TileMap != null)
             {
-                // Twórz kopiê prefabu na pozycji œrodka komórki
-                Transform newObject = Instantiate(Wieza_Transform, grid.GetCellCenterWorld(roundedPosition_Vector3), Quaternion.identity);
-                // Ustaw odpowiedni tile na dodatkowej TileMapie
-                Dodatkowy_TileMap.SetTile(roundedPosition_Vector3, Blokujacy_Tile);
+                // SprawdŸ, czy komórka jest pusta
+                if (Dodatkowy_TileMap.GetTile(roundedPosition_Vector3) == null)
+                {
+                    // Twórz kopiê prefabu na pozycji œrodka komórki
+                    Transform newObject = Instantiate(Wieza_Transform, grid.GetCellCenterWorld(roundedPosition_Vector3), Quaternion.identity);
+                    // Ustaw odpowiedni tile na dodatkowej TileMapie
+                    Dodatkowy_TileMap.SetTile(roundedPosition_Vector3, Blokujacy_Tile);
+                    MechanikaEkonomi.Instance.WydajSurowce(holder_Wieza.koszt_StartowaIloscSur_Lista);
+                }
             }
         }
+
     }
     private void WylaczPodswietlenie()
     {

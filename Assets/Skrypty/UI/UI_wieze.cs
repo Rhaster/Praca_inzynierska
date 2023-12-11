@@ -12,6 +12,7 @@ public class UI_wieze : MonoBehaviour
 
     private void Awake()
     {
+
         Transform btnTemplate = transform.Find("Template");
         btnTemplate.gameObject.SetActive(false);
 
@@ -58,7 +59,9 @@ public class UI_wieze : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
+        Debug.Log(MechanikaBudowania.Instance);
+        MechanikaBudowania.Instance.SetActiveBuildingType(null);
+        UpdateActiveBuildingTypeButton();
         //MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
         //UpdateActiveBuildingTypeButton();
     }
@@ -90,7 +93,7 @@ public class UI_wieze : MonoBehaviour
     }
     private void OnEnable()
     {
-        MechanikaBudowania.Instance.SetActiveBuildingType(null);
-        UpdateActiveBuildingTypeButton();
+        
+       
     }
 }

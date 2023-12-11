@@ -10,6 +10,7 @@ public class Wieze_SO : ScriptableObject
     [SerializeField] public Transform wieza_Transform;
     [SerializeField] public float wieza_zasiegataku_float;
     [SerializeField] public RodzajAtaku wieza_rodzajataku_Enum;
+    [SerializeField] public List<StartowaIloscSur> koszt_StartowaIloscSur_Lista;
     public Sprite wieza_Sprite;
 
 

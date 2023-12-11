@@ -55,30 +55,30 @@ public class MechanikaEkonomi : MonoBehaviour
         return IloscSurowcow_slownik[resourceType];
     }
 
-    public bool CzyStac(StartowaIloscSur[] resourceAmountArray)
+    public bool CzyStac(List<StartowaIloscSur> resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
             if (GetIloscSurowca(resourceAmount.surowiec) >= resourceAmount.ilosc)
             {
-                // Can afford
+                // Stac wiec nic nie robie
             }
             else
             {
-                // Cannot afford 
-                return false;
+
+                return false; // nie Stac wiec return false
             }
         }
 
-        // Can afford all
         return true;
     }
 
-    public void WydajSurowce(StartowaIloscSur[] resourceAmountArray)
+    public void WydajSurowce(List<StartowaIloscSur> resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
             IloscSurowcow_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
         }
+        ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
     }
 }

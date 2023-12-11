@@ -46,7 +46,7 @@ public class UI_Ekonomia : MonoBehaviour
         Aktualizuj_Ilosc_surowcow();
     }
 
-    private void Aktualizuj_Ilosc_surowcow()
+    public void Aktualizuj_Ilosc_surowcow()
     {
         foreach (Surowce_SO surowiec in surowce_Lista.surowce_lista)
         {
@@ -55,5 +55,7 @@ public class UI_Ekonomia : MonoBehaviour
             int surowce_Ilosc_Int =MechanikaEkonomi.Instance.GetIloscSurowca(surowiec);
             resourceTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(surowce_Ilosc_Int.ToString());
         }
+        
     }
+    
 }

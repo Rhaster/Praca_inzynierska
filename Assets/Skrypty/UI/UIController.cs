@@ -72,10 +72,7 @@ public class UIController : MonoBehaviour
         UI_Fabryki_Transform = transform.Find("UI_Fabryki");
         #endregion
         #region wylaczenie ui budynkow na starcie
-        UI_budynkow_czybylootwarte_bool = false;
-        UI_budynkow_transform.gameObject.SetActive(false);
-        UI_Menadzera_energi.gameObject.SetActive(false) ;
-        UI_Fabryki_Transform.gameObject.SetActive(false) ;
+ 
         #endregion
     }
     void Start()
@@ -83,8 +80,16 @@ public class UIController : MonoBehaviour
         #region Przypisanie sluchacza do eventu zmiany fali
         MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #endregion
+        OnDeaktywacja();
     }
-
+    private void OnDeaktywacja()
+    {
+        UI_budynkow_czybylootwarte_bool = false;
+        UI_budynkow_transform.gameObject.SetActive(false);
+        UI_Menadzera_energi.gameObject.SetActive(false);
+        UI_Fabryki_Transform.gameObject.SetActive(false);
+        UI_wiez.gameObject.SetActive(false);
+    }
     #region Zmiana fali update tekstu 
     private void Instance_zmianaFali_event(object sender, EventArgs e)
     {
@@ -135,6 +140,7 @@ public class UIController : MonoBehaviour
         // Loguj co sekundê
         if (timer >= logInterval)
         {
+            
             int minutes = Mathf.FloorToInt(gameTime / 60);
             int seconds = Mathf.FloorToInt(gameTime % 60);
            

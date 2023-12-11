@@ -57,7 +57,7 @@ public class Pociski : MonoBehaviour
         if (enemy != null)
         {
             // Hit an enemy!
-            int damageAmount = 100;
+            int damageAmount = 15;
             enemy.GetComponent<SystemHP>().Damage(damageAmount);
 
             Destroy(gameObject);

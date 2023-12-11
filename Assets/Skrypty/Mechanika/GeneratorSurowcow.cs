@@ -24,7 +24,6 @@ public class GeneratorSurowcow : MonoBehaviour
     private bool flaga;
     private void Awake()
     {
-        
         Instance= this;
         flaga = false;
         timerMax = IloscEnergi;

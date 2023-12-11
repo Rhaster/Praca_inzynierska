@@ -57,7 +57,7 @@ public class UI_Budynkow : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("brak energi w obiekcie");
+                   // Debug.Log("brak energi w obiekcie");
                 }
             }
             else
@@ -72,7 +72,7 @@ public class UI_Budynkow : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("brak energi w obiekcie");
+                   // Debug.Log("brak energi w obiekcie");
                 }
             }
         });
@@ -82,8 +82,6 @@ public class UI_Budynkow : MonoBehaviour
              {
                  if (generator.getIloscEnergi() >= 1)
                  {
-
-
                      generator.zmienIloscEnergi(-1);
                      MechanikaEnergi.Instance.Dodaj_Energi(1);
                      AktualizacjaIloscEnergiWObiekcie();
@@ -91,7 +89,7 @@ public class UI_Budynkow : MonoBehaviour
                  }
                  else
                  {
-                     Debug.Log("brak energi w obiekcie");
+                     //Debug.Log("brak energi w obiekcie");
                  }
              }
              else
@@ -107,7 +105,7 @@ public class UI_Budynkow : MonoBehaviour
                  }
                  else
                  {
-                     Debug.Log("brak energi w obiekcie");
+                     //Debug.Log("brak energi w obiekcie");
                  }
              }
          });
