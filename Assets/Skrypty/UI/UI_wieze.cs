@@ -96,4 +96,8 @@ public class UI_wieze : MonoBehaviour
         
        
     }
+    private void OnDisable()
+    {
+        MechanikaBudowania.Instance.SetActiveBuildingType(null);
+    }
 }

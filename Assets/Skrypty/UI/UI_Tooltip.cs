@@ -15,7 +15,6 @@ public class UI_Tooltip : MonoBehaviour
 
         private void Awake()
         {
-
             Transform btnTemplate = transform.Find("Tooltip_template");
             btnTemplate.gameObject.SetActive(false);
 
@@ -25,9 +24,13 @@ public class UI_Tooltip : MonoBehaviour
 
             foreach (Wieze_SO buildingType in wieze_Lista.Wieze_Lista)
             {
+            if (buildingType != null)
+            {
                 Transform btnTransform = Instantiate(btnTemplate, transform);
+                btnTransform.GetComponent<UI_tooltip_content>().wieza_Wieza_SO = buildingType;
                 btnTransform.gameObject.SetActive(false);
                 wieze_Slownik[buildingType] = btnTransform;
+            }
             }
         
     }
@@ -44,10 +47,11 @@ public class UI_Tooltip : MonoBehaviour
         {
             wieze_Slownik[wieza].gameObject.SetActive(false);
         }
-        if (e!=null)
+        if (e.aktywna_wieza_so!=null)
         {
             wieze_Slownik[e.aktywna_wieza_so].gameObject.SetActive(true);
         }
+
 
     }
 }

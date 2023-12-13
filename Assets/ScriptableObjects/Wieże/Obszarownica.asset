@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wieza_Nazwa: Obszarownica
   wieza_Transform: {fileID: 572898511041158051, guid: 3df1bfec71518114e99069fbddb96c13, type: 3}
-  wieza_zasiegataku_float: 0
-  wieza_rodzajataku_Enum: 0
+  wieza_zasiegataku_float: 20
+  wieza_rodzajataku_Enum: 1
   koszt_StartowaIloscSur_Lista:
   - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
     ilosc: 15

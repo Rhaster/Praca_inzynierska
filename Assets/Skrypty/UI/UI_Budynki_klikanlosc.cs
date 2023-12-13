@@ -46,7 +46,6 @@ public class Budynki_klikanlosc : MonoBehaviour
     {
         if (!isactive)
         {
-            Debug.Log("kli");
             InstancjonujObiekt();
            
         }
