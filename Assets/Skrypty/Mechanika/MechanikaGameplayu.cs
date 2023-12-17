@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MechanikaGameplayu : MonoBehaviour
 {
+    [SerializeField] private Transform mechanikaSpawnuFali_Transform;
     // Start is called before the first frame update
     void Start()
     {

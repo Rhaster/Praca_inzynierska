@@ -15,6 +15,12 @@ public class wrog : MonoBehaviour
             wrog enemy = enemyTransform.GetComponent<wrog>();
             return enemy;
         }
-
-        // Update is called once per frame
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("CEL"))
+        {
+            collision.GetComponent<SystemHP>().Damage(1);
+        }
+    }
+    // Update is called once per frame
 }
