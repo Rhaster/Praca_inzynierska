@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class LadowaniePlayerPrefs : MonoBehaviour
 {
+   
+    private void Start()
+    {
+        DisplayAllPlayerPrefs();
+    }
     public static int GetDifficulty()
     {
         string difficultyKey = "Difficulty";
@@ -46,5 +51,16 @@ public class LadowaniePlayerPrefs : MonoBehaviour
         string faleKey = "FALE";
         PlayerPrefs.SetInt(faleKey, numberOfWaves);
         PlayerPrefs.Save();
+    }
+    public void DisplayAllPlayerPrefs()
+    {
+        Debug.Log("PlayerPrefs data:");
+
+        // Iteracja po wszystkich kluczach
+        foreach (var key in PlayerPrefs.GetString("FALE"))
+        {
+            // Wyœwietlanie klucza i odpowiadaj¹cej mu wartoœci
+            Debug.Log(key + ": " + PlayerPrefs.GetString(key.ToString()));
+        }
     }
 }

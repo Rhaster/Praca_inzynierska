@@ -26,12 +26,15 @@ public class WyborMapy : MonoBehaviour
     public List<int> iloscFal_Lista;
     private void Awake()
     {
+        UpdateDropdownOptions();
         powrot_button = transform.Find("wyjscie").GetComponent<Button>();
         start_button = transform.Find("Start").GetComponent<Button>();
         gameObject.SetActive(false);
     }
     private void Start()
     {
+        
+
         // Ustaw domyœlne wartoœci, jeœli jeszcze nie zapisano wyboru mapy i poziomu trudnoœci.
         if (!PlayerPrefs.HasKey(wybrana_mapa_String))
         {
@@ -61,7 +64,7 @@ public class WyborMapy : MonoBehaviour
         if (!PlayerPrefs.HasKey(faleKey))
         {
             faleDropdown.value = iloscFal_Lista[0];
-            SetDifficulty();
+            SetFale();
         }
         else
         {
@@ -70,7 +73,6 @@ public class WyborMapy : MonoBehaviour
             faleDropdown.value = savedFale;
             SetFale();
         }
-        UpdateDropdownOptions();
         faleDropdown.onValueChanged.AddListener(delegate { SetFale(); });
         mapDropdown.onValueChanged.AddListener(delegate { SetSelectedMap(); });
         difficultyDropdown.onValueChanged.AddListener(delegate { SetDifficulty(); });
@@ -134,10 +136,11 @@ public class WyborMapy : MonoBehaviour
     }
     public void SetFale()
     {
-        int difficultyIndex = faleDropdown.value;
-        PlayerPrefs.SetInt(faleKey, difficultyIndex);
+        int ddd = faleDropdown.value;
+        Debug.Log("wybrane ==================================" + ddd);
+        PlayerPrefs.SetInt(faleKey, iloscFal_Lista[ddd]);
         PlayerPrefs.Save();
-        string selectedDifficulty = faleDropdown.options[difficultyIndex].text;
+        string selectedDifficulty = faleDropdown.options[ddd].text;
         Debug.Log("Wybrano fale : " + selectedDifficulty);
     }
 }

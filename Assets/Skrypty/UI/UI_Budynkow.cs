@@ -161,7 +161,6 @@ public class UI_Budynkow : MonoBehaviour
         {
             if (generatorAmunicji.getTimerMax() != 0)
             {
-                Debug.Log("x");
                 Statystyka_Text.SetText("1/" + generatorAmunicji.getTimerMax().ToString() + "s");
                 pasek_image.fillAmount = 1 - (generatorAmunicji.GetTimer() / generatorAmunicji.getTimerMax());
             }

@@ -1212,7 +1212,7 @@ MonoBehaviour:
   - MAPA1
   - MAPA2
   - MAPA3
-  iloscFal_Lista: 0f0000001400000019000000
+  iloscFal_Lista: 030000000f0000001400000019000000
 --- !u!1 &222648002
 GameObject:
   m_ObjectHideFlags: 0
