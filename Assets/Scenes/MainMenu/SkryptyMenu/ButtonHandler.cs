@@ -21,7 +21,6 @@ public class ButtonHandler : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
             normalColor = Color.green;
         }
         audioSource = GetComponent<AudioSource>();
-        // Przypisz dŸwiêk do komponentu AudioSource
         
         
     }
@@ -38,7 +37,6 @@ public class ButtonHandler : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
     }
     public void Reset()
     {
-       // Debug.Log(gameObject.name + " "+ "res" + normalColor.ToString() +" " +  highlightColor.ToString());
         buttonImage.color = normalColor;
     }
 }

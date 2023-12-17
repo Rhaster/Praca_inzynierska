@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surowiecGenerowany: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
   IloscEnergi: 5
+  nazwa_kopalni: 
+  IloscEnergiMax: 0
+  timer: 0
 --- !u!1 &4560457046711924341
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,7 +123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab66dd95d0839a3448c4d17687065ad1, type: 3}
   m_Color: {r: 0, g: 0.990566, b: 0.822925, a: 1}
   m_FlipX: 0
   m_FlipY: 0

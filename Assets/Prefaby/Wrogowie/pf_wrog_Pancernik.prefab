@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6686097099955408324}
   - component: {fileID: 1623346468191681743}
   - component: {fileID: 2154807508535944918}
+  - component: {fileID: 8193638254570690969}
   m_Layer: 0
   m_Name: pf_wrog_Pancernik
   m_TagString: Untagged
@@ -161,6 +162,7 @@ MonoBehaviour:
   waypoints: []
   speed: 5
   rigidbody2d: {fileID: 6686097099955408324}
+  moveDir: {x: 0, y: 0, z: 0}
 --- !u!61 &2154807508535944918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,3 +208,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8193638254570690969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032845025811383864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6a5112779c774da3ac9fc1b011746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wroga_Transform: {fileID: 0}
+  sprite_wroga: {fileID: 0}
+  stanie: {fileID: 21300000, guid: 23d2b1f8bc92ba240b52c814bea2ebaf, type: 3}
+  poruszanie: {fileID: 21300000, guid: 6664d540a8ae61a4fbe6672c31f0fe02, type: 3}
+  rigidbody2d: {fileID: 0}

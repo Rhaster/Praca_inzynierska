@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2154807508535944918}
   - component: {fileID: 2579614837626825355}
   - component: {fileID: 95910488640782430}
+  - component: {fileID: 9192231483119593183}
   m_Layer: 0
   m_Name: pf_wrog_Pancernik
   m_TagString: Untagged
@@ -119,6 +120,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3877664812136086624}
+  - {fileID: 8377920181079978359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6686097099955408324
@@ -168,6 +170,7 @@ MonoBehaviour:
   - {fileID: 0}
   speed: 15
   rigidbody2d: {fileID: 6686097099955408324}
+  moveDir: {x: 0, y: 0, z: 0}
 --- !u!61 &2154807508535944918
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -238,3 +241,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmountMax: 100
+  healthAmount: 0
+--- !u!114 &9192231483119593183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032845025811383864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27b6a5112779c774da3ac9fc1b011746, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wroga_Transform: {fileID: 0}
+  sprite_wroga: {fileID: 421275962913684765}
+  stanie: {fileID: 21300000, guid: 8bea1f60baed364439dfd685be16e146, type: 3}
+  poruszanie: {fileID: 21300000, guid: 6664d540a8ae61a4fbe6672c31f0fe02, type: 3}
+  rigidbody2d: {fileID: 0}
+--- !u!1001 &7901472026659080615
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8865242716963678726}
+    m_Modifications:
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.184
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7344468569582910934, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: m_Name
+      value: pf_Healthbar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8293610832622538519, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+      propertyPath: SystemHP
+      value: 
+      objectReference: {fileID: 95910488640782430}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+--- !u!4 &8377920181079978359 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1865599609920452816, guid: bf72331182a74c44495fbbaea6ad25a6, type: 3}
+  m_PrefabInstance: {fileID: 7901472026659080615}
+  m_PrefabAsset: {fileID: 0}

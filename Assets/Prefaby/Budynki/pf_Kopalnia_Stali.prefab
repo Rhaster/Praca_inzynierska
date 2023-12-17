@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.068752214, g: 0.09797398, b: 0.9716981, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3f1a49a2d856b224f8930dbba0ad13f0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,3 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   surowiecGenerowany: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
   IloscEnergi: 2
+  nazwa_kopalni: 
+  IloscEnergiMax: 0
+  timer: 0

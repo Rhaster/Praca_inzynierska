@@ -15,6 +15,7 @@ public class SystemHP : MonoBehaviour
 
     private void Awake()
     {
+
         healthAmount = healthAmountMax;
     }
 

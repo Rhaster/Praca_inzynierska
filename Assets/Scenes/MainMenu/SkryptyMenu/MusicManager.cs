@@ -38,23 +38,27 @@ public class MusicManager : MonoBehaviour
         {
             soundVolume = PlayerPrefs.GetFloat("Volume");
             volumeSoundSlider.value = soundVolume;
+            soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(soundVolume) * 20);
             //ChangeColorByVolume1(soundVolume, volumeSoundSlider);
         }
         else
         {
             soundVolume = 1;
             volumeSoundSlider.value = soundVolume;
+            soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(soundVolume) * 20);
         }
         if (PlayerPrefs.HasKey("Volume1"))
         {
             musicVolume = PlayerPrefs.GetFloat("Volume1");
             volumeMusicSlider.value = musicVolume;
+            soundEffectsGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(musicVolume) * 20);
             //ChangeColorByVolume1(musicVolume, volumeSoundSlider);
         }
         else
         {
             musicVolume = 1;
             volumeMusicSlider.value = musicVolume;
+            soundEffectsGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(musicVolume) * 20);
         }
         #endregion
     }

@@ -30,13 +30,13 @@ public class UI_Amunicja : MonoBehaviour
 
             index++;
         }
-        MechanikaAmunicji.Instance.ZmianaIlosciAmunicji += Instance_ZmianaIlosciAmunicji;
+        
         #endregion
     }
 
     private void Start()
     {
-        
+        MechanikaAmunicji.Instance.ZmianaIlosciAmunicji += Instance_ZmianaIlosciAmunicji;
 
     }
 
