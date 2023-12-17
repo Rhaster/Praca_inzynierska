@@ -116,6 +116,7 @@ public class Budowanie_Grid : MonoBehaviour
                     // Ustaw odpowiedni tile na dodatkowej TileMapie
                     Dodatkowy_TileMap.SetTile(roundedPosition_Vector3, Blokujacy_Tile);
                     MechanikaEkonomi.Instance.WydajSurowce(holder_Wieza.koszt_StartowaIloscSur_Lista);
+                    MechanikaStatystyk.instance.IncreaseBuilded();
                 }
             }
         }

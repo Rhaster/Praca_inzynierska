@@ -12,8 +12,11 @@ public class Wyznacznik_fali : MonoBehaviour
     }
     [SerializeField]private List<string> Sk³adFali;
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
+    [SerializeField]private int ZczytanyPoziomTrudnosci_Int;
     private void Awake()
     {
+        // Wczytanie poziomu trudnosci\
+        ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         wrog_lista = Resources.Load<Lista_Wrogowie_SO>("Wrogowie_Lista");
     }
     public List<string> ustalfale(float rozmiar, float budynkigracza)

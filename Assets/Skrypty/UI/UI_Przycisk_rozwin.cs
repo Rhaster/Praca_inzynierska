@@ -7,7 +7,7 @@ public class Przycisk_rozwin : MonoBehaviour
 {
     // Skrypt odpowiada za mechanike aktywowania UI wyboru wie¿ do zbudowania 
 
-
+    public static Przycisk_rozwin instance;
     #region Deklaracje zmiennych Transform
     [SerializeField]private Transform UI_Menadzer_Energi_Transform;
     [SerializeField] private Transform UI_Menadzer_Budowania_Transform;
@@ -20,6 +20,7 @@ public class Przycisk_rozwin : MonoBehaviour
     #endregion
     private void Awake()
     {
+        instance = this;
         #region Pobranie transformów dzieci 
         UI_Menadzer_Energi_Transform = transform.Find("MenadzerEnergiOpener");
         UI_Menadzer_Budowania_Transform = transform.Find("BudowanieOpener");
@@ -43,11 +44,11 @@ public class Przycisk_rozwin : MonoBehaviour
         UI_Menadzer_Energi_Button.onClick.AddListener(() => { if (StatusMenuEnergi()) { DeaktywujMenuEnergi(); } else { AktywujMenuEnergi(); } });
         #endregion
     }
-    private void AktywujMenuEnergi()
+    public void AktywujMenuEnergi()
     {
         UI_Menadzer_Energia_Object_transform.gameObject.SetActive(true);
     }
-    private void DeaktywujMenuEnergi()
+    public void DeaktywujMenuEnergi()
     {
         UI_Menadzer_Energia_Object_transform.gameObject.SetActive(false);
     }

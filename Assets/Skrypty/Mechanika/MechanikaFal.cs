@@ -8,7 +8,7 @@ public class MechanikaFal : MonoBehaviour
     public Wyznacznik_fali wyznacznik_fali;
     public static MechanikaFal Instance { get; private set; }
     [SerializeField] public event EventHandler zmianaFali_event;
-
+    [SerializeField] public event EventHandler Fala_Bossa_event;
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
     [SerializeField] private List<string> AktualnySk³adFali;
     private enum State
@@ -26,8 +26,12 @@ public class MechanikaFal : MonoBehaviour
     [SerializeField] private int remainingEnemySpawnAmount;
     [SerializeField] private Vector3 spawnPosition;
     [SerializeField] private float PredkoscWroga;
+    [SerializeField] private int ZczytanyPoziomTrudnosci_Int;
+    [SerializeField] private int ZczytanyiloscFal_Int;
     private void Awake()
     {
+        ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
+        ZczytanyiloscFal_Int = LadowaniePlayerPrefs.GetNumberOfWaves();
         Instance = this;
         holderPozycji = new Transform[spawnPositionTransformList.Count];
         wrog_lista = Resources.Load<Lista_Wrogowie_SO>("Wrogowie_Lista");
@@ -54,7 +58,22 @@ public class MechanikaFal : MonoBehaviour
         waveNumber = 1;
         state = State.Oczekiwanie;
         spawnPosition = spawnPositionTransformList[UnityEngine.Random.Range(0, spawnPositionTransformList.Count)].position;
-        nextWaveSpawnTimer = 10f;
+        switch (ZczytanyPoziomTrudnosci_Int) // czas przed pierwsza fala 
+        {
+            case 1:
+                nextWaveSpawnTimer = 5f;
+                break;
+            case 2:
+                nextWaveSpawnTimer = 40f;
+                break;
+            case 3:
+                nextWaveSpawnTimer = 30f;
+                break;
+            default:
+                nextWaveSpawnTimer = 30f;
+                break;
+        }
+
         zmianaFali_event?.Invoke(this, EventArgs.Empty);
     }
 
@@ -63,6 +82,12 @@ public class MechanikaFal : MonoBehaviour
         switch (state)
         {
             case State.Oczekiwanie:
+                if(waveNumber == ZczytanyiloscFal_Int+1)
+                {
+                    Debug.Log("osiagnieto fale bossa");
+                    Fala_Bossa_event?.Invoke(this,EventArgs.Empty);
+                    gameObject.SetActive(false);
+                }
                 nextWaveSpawnTimer -= Time.deltaTime;
                 if (nextWaveSpawnTimer < 0f)
                 {

@@ -28,7 +28,10 @@ public class SystemHP : MonoBehaviour
 
         if (IsDead())
         {
-            
+            if(tag.Equals("wrog"))
+            {
+                MechanikaStatystyk.instance.IncreaseKilledUnits();
+            }
             OnDied?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }

@@ -30,7 +30,7 @@ public class Pathing : MonoBehaviour
             Transform currentWaypoint = target[currentWaypointIndex];
 
             float distanceToWaypoint = Vector3.Distance(transform.position, currentWaypoint.position);
-            if (distanceToWaypoint > 0.4f)
+            if (distanceToWaypoint > 0.9f)
             {
                 moveDir = (currentWaypoint.position - transform.position).normalized;
                 rigidbody2d.velocity = moveDir * speed;

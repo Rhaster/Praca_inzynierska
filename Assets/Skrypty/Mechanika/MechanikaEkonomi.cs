@@ -9,12 +9,13 @@ public class MechanikaEkonomi : MonoBehaviour
     public static MechanikaEkonomi Instance { get; private set; }
     public event EventHandler ZmianaIlosciSurowcow;
     [SerializeField] private List<StartowaIloscSur> Lista_startowych_Surowcow;
+    private int wydobyte;
 
     private Dictionary<Surowce_SO, int> IloscSurowcow_slownik;
 
     private void Awake()
     { 
-      
+      wydobyte= 0;
         Instance = this;
 
         IloscSurowcow_slownik = new Dictionary<Surowce_SO, int>();
@@ -46,7 +47,7 @@ public class MechanikaEkonomi : MonoBehaviour
     public void DodajSurowiec(Surowce_SO resourceType, int amount)
     {
         IloscSurowcow_slownik[resourceType] += amount;
-
+        wydobyte += 1;
         ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
     }
 
@@ -80,5 +81,9 @@ public class MechanikaEkonomi : MonoBehaviour
             IloscSurowcow_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
         }
         ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
+    }
+    public int wydobyte_sur()
+    {
+        return wydobyte;
     }
 }

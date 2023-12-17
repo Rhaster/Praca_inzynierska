@@ -30,6 +30,7 @@ public class Budynki_klikanlosc : MonoBehaviour
         Debug.Log(generator.nazwa_kopalni);
         UI_budynkow_holder.nazwa_kopalni_Text.SetText(generator.nazwa_kopalni);
         UI_budynkow_holder.generator= generator;
+        isactive= true;
     }
     private void Awake()
     {
@@ -48,6 +49,12 @@ public class Budynki_klikanlosc : MonoBehaviour
         {
             InstancjonujObiekt();
            
+        }
+        else
+        {
+            ui_budowy_transform.gameObject.SetActive(false);
+            isactive= false;
+            DezaktywujDzieci();
         }
     }
 }
