@@ -79,28 +79,36 @@ public class GeneratorSurowcow : MonoBehaviour
     }
     public void zmienIloscEnergi(int ilosc)
     {
-        IloscEnergi += ilosc;
-        if(IloscEnergi == 0)
-        {
-            flaga = false;
-            timerMax = 0;
-            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
-            UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this,null);
-            Debug.Log("zmiana");
-        }
-        else
-        {
-            timer = IloscEnergiMax - IloscEnergi;
-            flaga = true;
-            timerMax = IloscEnergiMax-IloscEnergi;
-            if (timerMax == 0)
+            IloscEnergi += ilosc;
+            if (IloscEnergi == 0)
             {
-                timerMax = 0.5f;
+                flaga = false;
+                timerMax = 0;
+                ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
+                UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
+                Debug.Log("zmiana");
             }
-            ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
-            UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
-            Debug.Log("zmiana");
-        }
+            else
+            {
+                timer = IloscEnergiMax - IloscEnergi;
+                flaga = true;
+                timerMax = IloscEnergiMax - IloscEnergi;
+                if (timerMax == 0)
+                {
+                    timerMax = 0.5f;
+                }
+                ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
+                UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
+                Debug.Log("zmiana");
+            }
+        
     }
-
+    public bool OgraniczenieDlaGeneratorBool(int ilosc)
+    {
+        if ((IloscEnergi + ilosc) >= 0)
+        {
+            return true;
+        }
+        return false;
+    }
 }

@@ -7,11 +7,13 @@ using UnityEngine;
 public class MechanikaEnergi : MonoBehaviour
 {
     [SerializeField] private int ilosc_energi_Int;
+    [SerializeField] private int Limit;
     [SerializeField] private int ilosc_energi_Startowa_Int;
     public  event EventHandler zmiana_ilosci_energi_event;
     public static MechanikaEnergi Instance { get;private set; }
     private void Awake()
     {
+        Limit = 8;
         Instance = this;
         ilosc_energi_Int = ilosc_energi_Startowa_Int;
         zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
@@ -49,6 +51,11 @@ public class MechanikaEnergi : MonoBehaviour
         {
             Debug.Log("osiagnieto limit mocy");
         }
+    }
+    public void ZwiekszMaxIloscEnergi()
+    {
+        ilosc_energi_Startowa_Int += 1;
+        Dodaj_Energi(1);
     }
     public void Odejmij_Energi(int ilosc)
     {

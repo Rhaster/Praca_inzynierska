@@ -7,6 +7,7 @@ public class UI_Fabryka_klikalnosc : MonoBehaviour
     public static UI_Fabryka_klikalnosc instance { get; private set; }
     public Transform ui_budowy_transform_parent;
     public Transform ui_budowy_transform;
+    public Transform ui_generatora_transform;
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
     private GeneratorAmunicji generator;
     private UI_Budynkow UI_budynkow_holder;
@@ -40,13 +41,20 @@ public class UI_Fabryka_klikalnosc : MonoBehaviour
         {
             dziecko.gameObject.SetActive(false);
         }
+        ui_generatora_transform.gameObject.SetActive(false);
     }
     void OnMouseDown()
     {
         if (!isactive)
         {
             InstancjonujObiekt();
-
+            isactive = true;
+        }
+        else
+        {
+            UI_budynkow_holder.gameObject.SetActive(false);
+            DezaktywujDzieci();
+            isactive = false;
         }
     }
     

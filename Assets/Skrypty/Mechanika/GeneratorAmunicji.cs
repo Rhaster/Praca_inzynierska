@@ -103,5 +103,13 @@ public class GeneratorAmunicji : MonoBehaviour
             Debug.Log("zmiana");
         }
     }
+    public bool OgraniczenieDlaGeneratorBool(int ilosc)
+    {
+        if (IloscEnergiMax - (IloscEnergi + ilosc) > 0)
+        {
+            return true;
+        }
+        return false;
+    }
 
 }

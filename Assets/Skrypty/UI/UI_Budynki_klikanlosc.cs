@@ -8,6 +8,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     public static Budynki_klikanlosc instance { get; private set; } 
     public Transform ui_budowy_transform_parent;
     public Transform ui_budowy_transform;
+    public Transform ui_generatora_transform;
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
     private GeneratorSurowcow generator;
     private UI_Budynkow UI_budynkow_holder;
@@ -42,6 +43,7 @@ public class Budynki_klikanlosc : MonoBehaviour
         {
             dziecko.gameObject.SetActive(false);
         }
+        ui_generatora_transform.gameObject.SetActive(false);
     }
     void OnMouseDown()
     {

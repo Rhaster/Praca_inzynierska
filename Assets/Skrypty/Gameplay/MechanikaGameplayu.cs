@@ -40,13 +40,13 @@ public class MechanikaGameplayu : MonoBehaviour
         switch (poziomtrudnosci_int) // czas przed pierwsza fala 
         {
             case 1:
-                MechanikaBossa.instance.wyznaczHP(400);
-                break;
-            case 2:
                 MechanikaBossa.instance.wyznaczHP(800);
                 break;
-            case 3:
+            case 2:
                 MechanikaBossa.instance.wyznaczHP(1200);
+                break;
+            case 3:
+                MechanikaBossa.instance.wyznaczHP(1800);
                 break;
             default:
                 MechanikaBossa.instance.wyznaczHP(400);

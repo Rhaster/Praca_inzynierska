@@ -52,6 +52,8 @@ public class UIController : MonoBehaviour
     private Transform UI_Fabryki_Transform;
     private Boolean UI_Fabryki_Transform_CzyOtwarte;
     #endregion
+    private Transform UI_GeneratoraEnergi_Transform;
+    private Boolean UI_generatoraEnergi_bool;
     private void Awake()
     {
         #region Przypisanie instancji
@@ -70,9 +72,10 @@ public class UIController : MonoBehaviour
         UI_Menu_Przycisk_rozwin = transform.Find("UI_Przycisk_rozwin");
         UI_Menadzera_energi = transform.Find("UI_MenadzerEnergi");
         UI_Fabryki_Transform = transform.Find("UI_Fabryki");
+        UI_GeneratoraEnergi_Transform = transform.Find("UI_GeneratorEnergi");
         #endregion
         #region wylaczenie ui budynkow na starcie
- 
+
         #endregion
     }
     void Start()
@@ -89,6 +92,7 @@ public class UIController : MonoBehaviour
         UI_Menadzera_energi.gameObject.SetActive(false);
         UI_Fabryki_Transform.gameObject.SetActive(false);
         UI_wiez.gameObject.SetActive(false);
+        UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
     }
     #region Zmiana fali update tekstu 
     private void Instance_zmianaFali_event(object sender, EventArgs e)
@@ -118,7 +122,7 @@ public class UIController : MonoBehaviour
             yield return null; // Oczekaj na nastêpn¹ klatkê
         }
 
-        if (timemax < 0)
+        if (timemax <= 0)
         {
             UstawTimerCzasuFali("");
         }
@@ -175,6 +179,11 @@ public class UIController : MonoBehaviour
             {
                 UI_wieze_czybylootwarte_bool = false;
             }
+            if(UI_GeneratoraEnergi_Transform.gameObject.activeSelf)
+            {
+                UI_generatoraEnergi_bool = true;
+            }
+            UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
             UI_Fabryki_Transform.gameObject.SetActive(false);
             UI_wiez.gameObject.SetActive(false);
             UI_amunicja.gameObject.SetActive(false);
@@ -205,6 +214,10 @@ public class UIController : MonoBehaviour
         {
   
             UI_wiez.gameObject.SetActive(true);
+        }
+        if(UI_generatoraEnergi_bool == true)
+        {
+            UI_GeneratoraEnergi_Transform.gameObject.SetActive(true);
         }
         UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);

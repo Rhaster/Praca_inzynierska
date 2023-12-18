@@ -47,12 +47,15 @@ public class UI_Budynkow : MonoBehaviour
         {
             if (!czyFabryka_Bool)
             {
-                if (generator.getIloscEnergi() >= 0 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
+                if (generator.getIloscEnergi() <8 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
                 {
 
-                    generator.zmienIloscEnergi(1);
-                    MechanikaEnergi.Instance.Odejmij_Energi(1);
-                    AktualizacjaIloscEnergiWObiekcie();
+                    if(generator.OgraniczenieDlaGeneratorBool(1))
+                    {
+                        MechanikaEnergi.Instance.Odejmij_Energi(1);
+                        generator.zmienIloscEnergi(1);
+                        AktualizacjaIloscEnergiWObiekcie();
+                    }
 
                 }
                 else
@@ -62,12 +65,14 @@ public class UI_Budynkow : MonoBehaviour
             }
             else
             {
-                if (generatorAmunicji.getIloscEnergi() >= 0 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
+                if (generatorAmunicji.getIloscEnergi() <8 && MechanikaEnergi.Instance.Get_Obecna_ilosc_energi() > 0)
                 {
-
+                    if (generatorAmunicji.OgraniczenieDlaGeneratorBool(1))
+                    { 
                     generatorAmunicji.zmienIloscEnergi(1);
                     MechanikaEnergi.Instance.Odejmij_Energi(1);
                     AktualizacjaIloscEnergiWObiekcie();
+                }
 
                 }
                 else
@@ -80,11 +85,14 @@ public class UI_Budynkow : MonoBehaviour
          {
              if (!czyFabryka_Bool)
              {
-                 if (generator.getIloscEnergi() >= 1)
+                 if (generator.getIloscEnergi() >= 0 )
                  {
-                     generator.zmienIloscEnergi(-1);
-                     MechanikaEnergi.Instance.Dodaj_Energi(1);
-                     AktualizacjaIloscEnergiWObiekcie();
+                     if (generator.OgraniczenieDlaGeneratorBool(-1))
+                     {
+                         generator.zmienIloscEnergi(-1);
+                         MechanikaEnergi.Instance.Dodaj_Energi(1);
+                         AktualizacjaIloscEnergiWObiekcie();
+                     }
 
                  }
                  else
@@ -94,13 +102,15 @@ public class UI_Budynkow : MonoBehaviour
              }
              else
              {
-                 if (generatorAmunicji.getIloscEnergi() >= 1)
+                 if (generatorAmunicji.getIloscEnergi() >= 0)
                  {
 
-
-                     generatorAmunicji.zmienIloscEnergi(-1);
-                     MechanikaEnergi.Instance.Dodaj_Energi(1);
-                     AktualizacjaIloscEnergiWObiekcie();
+                     if (generatorAmunicji.OgraniczenieDlaGeneratorBool(-1))
+                     {
+                         generatorAmunicji.zmienIloscEnergi(-1);
+                         MechanikaEnergi.Instance.Dodaj_Energi(1);
+                         AktualizacjaIloscEnergiWObiekcie();
+                     }
 
                  }
                  else
