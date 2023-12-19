@@ -52,25 +52,30 @@ public class MechanikaEnergi : MonoBehaviour
             Debug.Log("osiagnieto limit mocy");
         }
     }
-    public void ZwiekszMaxIloscEnergi()
-    {
-        ilosc_energi_Startowa_Int += 1;
-        Dodaj_Energi(1);
-    }
     public void Odejmij_Energi(int ilosc)
     {
         if (Czy_Jest_energia())
         {
-
             ilosc_energi_Int -= ilosc;
             SoundManager_game.Instance.PlaySound(SoundManager_game.Sound.ZmianaElektryki);
             zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
         }
         else
         {
-            Debug.Log("brak energi");
+            Debug.Log("osiagnieto limit mocy");
         }
     }
+    public void ZwiekszMaxIloscEnergi()
+    {
+        ilosc_energi_Startowa_Int += 1;
+        Dodaj_Energi(1);
+    }
+    public void ZmniejszMaxIloscEnergi()
+    {
+        ilosc_energi_Startowa_Int -= 1;
+        Odejmij_Energi(1);
+    }
+
 
 }
 

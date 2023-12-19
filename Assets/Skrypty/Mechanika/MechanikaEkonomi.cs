@@ -33,13 +33,7 @@ public class MechanikaEkonomi : MonoBehaviour
         }
     }
 
-    private void TestLogResourceAmountDictionary()
-    {
-        foreach (Surowce_SO resourceType in IloscSurowcow_slownik.Keys)
-        {
-            Debug.Log(resourceType.surowiec_nazwa_String + ": " + IloscSurowcow_slownik[resourceType]);
-        }
-    }
+
     private void Update()
     {
         
@@ -79,6 +73,14 @@ public class MechanikaEkonomi : MonoBehaviour
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
             IloscSurowcow_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
+        }
+        ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
+    }
+    public void DodajSurowce(List<StartowaIloscSur> resourceAmountArray)
+    {
+        foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
+        {
+            IloscSurowcow_slownik[resourceAmount.surowiec] += resourceAmount.ilosc;
         }
         ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
     }

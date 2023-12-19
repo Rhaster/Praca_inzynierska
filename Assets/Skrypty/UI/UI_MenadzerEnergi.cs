@@ -31,6 +31,12 @@ public class UI_MenadzerEnergi : MonoBehaviour
     #endregion
     Image holder;
     public GeneratorAmunicji holder_Generatora_Amunicji;
+    #region Transformy wskaznikow energi
+    public Transform zuzywanaEnergia_Transform;
+    public Transform maksymalnaEnergia_Transform;
+    private Image slup_zuzEnergia_Image;
+    private Image slup_maxEnergia_Image;
+    #endregion
     private void Awake()
     {
         Instance = this;
@@ -80,11 +86,13 @@ public class UI_MenadzerEnergi : MonoBehaviour
             btnTransforms.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 129 + odleglosc * index);
             holder.fillAmount = holder_Generatora_Amunicji.getIloscEnergi() / 8;
             btnTransforms.Find("nazwa_obiektu").GetComponent<TextMeshProUGUI>().SetText(holder_Generatora_Amunicji.nazwa_kopalni);
+        zuzywanaEnergia_Transform = transform.Find("Template_zuzywana_energia");
+        maksymalnaEnergia_Transform = transform.Find("Template_aktualna_energia");
+        slup_zuzEnergia_Image = zuzywanaEnergia_Transform.Find("Bar").Find("slupek").GetComponent<Image>();
+        slup_maxEnergia_Image = maksymalnaEnergia_Transform.Find("Bar").Find("slupek").GetComponent<Image>();
+        index++;
 
-            index++;
-
-        
-        UI_Menadzer_Energi_ResetujPrad = transform.Find("Button").GetComponent<Button>();
+       
     }
 
     public void Aktualizuj_bar_UI_Menadzera_energi(GeneratorSurowcow e,GeneratorAmunicji a)
@@ -98,11 +106,16 @@ public class UI_MenadzerEnergi : MonoBehaviour
         {
             holder.fillAmount = a.getIloscEnergi() / 8;
         }
+
+        slup_zuzEnergia_Image.fillAmount = ((float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi() - (float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
+            / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
+        slup_maxEnergia_Image.fillAmount = ((float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
+            / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
     }
     // Start is called before the first frame update
     void Start()
     {
-        UI_Menadzer_Energi_ResetujPrad.onClick.AddListener(() => { Debug.Log("click reset"); } );
+
     }
 
 

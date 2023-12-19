@@ -29,6 +29,7 @@ public class GeneratorAmunicji : MonoBehaviour
 
     private void Start()
     {
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, this);
         IloscEnergiMax = MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
     }
     private void Update()
@@ -87,7 +88,7 @@ public class GeneratorAmunicji : MonoBehaviour
             timerMax = 0;
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
             UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, this);
-            Debug.Log("zmiana");
+
         }
         else
         {
@@ -100,12 +101,12 @@ public class GeneratorAmunicji : MonoBehaviour
             }
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
             UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null,this);
-            Debug.Log("zmiana");
+
         }
     }
     public bool OgraniczenieDlaGeneratorBool(int ilosc)
     {
-        if (IloscEnergiMax - (IloscEnergi + ilosc) > 0)
+        if ((IloscEnergi + ilosc) >= 0)
         {
             return true;
         }

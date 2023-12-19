@@ -36,6 +36,8 @@ public class CameraControl : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         float edgeScrollingSize = 55;
+        if (Time.timeScale > 0)
+        {
             if (Input.mousePosition.x > Screen.width - edgeScrollingSize)
             {
                 x = +1f;
@@ -52,6 +54,7 @@ public class CameraControl : MonoBehaviour
             {
                 y = -1f;
             }
+        }
         Vector3 moveDir = new Vector3(x, y).normalized;
         float moveSpeed = 30f;
         Vector3 holder;

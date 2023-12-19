@@ -75,13 +75,14 @@ public class UIController : MonoBehaviour
         UI_GeneratoraEnergi_Transform = transform.Find("UI_GeneratorEnergi");
         #endregion
         #region wylaczenie ui budynkow na starcie
-
+       
         #endregion
     }
     void Start()
     {
-        #region Przypisanie sluchacza do eventu zmiany fali
         MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
+        #region Przypisanie sluchacza do eventu zmiany fali
+        //MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #endregion
         OnDeaktywacja();
     }
@@ -117,7 +118,10 @@ public class UIController : MonoBehaviour
                 timer = 1;
                 
                 timemax -= i;
-                UstawTimerCzasuFali(((timemax).ToString("F0") + " sekund"));
+                if (timemax >= 0)
+                {
+                    UstawTimerCzasuFali(((timemax).ToString("F0") + " sekund"));
+                }
             }
             yield return null; // Oczekaj na nastêpn¹ klatkê
         }

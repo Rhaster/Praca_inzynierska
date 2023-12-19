@@ -32,6 +32,7 @@ public class GeneratorSurowcow : MonoBehaviour
 
     private void Start()
     {
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
         IloscEnergiMax = MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
     }
     private void Update()
@@ -86,7 +87,6 @@ public class GeneratorSurowcow : MonoBehaviour
                 timerMax = 0;
                 ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
                 UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
-                Debug.Log("zmiana");
             }
             else
             {
@@ -99,7 +99,6 @@ public class GeneratorSurowcow : MonoBehaviour
                 }
                 ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
                 UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(this, null);
-                Debug.Log("zmiana");
             }
         
     }
