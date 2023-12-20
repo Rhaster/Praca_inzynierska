@@ -28,7 +28,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
     private List<Amunicja_SO> lista_Amunicji;
     private void Awake()
     {
-        ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
+        //ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
        lista_Amunicji = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista").amunicja_Lista;
  
     }
@@ -50,7 +50,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         wyswietlany_zasieg_TMPRO.SetText(zasieg_wiezy.ToString());
         sekcja_statystyk_Transform = sekcja_ustawien_Transform.Find("Sekcja_generatora");
         sekcja_ustawien_Transform.Find("nazwa_wiezy_text").GetComponent<TextMeshProUGUI>().SetText(wieza_Holder.wieza_Nazwa);
-        kontrola_Wieza.zmianaCzasuPrzeladowania += Kontrola_Wieza_zmianaCzasuPrzeladowania;
+        kontrola_Wieza.zmianaCzasuPrzeladowania += Kontrola_Wieza_zmianaCzasuPrzeladowania1; ;
         wskaznik_czasu_przeladowania_Image = sekcja_statystyk_Transform.Find("Image").Find("pasek").GetComponent<Image>();
         wyswietlany_status_TMPRO = sekcja_statystyk_Transform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
         wyswietlany_obrazenia_TMPRO = sekcja_ustawien_Transform.Find("Obrazenia_text").GetComponent<TextMeshProUGUI>();
@@ -121,19 +121,13 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         #endregion
     }
 
-    private void Kontrola_Wieza_zmianaCzasuPrzeladowania(object sender, System.EventArgs e)
+    private void Kontrola_Wieza_zmianaCzasuPrzeladowania1(object sender, Wieza.Status e)
     {
-        if(kontrola_Wieza.GetCzyPRzeladowano())
-        {
-            wyswietlany_status_TMPRO.SetText("Gotowa do strza³u");
-        }
-        else
-        {
-            wyswietlany_status_TMPRO.SetText("Prze³adowanie");
-        }
-      
-        wskaznik_czasu_przeladowania_Image.fillAmount = kontrola_Wieza.GetCzasPrzeladowania();
+        wyswietlany_status_TMPRO.SetText(e.status_Wiezy);
+        wskaznik_czasu_przeladowania_Image.fillAmount =kontrola_Wieza.GetCzasPrzeladowania();
     }
+
+ 
 
 
     private void AktywujSelekcje(Vector3 pos)
@@ -148,19 +142,29 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
 
             if (!ui_wiezy_zasieg_transform.gameObject.activeSelf)
             {
-            
+                Dezaktywacja();
                 Budynki_klikanlosc.instance.DezaktywujDzieci();
                 ui_wiezy_zasieg_transform.gameObject.SetActive(true);
                 ui_wiezy_ustawienia_Transform.gameObject.SetActive(true);
-            Reaktywacja();
+                Reaktywacja();
             }
             else
             {
+            Dezaktywacja();
             Budynki_klikanlosc.instance.DezaktywujDzieci();
-            ui_wiezy_zasieg_transform.gameObject.SetActive(false);
+                ui_wiezy_zasieg_transform.gameObject.SetActive(false);
                 ui_wiezy_ustawienia_Transform.gameObject.SetActive(false);
             }
 
+    }
+    private void Dezaktywacja()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
+
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
     }
     private void OnMouseExit()
     {

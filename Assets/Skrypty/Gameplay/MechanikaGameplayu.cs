@@ -24,13 +24,14 @@ public class MechanikaGameplayu : MonoBehaviour
         iloscFal_int = LadowaniePlayerPrefs.GetNumberOfWaves();
         Cel_handler.instance.porazka_event += Instance_porazka_event;
         MechanikaFal.Instance.Fala_Bossa_event += Instance_Fala_Bossa_event;
-       
+
     }
 
     private void Instance_wygrana_event(object sender, EventArgs e)
     {
         Time.timeScale = 0;
         wynik = "Zwyciêstwo";
+
         UI_ekran_Transform.gameObject.SetActive(true);
     }
 

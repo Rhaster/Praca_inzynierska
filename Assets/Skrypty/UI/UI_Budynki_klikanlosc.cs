@@ -37,7 +37,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
+        //ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
     }
     public void DezaktywujDzieci()
     {
@@ -46,7 +46,17 @@ public class Budynki_klikanlosc : MonoBehaviour
             dziecko.gameObject.SetActive(false);
         }
         ui_generatora_transform.gameObject.SetActive(false);
-        ui_wiezy_ustawienia_Transform.gameObject.SetActive(false) ;
+        //ui_wiezy_ustawienia_Transform.gameObject.SetActive(false) ;
+        Dezaktywacja();
+    }
+    private void Dezaktywacja()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
+
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
     }
     void OnMouseDown()
     {

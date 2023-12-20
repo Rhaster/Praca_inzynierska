@@ -23,7 +23,7 @@ public class UI_wieze : MonoBehaviour
         int index = 0;
 
         arrowBtn = Instantiate(btnTemplate, transform);
-        arrowBtn.gameObject.SetActive(true);
+        arrowBtn.gameObject.SetActive(false);
 
         float offsetAmount = +130f;
 
@@ -52,7 +52,6 @@ public class UI_wieze : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(MechanikaBudowania.Instance);
         MechanikaBudowania.Instance.SetActiveBuildingType(null);
         UpdateActiveBuildingTypeButton();
         //MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;

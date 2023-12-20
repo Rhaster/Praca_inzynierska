@@ -19,8 +19,13 @@ public class Wieza : MonoBehaviour
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
-    public event EventHandler zmianaCzasuPrzeladowania;
-    private Vector3 lastMoveDir;
+    public event EventHandler<Status> zmianaCzasuPrzeladowania;
+     public class Status
+    { 
+      public String status_Wiezy;
+    };
+
+private Vector3 lastMoveDir;
     private void Awake()
     {
         czy_przeladowano_bool = false;
@@ -52,37 +57,52 @@ public class Wieza : MonoBehaviour
 
     private void HandleShooting()
     {
-        zmianaCzasuPrzeladowania?.Invoke(this, EventArgs.Empty);
 
-        if (czy_przeladowano_bool == false)
+
+        if (MechanikaAmunicji.Instance.CzyStac_na_Strzal(amunicja_Wybrana_Amunicja_SO))
         {
-            shootTimer_Float -= Time.deltaTime;
+            if (czy_przeladowano_bool == false)
+            {
+                zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Prze³adowanie" });
+                shootTimer_Float -= Time.deltaTime;
 
-        }
+            }
             if (targetEnemy_Wrog != null)
             {
                 rotacja();
             }
             if (shootTimer_Float <= 0f && czy_przeladowano_bool == false)
             {
-                shootTimer_Float += shootTimerMax;
-                czy_przeladowano_bool = true;
-            zmianaCzasuPrzeladowania?.Invoke(this, EventArgs.Empty);
-        }
+ 
+                    MechanikaAmunicji.Instance.strzel(amunicja_Wybrana_Amunicja_SO);
+                    shootTimer_Float += shootTimerMax;
+                    czy_przeladowano_bool = true;
+                    zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Gotowa do strza³u" });
+
+
+            }
             if (czy_przeladowano_bool)
             {
                 if (targetEnemy_Wrog != null)
                 {
+
                     //rotacja();
                     Debug.Log("strzelom");
                     //if(MechanikaAmunicji.Instance.CzyStac())
                     Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
                     czy_przeladowano_bool = false;
+                }
 
             }
-            }
-        
+        }
+        else
+        {
+            Debug.Log("brak amunicji");
+            zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Brak amunicji" });
+        }
     }
+        
+    
     private void rotacja()
     {
         Vector3 moveDir;

@@ -7,6 +7,7 @@ public class MechanikaAmunicji : MonoBehaviour
 {
     public static MechanikaAmunicji Instance { get; private set; }
     public event EventHandler ZmianaIlosciAmunicji;
+    public List<StartowaIloscSur> kosztStworzeniaAmunicji;
 
     private Dictionary<Amunicja_SO, int> IloscAmunicji_slownik;
 
@@ -29,9 +30,11 @@ public class MechanikaAmunicji : MonoBehaviour
 
     public void DodajAmunicji(Amunicja_SO resourceType, int amount)
     {
-        IloscAmunicji_slownik[resourceType] += amount;
-
-        ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
+        if (MechanikaEkonomi.Instance.CzyStac(kosztStworzeniaAmunicji)){
+            IloscAmunicji_slownik[resourceType] += amount;
+            MechanikaEkonomi.Instance.WydajSurowce(kosztStworzeniaAmunicji);
+            ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
+        }
     }
 
     public int GetIloscAmunicji(Amunicja_SO resourceType)
@@ -72,6 +75,7 @@ public class MechanikaAmunicji : MonoBehaviour
     public void strzel(Amunicja_SO resourceType)
     {
         IloscAmunicji_slownik[resourceType] -= 1;
+        ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
     }
 
 }

@@ -32,6 +32,7 @@ public class MechanikaFal : MonoBehaviour
     {
         ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         ZczytanyiloscFal_Int = LadowaniePlayerPrefs.GetNumberOfWaves();
+        Debug.Log("Zczytana liczba fal z MechanikiFal :"+ ZczytanyiloscFal_Int.ToString());
         Instance = this;
         holderPozycji = new Transform[spawnPositionTransformList.Count];
         wrog_lista = Resources.Load<Lista_Wrogowie_SO>("Wrogowie_Lista");
@@ -46,15 +47,6 @@ public class MechanikaFal : MonoBehaviour
         {
             //Debug.Log(x.wrog_Nazwa);
         }
-    }
-    private void WyznaczFale()
-    {
-        // oblicz jesli gracz ma wiecej wiez obszarowych to wyslij wiecej silniejszych jednostek 
-
-    }
-    
-    private void Start()
-    {
         waveNumber = 1;
         state = State.Oczekiwanie;
         spawnPosition = spawnPositionTransformList[UnityEngine.Random.Range(0, spawnPositionTransformList.Count)].position;
@@ -74,6 +66,16 @@ public class MechanikaFal : MonoBehaviour
                 break;
         }
 
+    }
+    private void WyznaczFale()
+    {
+        // oblicz jesli gracz ma wiecej wiez obszarowych to wyslij wiecej silniejszych jednostek 
+
+    }
+    
+    private void Start()
+    {
+        
         zmianaFali_event?.Invoke(this, EventArgs.Empty);
     }
 

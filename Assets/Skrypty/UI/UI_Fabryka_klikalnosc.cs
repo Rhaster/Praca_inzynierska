@@ -42,6 +42,16 @@ public class UI_Fabryka_klikalnosc : MonoBehaviour
             dziecko.gameObject.SetActive(false);
         }
         ui_generatora_transform.gameObject.SetActive(false);
+        Dezaktywacja();
+    }
+    private void Dezaktywacja()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
+
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
     }
     void OnMouseDown()
     {
