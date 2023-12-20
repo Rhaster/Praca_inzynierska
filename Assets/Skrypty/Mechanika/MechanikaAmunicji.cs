@@ -61,4 +61,17 @@ public class MechanikaAmunicji : MonoBehaviour
             //IloscAmunicji_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
         }
     }
+    public bool CzyStac_na_Strzal(Amunicja_SO resourceType)
+    {
+        if (IloscAmunicji_slownik[resourceType]>0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public void strzel(Amunicja_SO resourceType)
+    {
+        IloscAmunicji_slownik[resourceType] -= 1;
+    }
+
 }

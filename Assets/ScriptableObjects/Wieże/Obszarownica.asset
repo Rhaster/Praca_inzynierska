@@ -23,4 +23,6 @@ MonoBehaviour:
     ilosc: 10
   - surowiec: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
     ilosc: 5
+  Obrazenia_wiezy_Float: 25
+  Czas_przeladowania_wiezy_Float: 3
   wieza_Sprite: {fileID: -1847055787, guid: 6ffcaade505f37d42948cddc565e023b, type: 3}

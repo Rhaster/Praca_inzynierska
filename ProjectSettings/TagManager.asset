@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CEL
   - wrog
+  - UstawienieWiezy
   layers:
   - Default
   - TransparentFX

@@ -52,8 +52,15 @@ public class UIController : MonoBehaviour
     private Transform UI_Fabryki_Transform;
     private Boolean UI_Fabryki_Transform_CzyOtwarte;
     #endregion
+    #region UI generatoraEnergi
     private Transform UI_GeneratoraEnergi_Transform;
     private Boolean UI_generatoraEnergi_bool;
+    #endregion
+    #region UI ustawien wiezy;
+    private Transform UI_wiezy_ustawienia_Transform;
+    private Boolean UI_wiezy_ustawienia_bool;
+
+    #endregion
     private void Awake()
     {
         #region Przypisanie instancji
@@ -73,9 +80,10 @@ public class UIController : MonoBehaviour
         UI_Menadzera_energi = transform.Find("UI_MenadzerEnergi");
         UI_Fabryki_Transform = transform.Find("UI_Fabryki");
         UI_GeneratoraEnergi_Transform = transform.Find("UI_GeneratorEnergi");
+        UI_wiezy_ustawienia_Transform = transform.Find("UI_menu_wiezy");
         #endregion
         #region wylaczenie ui budynkow na starcie
-       
+
         #endregion
     }
     void Start()
@@ -94,6 +102,7 @@ public class UIController : MonoBehaviour
         UI_Fabryki_Transform.gameObject.SetActive(false);
         UI_wiez.gameObject.SetActive(false);
         UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
+        UI_wiezy_ustawienia_Transform.gameObject.SetActive(false);
     }
     #region Zmiana fali update tekstu 
     private void Instance_zmianaFali_event(object sender, EventArgs e)
@@ -187,6 +196,11 @@ public class UIController : MonoBehaviour
             {
                 UI_generatoraEnergi_bool = true;
             }
+            if(UI_wiezy_ustawienia_Transform.gameObject.activeSelf)
+            {
+                UI_wiezy_ustawienia_bool = true;
+            }
+            UI_wiezy_ustawienia_Transform.gameObject.SetActive(false);
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
             UI_Fabryki_Transform.gameObject.SetActive(false);
             UI_wiez.gameObject.SetActive(false);
@@ -222,6 +236,10 @@ public class UIController : MonoBehaviour
         if(UI_generatoraEnergi_bool == true)
         {
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(true);
+        }
+        if(UI_wiezy_ustawienia_bool== true)
+        {
+            UI_wiezy_ustawienia_Transform.gameObject.SetActive(true);
         }
         UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);

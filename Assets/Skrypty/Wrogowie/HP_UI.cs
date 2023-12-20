@@ -56,8 +56,8 @@ public class HP_UI : MonoBehaviour
         }
 
 
-        int healthAmountPerSeparator = 10;
-        float barSize = 3f;
+        int healthAmountPerSeparator = 20;
+        float barSize = 3;
         float barOneHealthAmountSize = barSize / SystemHP.GetHealthAmountMax();
         int healthSeparatorCount = Mathf.FloorToInt(SystemHP.GetHealthAmountMax() / healthAmountPerSeparator);
 

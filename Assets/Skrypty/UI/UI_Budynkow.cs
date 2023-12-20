@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,7 +27,9 @@ public class UI_Budynkow : MonoBehaviour
     #endregion
     #region amunicja
     private Lista_Amunicja_SO surowce_Lista;
-    
+    #endregion
+    #region transform selectu amunicji 
+    private Transform selected_Transform;
     #endregion
     void Start()
     {
@@ -39,6 +42,8 @@ public class UI_Budynkow : MonoBehaviour
         else
         {
             templateTransform = transform.Find("Sekcja_Fabryki");
+            selected_Transform = templateTransform.Find("Sekcja_generatora").Find("selected");
+            selected_Transform.gameObject.SetActive(false);
         }
         aktualnailoscenergi_kopalni_Text = templateTransform.transform.Find("aktualna_ilosc_energi_wkopalni_text").GetComponent<TextMeshProUGUI>();
         przycisk_odejmij_energia_button = templateTransform.Find("odejmij_energi_button").GetComponent<Button>();
@@ -137,15 +142,63 @@ public class UI_Budynkow : MonoBehaviour
         #region Kontrola Fabryki
         if(czyFabryka_Bool)
         {
-            przycisk_produkuj_amunicje1_button = statystykaTransform.Find("Button_1").GetComponent<Button>();
-            przycisk_produkuj_amunicje2_button = statystykaTransform.Find("Button_2").GetComponent<Button>();
-            przycisk_produkuj_amunicje3_button = statystykaTransform.Find("Button_3").GetComponent<Button>();
+            Transform grabberButton1 = statystykaTransform.Find("Button_1");
+            Transform grabberButton2 = statystykaTransform.Find("Button_2");
+            Transform grabberButton3 = statystykaTransform.Find("Button_3");
+            przycisk_produkuj_amunicje1_button = grabberButton1.GetComponent<Button>();
+            przycisk_produkuj_amunicje2_button = grabberButton2.GetComponent<Button>();
+            przycisk_produkuj_amunicje3_button = grabberButton3.GetComponent<Button>();
 
-            przycisk_produkuj_amunicje1_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[0]; });
-            przycisk_produkuj_amunicje2_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[1]; });
-            przycisk_produkuj_amunicje3_button.onClick.AddListener(() => { GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[2]; });
+            przycisk_produkuj_amunicje1_button.onClick.AddListener(() => {
+                if (GeneratorAmunicji.Instance.amunicjaGenerowany != surowce_Lista.amunicja_Lista[0])
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[0];
+                    AktywujSelekcje(grabberButton1.position);
+                }
+                else
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = null;
+                    DeaktywujSelekcje();
+                }
+            });
+            przycisk_produkuj_amunicje2_button.onClick.AddListener(() => {
+                if (GeneratorAmunicji.Instance.amunicjaGenerowany != surowce_Lista.amunicja_Lista[1])
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[1];
+                    AktywujSelekcje(grabberButton2.position);
+                }
+                else
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = null;
+                    DeaktywujSelekcje();
+                }
+               
+            
+            
+            });
+            przycisk_produkuj_amunicje3_button.onClick.AddListener(() => {
+                if (GeneratorAmunicji.Instance.amunicjaGenerowany != surowce_Lista.amunicja_Lista[2])
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = surowce_Lista.amunicja_Lista[2];
+                    AktywujSelekcje(grabberButton3.position);
+                }
+                else
+                {
+                    GeneratorAmunicji.Instance.amunicjaGenerowany = null;
+                    DeaktywujSelekcje();
+                }
+            });
         }
         #endregion
+    }
+    private void AktywujSelekcje(Vector3 pos)
+    {
+        selected_Transform.gameObject.SetActive(true);
+        selected_Transform.GetComponent<RectTransform>().position = pos;
+    }
+    private void DeaktywujSelekcje()
+    {
+        selected_Transform.gameObject.SetActive(false);
     }
     private void Awake()
     {

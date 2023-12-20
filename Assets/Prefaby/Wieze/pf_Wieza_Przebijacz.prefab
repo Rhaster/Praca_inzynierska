@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 4199370077909484955}
   - component: {fileID: 8453059158314271098}
   - component: {fileID: -4066785515457410182}
+  - component: {fileID: -3603637189990795288}
   m_Layer: 0
   m_Name: pf_Wieza_Przebijacz
   m_TagString: Untagged
@@ -257,6 +258,7 @@ MonoBehaviour:
   wieza_sprite_rotacja_Transform: {fileID: 0}
   Punkt_wystrzalu_Transform: {fileID: 0}
   PrefabPocisku_Testy_Transform: {fileID: 3659639981443106985, guid: 2e8a6691838bfa342b88181ee196bb30, type: 3}
+  czy_przeladowano_bool: 0
 --- !u!114 &1468201637985847966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +272,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ui_wiezy_zasieg_transform: {fileID: 0}
+  ui_wiezy_ustawienia_Transform: {fileID: 0}
+  sekcja_ustawien_Transform: {fileID: 0}
+  sekcja_statystyk_Transform: {fileID: 0}
+  wygenerowany_transform: {fileID: 0}
 --- !u!114 &4199370077909484955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +377,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.0063043, y: 3.7401214}
   m_EdgeRadius: 0
+--- !u!114 &-3603637189990795288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517018017263978957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1b47920ca56b8b43ab04d7d80950921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holderWiezy: {fileID: 11400000, guid: c6f24af19181a504f8110dea6153545c, type: 2}
 --- !u!1 &9022209177562709115
 GameObject:
   m_ObjectHideFlags: 0

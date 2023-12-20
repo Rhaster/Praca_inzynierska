@@ -97,7 +97,14 @@ public class UI_MenadzerEnergi : MonoBehaviour
 
     public void Aktualizuj_bar_UI_Menadzera_energi(GeneratorSurowcow e,GeneratorAmunicji a)
     {
-
+        float k = (float)((float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi() - (float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
+     / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
+        float t = (float)((float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
+            / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
+        Debug.Log(k);
+        Debug.Log(t);
+        slup_zuzEnergia_Image.fillAmount = k;
+        slup_maxEnergia_Image.fillAmount = t;
         if (e != null)
         {
             Image_Slownik[e].fillAmount = e.getIloscEnergi() / 8;
@@ -107,10 +114,7 @@ public class UI_MenadzerEnergi : MonoBehaviour
             holder.fillAmount = a.getIloscEnergi() / 8;
         }
 
-        slup_zuzEnergia_Image.fillAmount = ((float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi() - (float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
-            / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
-        slup_maxEnergia_Image.fillAmount = ((float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
-            / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
+ 
     }
     // Start is called before the first frame update
     void Start()

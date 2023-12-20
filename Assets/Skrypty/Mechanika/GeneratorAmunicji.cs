@@ -10,7 +10,7 @@ public class GeneratorAmunicji : MonoBehaviour
     [SerializeField] public string nazwa_kopalni;
     [SerializeField] public int IloscEnergiMax;
     private float elapsedTime = 0f;
-    private float desiredTime = 0.1f; // Sekundy
+    private float desiredTime = 0.05f; // Sekundy do update bara zmienic gdy chcemy bardziej plynne 
     [SerializeField] private float timer;
     private float timerMax;
     public static GeneratorAmunicji Instance { get; private set; }
@@ -49,7 +49,7 @@ public class GeneratorAmunicji : MonoBehaviour
                 // dodac gen amunicji
                 if (amunicjaGenerowany != null)
                 {
-                    MechanikaAmunicji.Instance.DodajAmunicji(amunicjaGenerowany, 1);
+                    MechanikaAmunicji.Instance.DodajAmunicji(amunicjaGenerowany, 5);
                 }
             }
         }

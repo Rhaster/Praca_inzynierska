@@ -9,6 +9,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     public Transform ui_budowy_transform_parent;
     public Transform ui_budowy_transform;
     public Transform ui_generatora_transform;
+    public Transform ui_wiezy_ustawienia_Transform;
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
     private GeneratorSurowcow generator;
     private UI_Budynkow UI_budynkow_holder;
@@ -36,6 +37,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
     }
     public void DezaktywujDzieci()
     {
@@ -44,6 +46,7 @@ public class Budynki_klikanlosc : MonoBehaviour
             dziecko.gameObject.SetActive(false);
         }
         ui_generatora_transform.gameObject.SetActive(false);
+        ui_wiezy_ustawienia_Transform.gameObject.SetActive(false) ;
     }
     void OnMouseDown()
     {

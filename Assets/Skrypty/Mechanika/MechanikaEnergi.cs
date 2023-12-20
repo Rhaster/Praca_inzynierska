@@ -51,6 +51,7 @@ public class MechanikaEnergi : MonoBehaviour
         {
             Debug.Log("osiagnieto limit mocy");
         }
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
     public void Odejmij_Energi(int ilosc)
     {
@@ -64,16 +65,19 @@ public class MechanikaEnergi : MonoBehaviour
         {
             Debug.Log("osiagnieto limit mocy");
         }
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
     public void ZwiekszMaxIloscEnergi()
     {
         ilosc_energi_Startowa_Int += 1;
         Dodaj_Energi(1);
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
     public void ZmniejszMaxIloscEnergi()
     {
         ilosc_energi_Startowa_Int -= 1;
         Odejmij_Energi(1);
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
 
 

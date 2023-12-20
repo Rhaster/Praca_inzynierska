@@ -1,23 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wieza : MonoBehaviour
 {
+    public static Wieza instance { get; private set; }
     [SerializeField] private float shootTimerMax;
    
     private float shootTimer_Float;
     [SerializeField] private wrog targetEnemy_Wrog;
     private float lookForTargetTimer;
-    private float lookForTargetTimerMax = .1f;
+    private float lookForTargetTimerMax = .1f; // odswiezanie skanowania w poszukiwaniu celów 
     private Vector3 projectileSpawnPosition_Vector3;
     public float zasieg_wiezy_Float;
     [SerializeField]private Transform wieza_sprite_rotacja_Transform;
     [SerializeField] private Transform Punkt_wystrzalu_Transform;
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
+    [SerializeField] private bool czy_przeladowano_bool;
+    public event EventHandler zmianaCzasuPrzeladowania;
     private Vector3 lastMoveDir;
     private void Awake()
     {
+        czy_przeladowano_bool = false;
         wieza_sprite_rotacja_Transform = transform.Find("wieza");
         Punkt_wystrzalu_Transform = wieza_sprite_rotacja_Transform.Find("pozycja_strzalu");
         //projectileSpawnPosition = transform.Find("projectileSpawnPosition").position;
@@ -41,22 +46,36 @@ public class Wieza : MonoBehaviour
 
     private void HandleShooting()
     {
+        zmianaCzasuPrzeladowania?.Invoke(this, EventArgs.Empty);
 
-        shootTimer_Float -= Time.deltaTime;
-        if(targetEnemy_Wrog!= null)
+        if (czy_przeladowano_bool == false)
         {
-            rotacja();
+            shootTimer_Float -= Time.deltaTime;
+
         }
-        if (shootTimer_Float <= 0f)
-        {
-            shootTimer_Float += shootTimerMax;
             if (targetEnemy_Wrog != null)
             {
                 rotacja();
-                Debug.Log("strzelom");
-                Pociski.Create(PrefabPocisku_Testy_Transform,Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
             }
+            if (shootTimer_Float <= 0f && czy_przeladowano_bool == false)
+            {
+                shootTimer_Float += shootTimerMax;
+                czy_przeladowano_bool = true;
+            zmianaCzasuPrzeladowania?.Invoke(this, EventArgs.Empty);
         }
+            if (czy_przeladowano_bool)
+            {
+                if (targetEnemy_Wrog != null)
+                {
+                    //rotacja();
+                    Debug.Log("strzelom");
+                    //if(MechanikaAmunicji.Instance.CzyStac())
+                    Pociski.Create(PrefabPocisku_Testy_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
+                    czy_przeladowano_bool = false;
+
+            }
+            }
+        
     }
     private void rotacja()
     {
@@ -116,5 +135,13 @@ public class Wieza : MonoBehaviour
         {
             targetEnemy_Wrog = null;
         }
+    }
+    public float GetCzasPrzeladowania()
+    {
+        return shootTimer_Float;
+    }
+    public bool GetCzyPRzeladowano()
+    {
+        return czy_przeladowano_bool;
     }
 }

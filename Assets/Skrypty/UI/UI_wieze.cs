@@ -27,8 +27,7 @@ public class UI_wieze : MonoBehaviour
 
         float offsetAmount = +130f;
 
-        MouseEnterExit mouseEnterExitEvents = arrowBtn.GetComponent<MouseEnterExit>();
-        arrowBtn.gameObject.SetActive(false);
+
         foreach (Wieze_SO buildingType in wieze_Lista.Wieze_Lista)
         {
             Transform btnTransform = Instantiate(btnTemplate, transform);
@@ -43,13 +42,7 @@ public class UI_wieze : MonoBehaviour
                 MechanikaBudowania.Instance.SetActiveBuildingType(buildingType);
                 UpdateActiveBuildingTypeButton();
             });
-            mouseEnterExitEvents = btnTransform.GetComponent<MouseEnterExit>();
-            mouseEnterExitEvents.OnMouseEnter += (object sender, EventArgs e) => {
-                //TooltipUI.Instance.Show(buildingType.nameString + "\n" + buildingType.GetConstructionResourceCostString());
-            };
-            mouseEnterExitEvents.OnMouseExit += (object sender, EventArgs e) => {
-                //TooltipUI.Instance.Hide();
-            };
+            
 
             btnTransformDictionary[buildingType] = btnTransform;
 
