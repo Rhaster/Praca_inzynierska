@@ -24,6 +24,7 @@ public class UIController : MonoBehaviour
     #region Kontrola tekstu w UI 
     [SerializeField] private TextMeshProUGUI czas_do_nast_fali_TMPRO;
     [SerializeField] private TextMeshProUGUI nr_fali_TMPRO;
+
     #endregion
     #region Kontrola widocznosci UI opcji i fal
     private Transform UI_wavemanager_transfrom;
@@ -52,6 +53,11 @@ public class UIController : MonoBehaviour
     private Transform UI_Fabryki_Transform;
     private Boolean UI_Fabryki_Transform_CzyOtwarte;
     #endregion
+    public float nextWaveSpawnTimer;
+    // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
+    public float timemax;
+    public int i;
+    
     #region UI generatoraEnergi
     private Transform UI_GeneratoraEnergi_Transform;
     private Boolean UI_generatoraEnergi_bool;
@@ -112,11 +118,11 @@ public class UIController : MonoBehaviour
     IEnumerator CountdownCoroutine()
     {
         nr_fali_TMPRO.SetText(MechanikaFal.Instance.GetNumerFali().ToString());
-        float nextWaveSpawnTimer = MechanikaFal.Instance.GetCzasSpawnuFali();
+        nextWaveSpawnTimer = MechanikaFal.Instance.GetCzasSpawnuFali();
        // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
-        float timemax = nextWaveSpawnTimer;
-        int i = 1;
-        float timer = 1;
+        timemax = nextWaveSpawnTimer;
+        i = 1;
+        timer = 1;
         // Dla oszczêdnoœci zasobów odwo³uje siê do mechaniki fal tylko przy pierwszym wywo³aniu
         // celem uzyskania czasu max spawnu
         while (timemax >= 0)

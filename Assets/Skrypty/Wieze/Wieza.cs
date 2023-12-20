@@ -17,6 +17,7 @@ public class Wieza : MonoBehaviour
     [SerializeField]private Transform wieza_sprite_rotacja_Transform;
     [SerializeField] private Transform Punkt_wystrzalu_Transform;
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
+    [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
     public event EventHandler zmianaCzasuPrzeladowania;
     private Vector3 lastMoveDir;
@@ -30,8 +31,13 @@ public class Wieza : MonoBehaviour
 
     private void Update()
     {
-        HandleTargeting();
-        HandleShooting();
+        if(amunicja_Wybrana_Amunicja_SO!= null)
+        {
+            HandleTargeting();
+            HandleShooting();
+
+        }
+
     }
 
     private void HandleTargeting()
@@ -70,7 +76,7 @@ public class Wieza : MonoBehaviour
                     //rotacja();
                     Debug.Log("strzelom");
                     //if(MechanikaAmunicji.Instance.CzyStac())
-                    Pociski.Create(PrefabPocisku_Testy_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
+                    Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
                     czy_przeladowano_bool = false;
 
             }
@@ -102,6 +108,10 @@ public class Wieza : MonoBehaviour
 
         }
         
+    }
+    private void UstawUzywanaAmunicje(Amunicja_SO amu)
+    {
+
     }
     private void LookForTargets()
     {

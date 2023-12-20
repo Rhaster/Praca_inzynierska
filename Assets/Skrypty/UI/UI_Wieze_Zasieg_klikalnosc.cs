@@ -5,13 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
 {
-    
+ 
+    Transform poprzedniSelected_Transform;
     public Transform ui_wiezy_zasieg_transform;
     public Transform ui_wiezy_ustawienia_Transform;
     public Transform sekcja_ustawien_Transform;
     public Transform sekcja_statystyk_Transform;
     public Transform opcje_wiezy_Transform;
-    private List<Transform> Lista_wiez;
+ 
     private Wieze_SO wieza_Holder;
     private Button przycisk_produkuj_amunicje1_button;
     private Button przycisk_produkuj_amunicje2_button;
@@ -23,16 +24,28 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
     private TextMeshProUGUI wyswietlany_obrazenia_TMPRO;
     private TextMeshProUGUI wyswietlany_czas_przeladowania_TMPRO;
     private Image wskaznik_czasu_przeladowania_Image;
-
+    private Amunicja_SO holder_Amunicji;
+    private List<Amunicja_SO> lista_Amunicji;
+    private void Awake()
+    {
+        ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
+       lista_Amunicji = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista").amunicja_Lista;
+ 
+    }
     void Start()
+    {
+        Reaktywacja();
+    }
+    
+ private void Reaktywacja()
     {
         sekcja_ustawien_Transform = ui_wiezy_ustawienia_Transform.Find("Sekcja_wiezy");
         wieza_Holder = GetComponent<HolderRodzajuWiezy>().holderWiezy;
-       kontrola_Wieza = GetComponent<Wieza>();
-       
+        kontrola_Wieza = this.gameObject.GetComponent<Wieza>();
+
         #region grabberi settery pod statystyki wiez
         zasieg_wiezy = kontrola_Wieza.zasieg_wiezy_Float;
-        
+
         wyswietlany_zasieg_TMPRO = sekcja_ustawien_Transform.Find("zasieg_text").GetComponent<TextMeshProUGUI>();
         wyswietlany_zasieg_TMPRO.SetText(zasieg_wiezy.ToString());
         sekcja_statystyk_Transform = sekcja_ustawien_Transform.Find("Sekcja_generatora");
@@ -57,23 +70,56 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         #region Graber i setter obiektu reprezentujacego zasieg wiezy
         ui_wiezy_zasieg_transform = transform.Find("Zasieg");
         float zasieg = GetComponent<Wieza>().zasieg_wiezy_Float;
-        ui_wiezy_zasieg_transform.localScale = new Vector3(zasieg,zasieg,0);
+        ui_wiezy_zasieg_transform.localScale = new Vector3(zasieg, zasieg, 0);
         ui_wiezy_zasieg_transform.gameObject.SetActive(false);
         #endregion
         #region sluchacze pod przyciski
+        poprzedniSelected_Transform = sekcja_statystyk_Transform.Find("selected");
+        if(kontrola_Wieza.amunicja_Wybrana_Amunicja_SO ==null)
+        {
+            poprzedniSelected_Transform.gameObject.SetActive(false);
+        }
+        else
+        {
+            int i = 0;
+            foreach(Amunicja_SO x in lista_Amunicji)
+            {
+                if(x== kontrola_Wieza.amunicja_Wybrana_Amunicja_SO)
+                {
+                    break;
+                }
+                i += 1;
+            }
+            if(i==0)
+            {
+                AktywujSelekcje(grabberButton1.position);
+            }
+            else if(i==1)
+            {
+                AktywujSelekcje(grabberButton2.position);
+            }
+            else
+            {
+                AktywujSelekcje(grabberButton3.position);
+            }
+        }
         przycisk_produkuj_amunicje1_button.onClick.AddListener(() => {
-            kontrola_Wieza.GetCzasPrzeladowania();
+            kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[0];
+            AktywujSelekcje(grabberButton1.position);
         });
         przycisk_produkuj_amunicje2_button.onClick.AddListener(() => {
-            
 
+            kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[1];
+            AktywujSelekcje(grabberButton2.position);
         });
+
         przycisk_produkuj_amunicje3_button.onClick.AddListener(() => {
-            
+
+            kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[2];
+            AktywujSelekcje(grabberButton3.position);
         });
         #endregion
     }
- 
 
     private void Kontrola_Wieza_zmianaCzasuPrzeladowania(object sender, System.EventArgs e)
     {
@@ -89,22 +135,24 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         wskaznik_czasu_przeladowania_Image.fillAmount = kontrola_Wieza.GetCzasPrzeladowania();
     }
 
- 
 
-    private void Awake()
+    private void AktywujSelekcje(Vector3 pos)
     {
-        ui_wiezy_ustawienia_Transform= UIController.instance.transform.Find("UI_menu_wiezy");
-        Lista_wiez = new List<Transform>();
+        poprzedniSelected_Transform.gameObject.SetActive(true);
+        poprzedniSelected_Transform.GetComponent<RectTransform>().position = pos;
     }
+  
 
     void OnMouseDown()
     {
 
             if (!ui_wiezy_zasieg_transform.gameObject.activeSelf)
             {
+            
                 Budynki_klikanlosc.instance.DezaktywujDzieci();
                 ui_wiezy_zasieg_transform.gameObject.SetActive(true);
                 ui_wiezy_ustawienia_Transform.gameObject.SetActive(true);
+            Reaktywacja();
             }
             else
             {
