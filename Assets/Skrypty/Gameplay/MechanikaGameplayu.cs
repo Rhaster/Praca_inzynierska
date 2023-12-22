@@ -21,7 +21,7 @@ public class MechanikaGameplayu : MonoBehaviour
     {
         boss_Transform.gameObject.SetActive(false);
         poziomtrudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
-        iloscFal_int = LadowaniePlayerPrefs.GetNumberOfWaves();
+        iloscFal_int = LadowaniePlayerPrefs.GetLiczbaFal();
         Cel_handler.instance.porazka_event += Instance_porazka_event;
         MechanikaFal.Instance.Fala_Bossa_event += Instance_Fala_Bossa_event;
 

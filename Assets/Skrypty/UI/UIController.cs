@@ -63,7 +63,7 @@ public class UIController : MonoBehaviour
     private Transform UI_GeneratoraEnergi_Transform;
     private Boolean UI_generatoraEnergi_bool;
     #endregion
-
+    
     private void Awake()
     {
         #region Przypisanie instancji
@@ -92,6 +92,7 @@ public class UIController : MonoBehaviour
     {
         MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #region Przypisanie sluchacza do eventu zmiany fali
+
         //MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #endregion
         OnDeaktywacja();

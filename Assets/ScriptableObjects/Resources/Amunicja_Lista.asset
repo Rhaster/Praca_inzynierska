@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Amunicja_Lista
   m_EditorClassIdentifier: 
   amunicja_Lista:
-  - {fileID: 11400000, guid: c7ee6843dc0b1e440abf6706dc95e769, type: 2}
-  - {fileID: 11400000, guid: cad9755ee7f0736458048152cb154abe, type: 2}
   - {fileID: 11400000, guid: 49ccb156adf5cb24998d89f7e45a3ddd, type: 2}
+  - {fileID: 11400000, guid: cad9755ee7f0736458048152cb154abe, type: 2}
+  - {fileID: 11400000, guid: c7ee6843dc0b1e440abf6706dc95e769, type: 2}

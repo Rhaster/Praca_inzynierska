@@ -34063,19 +34063,19 @@ MonoBehaviour:
   wyznacznik_fali: {fileID: 2093338869}
   wrog_lista: {fileID: 0}
   "AktualnySk\u0142adFali": []
-  spawnPositionTransformList:
+  pozycja_spawnu_List:
   - {fileID: 1502413502}
   - {fileID: 65696376}
   - {fileID: 391719070}
   - {fileID: 1455365388}
   - {fileID: 1775855832}
-  holderPozycji: []
-  state: 0
-  waveNumber: 0
-  nextWaveSpawnTimer: 0
-  nextEnemySpawnTimer: 0
-  remainingEnemySpawnAmount: 0
-  spawnPosition: {x: 0, y: 0, z: 0}
+  holder_Pozycji_Lista: []
+  status_Enum: 0
+  Numer_Fali_INT: 0
+  czas_spawnu_nast_Fali_Float: 0
+  odstep_miedzy_spawnem_wroga_Float: 0
+  pozostala_ilosc_wrogow_do_utworzenia_Int: 0
+  pozycja_spawnu_Vector3: {x: 0, y: 0, z: 0}
   PredkoscWroga: 15
   ZczytanyPoziomTrudnosci_Int: 0
   ZczytanyiloscFal_Int: 0
@@ -35024,6 +35024,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 20.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4085584410894977984, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4391382044287663258, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: generator
       value: 
@@ -35115,6 +35119,10 @@ PrefabInstance:
     - target: {fileID: 7476008701627392996, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -9.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8107167515279177699, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8698233852858589969, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_AnchorMax.y

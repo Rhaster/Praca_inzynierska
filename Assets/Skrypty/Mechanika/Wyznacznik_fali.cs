@@ -5,11 +5,7 @@ using UnityEngine;
 public class Wyznacznik_fali : MonoBehaviour 
 {
 
-    private enum Wróg
-    {
-        Oczekiwanie,
-        TworzenieFali,
-    }
+
     [SerializeField]private List<string> Sk³adFali;
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
     [SerializeField]private int ZczytanyPoziomTrudnosci_Int;
