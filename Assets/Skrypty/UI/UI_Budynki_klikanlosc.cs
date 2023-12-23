@@ -10,6 +10,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     public Transform ui_budowy_transform;
     public Transform ui_generatora_transform;
     public Transform ui_wiezy_ustawienia_Transform;
+ 
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
     private GeneratorSurowcow generator;
     private UI_Budynkow UI_budynkow_holder;

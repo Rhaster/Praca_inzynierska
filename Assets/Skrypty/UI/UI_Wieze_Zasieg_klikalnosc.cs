@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
@@ -28,6 +29,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
     private Amunicja_SO holder_Amunicji;
     private List<Amunicja_SO> lista_Amunicji;
     public event EventHandler zmianaAmunicji;
+    private Transform podswietlenie;
     private void Awake()
     {
         //ui_wiezy_ustawienia_Transform = UIController.instance.transform.Find("UI_menu_wiezy");
@@ -44,7 +46,8 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         sekcja_ustawien_Transform = ui_wiezy_ustawienia_Transform.Find("Sekcja_wiezy");
         wieza_Holder = GetComponent<HolderRodzajuWiezy>().holderWiezy;
         kontrola_Wieza = this.gameObject.GetComponent<Wieza>();
-
+        podswietlenie = transform.Find("wieza").Find("aktywny");
+        ustawpodswietlenie();
         #region grabberi settery pod statystyki wiez
         zasieg_wiezy = kontrola_Wieza.zasieg_wiezy_Float;
 
@@ -59,7 +62,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         wyswietlany_obrazenia_TMPRO.SetText(wieza_Holder.Obrazenia_wiezy_Float.ToString());
         wyswietlany_czas_przeladowania_TMPRO = sekcja_ustawien_Transform.Find("Przeladowanie_text").GetComponent<TextMeshProUGUI>();
         wyswietlany_czas_przeladowania_TMPRO.SetText(wieza_Holder.Czas_przeladowania_wiezy_Float.ToString());
-
+        
         #endregion
         #region Grabbery przycisków UI_ ustawien wiez
         Transform grabberButton1 = sekcja_statystyk_Transform.Find("Button_1");
@@ -110,12 +113,14 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[0];
             AktywujSelekcje(grabberButton1.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
+            ustawpodswietlenie();
         });
         przycisk_produkuj_amunicje2_button.onClick.AddListener(() => {
 
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[1];
             AktywujSelekcje(grabberButton2.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
+            ustawpodswietlenie();
         });
 
         przycisk_produkuj_amunicje3_button.onClick.AddListener(() => {
@@ -123,6 +128,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[2];
             AktywujSelekcje(grabberButton3.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
+            ustawpodswietlenie();
         });
         #endregion
     }
@@ -134,7 +140,34 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
     }
 
  
-
+    private void ustawpodswietlenie()
+    {
+        Color newColor = Color.blue;
+        newColor.a = 0.5f;
+        Color newColor1 = Color.green;
+        newColor1.a = 0.5f;
+        Color newColor2 = Color.yellow;
+        newColor2.a = 0.5f;
+        if (kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == null)
+        {
+            podswietlenie.gameObject.SetActive(false);
+        }
+        else if(kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == lista_Amunicji[0])
+        {
+            podswietlenie.gameObject.SetActive(true);
+            podswietlenie.GetComponent<SpriteRenderer>().color = newColor;
+        }
+        else if (kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == lista_Amunicji[1])
+        {
+            podswietlenie.gameObject.SetActive(true);
+            podswietlenie.GetComponent<SpriteRenderer>().color = newColor1;
+        }
+        else
+        {
+            podswietlenie.gameObject.SetActive(true);
+            podswietlenie.GetComponent<SpriteRenderer>().color = newColor2;
+        }
+    }
 
     private void AktywujSelekcje(Vector3 pos)
     {
@@ -153,8 +186,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
                 UI_Fabryka_klikalnosc.instance.DezaktywujDzieci();
                 ui_wiezy_zasieg_transform.gameObject.SetActive(true);
                 ui_wiezy_ustawienia_Transform.gameObject.SetActive(true);
-           
-            Reaktywacja();
+                Reaktywacja();
             }
             else
             {
@@ -166,7 +198,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             }
 
     }
-    private void Dezaktywacja()
+    public void Dezaktywacja()
     {
         GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
 

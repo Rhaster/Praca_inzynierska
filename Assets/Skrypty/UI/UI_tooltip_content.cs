@@ -22,7 +22,8 @@ public class UI_tooltip_content : MonoBehaviour
         int offset = 30;
         transform.Find("nazwa_wiezy_text").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.wieza_Nazwa);
         string wynik;
-        if (wieza_Wieza_SO.wieza_zasiegataku_float > 0) { 
+        if (wieza_Wieza_SO.wieza_zasiegataku_float > 0) 
+        { 
              wynik = "Obszarowy: " + wieza_Wieza_SO.wieza_zasieg_ataku_amunicji_Float.ToString(); 
         }
         else

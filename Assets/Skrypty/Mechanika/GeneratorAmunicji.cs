@@ -15,8 +15,9 @@ public class GeneratorAmunicji : MonoBehaviour
     private float timerMax;
     public static GeneratorAmunicji Instance { get; private set; }
     public event EventHandler ZmianaTimeraEvent;
+    public event EventHandler ZmianaEnergiEvent;
     //public event EventHandler<ZmianaElektrykiHolder> ZmianaElektrykiEvent;
-  
+
     private bool flaga;
     private void Awake()
     {
@@ -88,6 +89,7 @@ public class GeneratorAmunicji : MonoBehaviour
             timerMax = 0;
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
             UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, this);
+            ZmianaEnergiEvent?.Invoke(this, EventArgs.Empty);
 
         }
         else
@@ -101,6 +103,7 @@ public class GeneratorAmunicji : MonoBehaviour
             }
             ZmianaTimeraEvent?.Invoke(this, EventArgs.Empty);
             UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null,this);
+            ZmianaEnergiEvent?.Invoke(this, EventArgs.Empty);
 
         }
     }

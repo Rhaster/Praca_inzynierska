@@ -31,7 +31,7 @@ public class MechanikaGameplayu : MonoBehaviour
     {
         Time.timeScale = 0;
         wynik = "Zwyciêstwo";
-
+        Dezaktywacja();
         UI_ekran_Transform.gameObject.SetActive(true);
     }
 
@@ -63,11 +63,21 @@ public class MechanikaGameplayu : MonoBehaviour
         MechanikaBossa.instance.wygrana_event += Instance_wygrana_event;
         Inicjalizacja_Poziomu_trudnosci();
     }
+    public void Dezaktywacja()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
 
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
+    }
     private void Instance_porazka_event(object sender, EventArgs e)
     {
+        Dezaktywacja();
         wynik = "Pora¿ka";
         Time.timeScale = 0;
+        
         UI_ekran_Transform.gameObject.SetActive(true);
     }
 

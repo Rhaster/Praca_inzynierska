@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wieza_Nazwa: Annihilator
   wieza_Transform: {fileID: 6582936024736937738, guid: 542e3f6ab3788cb4e8345f956438afac, type: 3}
-  wieza_zasiegataku_float: 80
+  wieza_zasiegataku_float: 55
   wieza_zasieg_ataku_amunicji_Float: 0
   koszt_StartowaIloscSur_Lista:
   - surowiec: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
