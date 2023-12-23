@@ -72,10 +72,23 @@ public class MechanikaAmunicji : MonoBehaviour
         }
         return false;
     }
-    public void strzel(Amunicja_SO resourceType)
+    public void strzel(Amunicja_SO resourceType,int ilosc)
     {
-        IloscAmunicji_slownik[resourceType] -= 1;
-        ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
+        if(ilosc>0)
+        {
+            IloscAmunicji_slownik[resourceType] -= ilosc;
+            ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            IloscAmunicji_slownik[resourceType] += -ilosc;
+            ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
+        }
+
+        foreach(Amunicja_SO x in IloscAmunicji_slownik.Keys)
+        {
+            Debug.Log(IloscAmunicji_slownik[x]);
+        }
     }
 
 }

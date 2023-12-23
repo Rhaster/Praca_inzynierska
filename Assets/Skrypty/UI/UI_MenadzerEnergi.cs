@@ -101,8 +101,8 @@ public class UI_MenadzerEnergi : MonoBehaviour
      / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
         float t = (float)((float)MechanikaEnergi.Instance.Get_Obecna_ilosc_energi())
             / (float)MechanikaEnergi.Instance.Get_Maxymalna_ilosc_energi();
-        Debug.Log(k);
-        Debug.Log(t);
+       // Debug.Log(k);
+       // Debug.Log(t);
         slup_zuzEnergia_Image.fillAmount = k;
         slup_maxEnergia_Image.fillAmount = t;
         if (e != null)

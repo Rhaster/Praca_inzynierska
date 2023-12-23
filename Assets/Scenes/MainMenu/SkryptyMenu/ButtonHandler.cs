@@ -12,7 +12,7 @@ public class ButtonHandler : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
     private Color normalColor = Color.green;
     private Color highlightColor = Color.red;
     private Image buttonImage;
-    void Start()
+    void Awake()
     {
         buttonImage = GetComponent<Image>();
         normalColor = buttonImage.color;
@@ -21,7 +21,6 @@ public class ButtonHandler : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
             normalColor = Color.green;
         }
         audioSource = GetComponent<AudioSource>();
-        
         
     }
 
@@ -36,6 +35,10 @@ public class ButtonHandler : MonoBehaviour ,IPointerEnterHandler, IPointerExitHa
         buttonImage.color = normalColor;
     }
     public void Reset()
+    {
+        buttonImage.color = normalColor;
+    }
+    private void OnDisable()
     {
         buttonImage.color = normalColor;
     }

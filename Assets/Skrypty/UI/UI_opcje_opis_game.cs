@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,8 @@ public class opcje_opis_game : MonoBehaviour
     private Transform t³o_transform;
     private Transform wyjscie_transform;
     private Transform menu_transform;
+    private TextMeshProUGUI text_Poziom_Trudnosci_TMPRO;
+    private TextMeshProUGUI text_ilosc_Fal_TMPRO;
     #endregion
     private void Awake()
     {
@@ -21,9 +24,30 @@ public class opcje_opis_game : MonoBehaviour
         wyjscie_transform = transform.Find("wyjscie");
         menu_transform = transform.Find("menu");
         #endregion
+        #region sekcja poziomu trudnosci
+        text_Poziom_Trudnosci_TMPRO = transform.Find("Poziom_trudnosci").Find("text1").GetComponent<TextMeshProUGUI>();
+        WyswietlaniePozTrudnosci();
+        text_ilosc_Fal_TMPRO = transform.Find("Ilosc_Fal").Find("text1").GetComponent<TextMeshProUGUI>();
+        text_ilosc_Fal_TMPRO.SetText(LadowaniePlayerPrefs.GetLiczbaFal().ToString());
+        #endregion
         gameObject.SetActive(false); // domyslnie wy³¹cz opcje na start 
     }
-    
+    private void WyswietlaniePozTrudnosci()
+    {
+        int a = LadowaniePlayerPrefs.GetDifficulty();
+        if(a ==0)
+        {
+            text_Poziom_Trudnosci_TMPRO.SetText("£atwy");
+        }
+        else if(a==1)
+        {
+            text_Poziom_Trudnosci_TMPRO.SetText("Sredni");
+        }
+        else
+        {
+            text_Poziom_Trudnosci_TMPRO.SetText("Trudny");
+        }
+    }
     private void Start()
     {
 #region   Logika menu opcji 

@@ -11,7 +11,7 @@ public class LadowaniePlayerPrefs : MonoBehaviour
 
         if (PlayerPrefs.HasKey(difficultyKey))
         {
-            Debug.Log("zaladowano poziom trudnosci:" + PlayerPrefs.GetInt(difficultyKey).ToString());
+            //Debug.Log("zaladowano poziom trudnosci:" + PlayerPrefs.GetInt(difficultyKey).ToString());
             return PlayerPrefs.GetInt(difficultyKey);
         }
         else
@@ -20,12 +20,6 @@ public class LadowaniePlayerPrefs : MonoBehaviour
         }
     }
 
-    public static void SetDifficulty(int difficulty)
-    {
-        string difficultyKey = "Difficulty";
-        PlayerPrefs.SetInt(difficultyKey, difficulty);
-        PlayerPrefs.Save();
-    }
 
     public static int GetLiczbaFal()
     {
@@ -33,7 +27,7 @@ public class LadowaniePlayerPrefs : MonoBehaviour
 
         if (PlayerPrefs.HasKey(faleKey))
         {
-            Debug.Log("zaladowano ilosc fal:" + PlayerPrefs.GetInt(faleKey).ToString());
+            //Debug.Log("zaladowano ilosc fal:" + PlayerPrefs.GetInt(faleKey).ToString());
             return PlayerPrefs.GetInt(faleKey);
         }
         else

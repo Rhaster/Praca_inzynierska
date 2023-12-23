@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Pociski : MonoBehaviour
 {
-    public static Pociski Create(Transform pocisk_prefab,Vector3 position, wrog enemy)
+    int czyobszarowe;
+    int obrazenia;
+    public static Pociski Create(Transform pocisk_prefab, Vector3 position, wrog enemy, int obrazenia, int czyobszarowe = 0)
     {
         Transform arrowTransform = Instantiate(pocisk_prefab, position, Quaternion.identity);
 
         Pociski arrowProjectile = arrowTransform.GetComponent<Pociski>();
         arrowProjectile.SetTarget(enemy);
-
+        arrowProjectile.czyobszarowe = czyobszarowe;
+        arrowProjectile.obrazenia= obrazenia;
         return arrowProjectile;
     }
 
@@ -53,13 +56,28 @@ public class Pociski : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        wrog enemy = collision.GetComponent<wrog>();
-        if (enemy != null)
+        if (czyobszarowe == 0)
         {
-            // Hit an enemy!
-            int damageAmount = 15;
-            enemy.GetComponent<SystemHP>().Damage(damageAmount);
+            wrog enemy = collision.GetComponent<wrog>();
+            if (enemy != null)
+            {
+                enemy.GetComponent<SystemHP>().Damage(obrazenia);
 
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, czyobszarowe);
+            wrog enemy = null;
+            foreach (Collider2D collider2D in collider2DArray)
+            {
+                enemy = collider2D.GetComponent<wrog>();
+                if (enemy != null)
+                {
+                    enemy.GetComponent<SystemHP>().Damage(obrazenia);
+                }
+            }
             Destroy(gameObject);
         }
     }

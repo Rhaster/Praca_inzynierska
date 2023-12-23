@@ -1,17 +1,18 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Wieza : MonoBehaviour
 {
     public static Wieza instance { get; private set; }
-    [SerializeField] private float shootTimerMax;
-   
-    private float shootTimer_Float;
+    [SerializeField] private float czas_przeladowania_Timermax;
+    public Wieze_SO holder_Wieza_SO;
+    [SerializeField] private float shootTimer_Float;
     [SerializeField] private wrog targetEnemy_Wrog;
-    private float lookForTargetTimer;
-    private float lookForTargetTimerMax = .1f; // odswiezanie skanowania w poszukiwaniu celów 
+    [SerializeField] private float szukanie_celu_TimerMax =1;
+    [SerializeField] private float lookForTargetTimerMax = .1f; // odswiezanie skanowania w poszukiwaniu celÃ³w 
     private Vector3 projectileSpawnPosition_Vector3;
     public float zasieg_wiezy_Float;
     [SerializeField]private Transform wieza_sprite_rotacja_Transform;
@@ -19,8 +20,16 @@ public class Wieza : MonoBehaviour
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
+    private float ograniczenie_sprawdzania_amunicji_float;
+    private float ograniczenie_sprawdzania_amunicji_wart_normalna_float;
+    private bool flaga_czy_stac_bool;
+    private bool flaga_czy_oplacono_bool;
     public event EventHandler<Status> zmianaCzasuPrzeladowania;
-     public class Status
+    [SerializeField] private float OBrazenia_wiezy_Float;
+    [SerializeField] private float rodzaj_wiezy_Float;
+    private UI_Wieze_Zasieg_klikalnosc instancja_ui_wiezy;
+    private Amunicja_SO poprzednia_amunicja_holder;
+    public class Status
     { 
       public String status_Wiezy;
     };
@@ -28,15 +37,26 @@ public class Wieza : MonoBehaviour
 private Vector3 lastMoveDir;
     private void Awake()
     {
+        
+        flaga_czy_oplacono_bool = false;
+        ograniczenie_sprawdzania_amunicji_wart_normalna_float = 0;
+        shootTimer_Float = czas_przeladowania_Timermax;
         czy_przeladowano_bool = false;
         wieza_sprite_rotacja_Transform = transform.Find("wieza");
         Punkt_wystrzalu_Transform = wieza_sprite_rotacja_Transform.Find("pozycja_strzalu");
+        holder_Wieza_SO = GetComponent<HolderRodzajuWiezy>().holderWiezy;
+        OBrazenia_wiezy_Float = holder_Wieza_SO.Obrazenia_wiezy_Float;
+        czas_przeladowania_Timermax = holder_Wieza_SO.Czas_przeladowania_wiezy_Float;
+        rodzaj_wiezy_Float = holder_Wieza_SO.wieza_zasieg_ataku_amunicji_Float;
+        zasieg_wiezy_Float = holder_Wieza_SO.wieza_zasiegataku_float;
+        instancja_ui_wiezy = GetComponent<UI_Wieze_Zasieg_klikalnosc>();
         //projectileSpawnPosition = transform.Find("projectileSpawnPosition").position;
+       
     }
 
     private void Update()
     {
-        if(amunicja_Wybrana_Amunicja_SO!= null)
+        if (amunicja_Wybrana_Amunicja_SO != null)
         {
             HandleTargeting();
             HandleShooting();
@@ -47,62 +67,91 @@ private Vector3 lastMoveDir;
 
     private void HandleTargeting()
     {
-        lookForTargetTimer -= Time.deltaTime;
-        if (lookForTargetTimer < 0f)
+        szukanie_celu_TimerMax -= Time.deltaTime;
+        if (szukanie_celu_TimerMax < 0f)
         {
-            lookForTargetTimer += lookForTargetTimerMax;
+            szukanie_celu_TimerMax += lookForTargetTimerMax;
             LookForTargets();
+        }
+    }
+    private void Start()
+    {
+        instancja_ui_wiezy.zmianaAmunicji += Instancja_ui_wiezy_zmianaAmunicji;
+    }
+
+    private void Instancja_ui_wiezy_zmianaAmunicji(object sender, EventArgs e)
+    {
+        if(czy_przeladowano_bool)
+        {
+            czy_przeladowano_bool = false;
+            flaga_czy_oplacono_bool= false;
+            MechanikaAmunicji.Instance.strzel(poprzednia_amunicja_holder, -1);
+        
         }
     }
 
     private void HandleShooting()
     {
 
-
-        if (MechanikaAmunicji.Instance.CzyStac_na_Strzal(amunicja_Wybrana_Amunicja_SO))
+        if (czy_przeladowano_bool ==false)
         {
-            if (czy_przeladowano_bool == false)
+            if (MechanikaAmunicji.Instance.CzyStac_na_Strzal(amunicja_Wybrana_Amunicja_SO) || flaga_czy_oplacono_bool)
             {
-                zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Prze³adowanie" });
-                shootTimer_Float -= Time.deltaTime;
+                if(flaga_czy_oplacono_bool == false)
+                {
+                    MechanikaAmunicji.Instance.strzel(amunicja_Wybrana_Amunicja_SO,1);
+                    poprzednia_amunicja_holder = amunicja_Wybrana_Amunicja_SO;
+                    flaga_czy_oplacono_bool = true;
+                }
+                if (czy_przeladowano_bool == false)
+                {
+                    zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "PrzeÅ‚adowanie" });
+                    shootTimer_Float -= Time.deltaTime;
+                    if(amunicja_Wybrana_Amunicja_SO != poprzednia_amunicja_holder) // Flaga by nie oszukiwac zmieniajac amunicje
+                    {
+                        flaga_czy_oplacono_bool = false;
+                        MechanikaAmunicji.Instance.strzel(poprzednia_amunicja_holder, -1);
+                        shootTimer_Float = czas_przeladowania_Timermax;
+                    }
 
-            }
-            if (targetEnemy_Wrog != null)
-            {
-                rotacja();
-            }
-            if (shootTimer_Float <= 0f && czy_przeladowano_bool == false)
-            {
- 
-                    MechanikaAmunicji.Instance.strzel(amunicja_Wybrana_Amunicja_SO);
-                    shootTimer_Float += shootTimerMax;
-                    czy_przeladowano_bool = true;
-                    zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Gotowa do strza³u" });
-
-
-            }
-            if (czy_przeladowano_bool)
-            {
+                }
                 if (targetEnemy_Wrog != null)
                 {
-
-                    //rotacja();
-                    Debug.Log("strzelom");
-                    //if(MechanikaAmunicji.Instance.CzyStac())
-                    Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog);
-                    czy_przeladowano_bool = false;
+                    rotacja();
                 }
+                if (shootTimer_Float <= 0f && czy_przeladowano_bool == false)
+                {
+                    
+                        shootTimer_Float += czas_przeladowania_Timermax;
+                        czy_przeladowano_bool = true;
+                        zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "ZaÅ‚adowana" });
+                        flaga_czy_oplacono_bool = false;
+                    
+    
 
+                }
+            }
+            else
+            {
+                Debug.Log("brak amunicji");
+                zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Brak amunicji" });
             }
         }
-        else
+        if (czy_przeladowano_bool)
         {
-            Debug.Log("brak amunicji");
-            zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Brak amunicji" });
+            if (targetEnemy_Wrog != null)
+            {
+
+
+                Debug.Log("strzelom");
+
+                Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog,(int) OBrazenia_wiezy_Float, (int)rodzaj_wiezy_Float);
+                czy_przeladowano_bool = false;
+            }
+
         }
     }
-        
-    
+
     private void rotacja()
     {
         Vector3 moveDir;
@@ -168,7 +217,7 @@ private Vector3 lastMoveDir;
     }
     public float GetCzasPrzeladowania()
     {
-        return shootTimer_Float;
+        return shootTimer_Float/ czas_przeladowania_Timermax;
     }
     public bool GetCzyPRzeladowano()
     {

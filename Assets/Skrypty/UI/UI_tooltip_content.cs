@@ -21,7 +21,15 @@ public class UI_tooltip_content : MonoBehaviour
         int i = 0;
         int offset = 30;
         transform.Find("nazwa_wiezy_text").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.wieza_Nazwa);
-        transform.Find("Rodzaj_ataku_string").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.wieza_rodzajataku_Enum.ToString());
+        string wynik;
+        if (wieza_Wieza_SO.wieza_zasiegataku_float > 0) { 
+             wynik = "Obszarowy: " + wieza_Wieza_SO.wieza_zasieg_ataku_amunicji_Float.ToString(); 
+        }
+        else
+        {
+            wynik = "Pojedyñczy cel";
+        }
+        transform.Find("Rodzaj_ataku_string").GetComponent<TextMeshProUGUI>().SetText(wynik);
         transform.Find("Zasiêg ataku_liczba").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.wieza_zasiegataku_float.ToString());
         foreach (StartowaIloscSur sur in holderSur_Lista)
         {

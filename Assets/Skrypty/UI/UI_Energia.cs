@@ -49,6 +49,6 @@ public class UI_Energia : MonoBehaviour
         wskaznik_transform.fillAmount = MechanikaEnergi.Instance.Get_Znormalizowana_ilosc_energi();
         energia_text.SetText(holder.ToString());
         ZmianaKoloru(holder);
-        Debug.Log("Update energia = " + MechanikaEnergi.Instance.Get_Znormalizowana_ilosc_energi() + MechanikaEnergi.Instance.Get_Obecna_ilosc_energi());
+        //Debug.Log("Update energia = " + MechanikaEnergi.Instance.Get_Znormalizowana_ilosc_energi() + MechanikaEnergi.Instance.Get_Obecna_ilosc_energi());
     }
 }
