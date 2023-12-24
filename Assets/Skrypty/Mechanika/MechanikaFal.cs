@@ -29,10 +29,12 @@ public class MechanikaFal : MonoBehaviour
     [SerializeField] private int ZczytanyPoziomTrudnosci_Int;
     [SerializeField] private int ZczytanyiloscFal_Int;
     private bool flaga_do_kontroli_eventu_Bool = false;
+    private bool flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
     [RuntimeInitializeOnLoadMethod]
     private void Awake()
     {
-        ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
+        flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
+       ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         ZczytanyiloscFal_Int = LadowaniePlayerPrefs.GetLiczbaFal();
         Debug.Log("Zczytana liczba fal z MechanikiFal :"+ ZczytanyiloscFal_Int.ToString());
         Instance = this;
@@ -73,6 +75,12 @@ public class MechanikaFal : MonoBehaviour
         switch (status_Enum)
         {
             case status_wavemanager_enum.Oczekiwanie:
+                if (flaga_do_kontroli_eventu_spawnu_fali_Bool ==false)
+                {
+                    pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
+                    AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int, 1); // holder do zmiany przy imp budynków 
+                    flaga_do_kontroli_eventu_spawnu_fali_Bool = true;
+                }
                 if (flaga_do_kontroli_eventu_Bool == false)
                 {
                     zmianaFali_event?.Invoke(this, EventArgs.Empty);
@@ -105,11 +113,12 @@ public class MechanikaFal : MonoBehaviour
                         pozostala_ilosc_wrogow_do_utworzenia_Int--;
                         if (pozostala_ilosc_wrogow_do_utworzenia_Int <= 0)
                         {
-                            status_Enum = status_wavemanager_enum.Oczekiwanie;
-                            
+                            flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
                             pozycja_spawnu_Vector3 = pozycja_spawnu_List[UnityEngine.Random.Range(0, pozycja_spawnu_List.Count)].position;
                             czas_spawnu_nast_Fali_Float = Mathf.Clamp(30f - 4f * Numer_Fali_INT, 10f, 30f);
                             flaga_do_kontroli_eventu_Bool = false;
+                            status_Enum = status_wavemanager_enum.Oczekiwanie;
+
                         }
                     }
                 }
@@ -118,8 +127,7 @@ public class MechanikaFal : MonoBehaviour
     }
     private void SpawnWave()
     {
-        pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
-        AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int,1); // holder do zmiany przy imp budynków 
+        
         status_Enum = status_wavemanager_enum.TworzenieFali;
         Numer_Fali_INT++;
         //zmianaFali_event?.Invoke(this, EventArgs.Empty);

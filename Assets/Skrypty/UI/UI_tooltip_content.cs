@@ -32,12 +32,14 @@ public class UI_tooltip_content : MonoBehaviour
         }
         transform.Find("Rodzaj_ataku_string").GetComponent<TextMeshProUGUI>().SetText(wynik);
         transform.Find("Zasiêg ataku_liczba").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.wieza_zasiegataku_float.ToString());
+        transform.Find("obrazenia_liczba").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.Obrazenia_wiezy_Float.ToString());
+        transform.Find("przeladowanie_liczba").GetComponent<TextMeshProUGUI>().SetText(wieza_Wieza_SO.Czas_przeladowania_wiezy_Float.ToString()+"s");
         foreach (StartowaIloscSur sur in holderSur_Lista)
         {
             Transform btnTransform = Instantiate(surowce, transform);
             btnTransform.Find("Image").GetComponent<Image>().sprite = sur.surowiec.surowiec_sprite;
             btnTransform.Find("text").GetComponent<TextMeshProUGUI>().SetText(sur.ilosc.ToString());
-            btnTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(-27 + (i * offset), -62);
+            btnTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(-27 + (i * offset), -120);
             btnTransform.gameObject.SetActive(true);
             i += 1;
         }

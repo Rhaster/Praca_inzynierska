@@ -75,7 +75,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         #region Graber i setter obiektu reprezentujacego zasieg wiezy
         ui_wiezy_zasieg_transform = transform.Find("Zasieg");
         float zasieg = GetComponent<Wieza>().zasieg_wiezy_Float;
-        ui_wiezy_zasieg_transform.localScale = new Vector3(zasieg*1.5f, zasieg*1.5f, 0);
+        ui_wiezy_zasieg_transform.localScale = new Vector3(zasieg*1.6f, zasieg*1.6f, 0);
         ui_wiezy_zasieg_transform.gameObject.SetActive(false);
         #endregion
         #region sluchacze pod przyciski
@@ -192,7 +192,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             {
                 Dezaktywacja();
                 Budynki_klikanlosc.instance.DezaktywujDzieci();
-            UI_Fabryka_klikalnosc.instance.DezaktywujDzieci();
+                UI_Fabryka_klikalnosc.instance.DezaktywujDzieci();
                 ui_wiezy_zasieg_transform.gameObject.SetActive(false);
                 ui_wiezy_ustawienia_Transform.gameObject.SetActive(false);
             }

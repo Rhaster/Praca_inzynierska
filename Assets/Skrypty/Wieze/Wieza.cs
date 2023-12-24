@@ -9,7 +9,7 @@ public class Wieza : MonoBehaviour
     public static Wieza instance { get; private set; }
     [SerializeField] private float czas_przeladowania_Timermax;
     public Wieze_SO holder_Wieza_SO;
-    [SerializeField] private float shootTimer_Float;
+    [SerializeField] private float timer_strzalu_Float;
     [SerializeField] private wrog targetEnemy_Wrog;
     [SerializeField] private float szukanie_celu_TimerMax =1;
     [SerializeField] private float lookForTargetTimerMax = .1f; // odswiezanie skanowania w poszukiwaniu celów 
@@ -20,7 +20,6 @@ public class Wieza : MonoBehaviour
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
-    private float ograniczenie_sprawdzania_amunicji_float;
     private float ograniczenie_sprawdzania_amunicji_wart_normalna_float;
     private bool flaga_czy_stac_bool;
     private bool flaga_czy_oplacono_bool;
@@ -34,13 +33,12 @@ public class Wieza : MonoBehaviour
       public String status_Wiezy;
     };
 
-private Vector3 lastMoveDir;
+private Vector3 ostatni_rucu_Vector3;
     private void Awake()
     {
-        
         flaga_czy_oplacono_bool = false;
-        ograniczenie_sprawdzania_amunicji_wart_normalna_float = 0;
-        shootTimer_Float = czas_przeladowania_Timermax;
+        ograniczenie_sprawdzania_amunicji_wart_normalna_float = 0.2f;
+        timer_strzalu_Float = czas_przeladowania_Timermax;
         czy_przeladowano_bool = false;
         wieza_sprite_rotacja_Transform = transform.Find("wieza");
         Punkt_wystrzalu_Transform = wieza_sprite_rotacja_Transform.Find("pozycja_strzalu");
@@ -89,29 +87,27 @@ private Vector3 lastMoveDir;
         
         }
     }
-
-    private void HandleShooting()
+  private void MechanikaStrzelania()
     {
-
-        if (czy_przeladowano_bool ==false)
+        if (czy_przeladowano_bool == false)
         {
-            if (MechanikaAmunicji.Instance.CzyStac_na_Strzal(amunicja_Wybrana_Amunicja_SO) || flaga_czy_oplacono_bool)
+            if (MechanikaAmunicji.Instance.CzyStac_na_Strzal(amunicja_Wybrana_Amunicja_SO)  || flaga_czy_oplacono_bool)
             {
-                if(flaga_czy_oplacono_bool == false)
+                if (flaga_czy_oplacono_bool == false)
                 {
-                    MechanikaAmunicji.Instance.strzel(amunicja_Wybrana_Amunicja_SO,1);
+                    MechanikaAmunicji.Instance.strzel(amunicja_Wybrana_Amunicja_SO, 1);
                     poprzednia_amunicja_holder = amunicja_Wybrana_Amunicja_SO;
                     flaga_czy_oplacono_bool = true;
                 }
                 if (czy_przeladowano_bool == false)
                 {
                     zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Przeładowanie" });
-                    shootTimer_Float -= Time.deltaTime;
-                    if(amunicja_Wybrana_Amunicja_SO != poprzednia_amunicja_holder) // Flaga by nie oszukiwac zmieniajac amunicje
+                    timer_strzalu_Float -= Time.deltaTime;
+                    if (amunicja_Wybrana_Amunicja_SO != poprzednia_amunicja_holder) // Flaga by nie oszukiwac zmieniajac amunicje
                     {
                         flaga_czy_oplacono_bool = false;
                         MechanikaAmunicji.Instance.strzel(poprzednia_amunicja_holder, -1);
-                        shootTimer_Float = czas_przeladowania_Timermax;
+                        timer_strzalu_Float = czas_przeladowania_Timermax;
                     }
 
                 }
@@ -119,21 +115,19 @@ private Vector3 lastMoveDir;
                 {
                     rotacja();
                 }
-                if (shootTimer_Float <= 0f && czy_przeladowano_bool == false)
+                if (timer_strzalu_Float <= 0f && czy_przeladowano_bool == false)
                 {
-                    
-                        shootTimer_Float += czas_przeladowania_Timermax;
-                        czy_przeladowano_bool = true;
-                        zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Załadowana" });
-                        flaga_czy_oplacono_bool = false;
-                    
-    
 
+                    timer_strzalu_Float += czas_przeladowania_Timermax;
+                    czy_przeladowano_bool = true;
+                    zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Załadowana" });
+                    flaga_czy_oplacono_bool = false;
                 }
             }
             else
             {
-                Debug.Log("brak amunicji");
+                //Debug.Log("brak amunicji");
+                timer_strzalu_Float = czas_przeladowania_Timermax;
                 zmianaCzasuPrzeladowania?.Invoke(this, new Status { status_Wiezy = "Brak amunicji" });
             }
         }
@@ -142,14 +136,19 @@ private Vector3 lastMoveDir;
             if (targetEnemy_Wrog != null)
             {
 
-
                 Debug.Log("strzelom");
-
-                Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog,(int) OBrazenia_wiezy_Float, (int)rodzaj_wiezy_Float);
+                Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog,
+                    (int)OBrazenia_wiezy_Float, amunicja_Wybrana_Amunicja_SO, (int)rodzaj_wiezy_Float);
                 czy_przeladowano_bool = false;
+                return;
             }
 
         }
+    }
+    private void HandleShooting()
+    {
+
+        MechanikaStrzelania();
     }
 
     private void rotacja()
@@ -163,11 +162,11 @@ private Vector3 lastMoveDir;
         if (targetEnemy_Wrog != null)
         {
             moveDir = (targetEnemy_Wrog.transform.position - transform.position).normalized;
-            lastMoveDir = moveDir;
+            ostatni_rucu_Vector3 = moveDir;
         }
         else
         {
-            moveDir = lastMoveDir;
+            moveDir = ostatni_rucu_Vector3;
         }
 
         if (moveDir != Vector3.zero)
@@ -217,10 +216,12 @@ private Vector3 lastMoveDir;
     }
     public float GetCzasPrzeladowania()
     {
-        return shootTimer_Float/ czas_przeladowania_Timermax;
+        return timer_strzalu_Float/ czas_przeladowania_Timermax;
     }
     public bool GetCzyPRzeladowano()
     {
         return czy_przeladowano_bool;
     }
+   
+
 }

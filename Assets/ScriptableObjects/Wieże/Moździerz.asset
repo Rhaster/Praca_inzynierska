@@ -17,11 +17,11 @@ MonoBehaviour:
   wieza_zasiegataku_float: 45
   wieza_zasieg_ataku_amunicji_Float: 10
   koszt_StartowaIloscSur_Lista:
-  - surowiec: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
+  - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
     ilosc: 15
   - surowiec: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
     ilosc: 15
-  - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
+  - surowiec: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
     ilosc: 15
   Obrazenia_wiezy_Float: 80
   Czas_przeladowania_wiezy_Float: 5

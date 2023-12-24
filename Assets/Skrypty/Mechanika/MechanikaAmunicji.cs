@@ -8,7 +8,7 @@ public class MechanikaAmunicji : MonoBehaviour
     public static MechanikaAmunicji Instance { get; private set; }
     public event EventHandler ZmianaIlosciAmunicji;
     public List<StartowaIloscSur> kosztStworzeniaAmunicji;
-
+    private Lista_Amunicja_SO amunicja_List;
     private Dictionary<Amunicja_SO, int> IloscAmunicji_slownik;
 
     private void Awake()
@@ -18,15 +18,18 @@ public class MechanikaAmunicji : MonoBehaviour
 
         IloscAmunicji_slownik = new Dictionary<Amunicja_SO, int>();
 
-        Lista_Amunicja_SO resourceTypeList = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista");
+        amunicja_List = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista");
 
-        foreach (Amunicja_SO resourceType in resourceTypeList.amunicja_Lista)
+        foreach (Amunicja_SO resourceType in amunicja_List.amunicja_Lista)
         {
             IloscAmunicji_slownik[resourceType] = 0;
         }
 
     }
-
+    public Lista_Amunicja_SO lista()
+    {
+        return amunicja_List;
+    }
 
     public void DodajAmunicji(Amunicja_SO resourceType, int amount)
     {
@@ -48,22 +51,16 @@ public class MechanikaAmunicji : MonoBehaviour
         {
             if (true)
             {
-                // Can afford
+                // stac
             }
 
         }
 
-        // Can afford all
+        // stac na wszystko
         return true;
     }
 
-    public void WydajSurowce(StartowaIloscSur[] resourceAmountArray)
-    {
-        foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
-        {
-            //IloscAmunicji_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
-        }
-    }
+ 
     public bool CzyStac_na_Strzal(Amunicja_SO resourceType)
     {
         if (IloscAmunicji_slownik[resourceType]>0)
@@ -85,10 +82,7 @@ public class MechanikaAmunicji : MonoBehaviour
             ZmianaIlosciAmunicji?.Invoke(this, EventArgs.Empty);
         }
 
-        foreach(Amunicja_SO x in IloscAmunicji_slownik.Keys)
-        {
-            Debug.Log(IloscAmunicji_slownik[x]);
-        }
+       
     }
 
 }

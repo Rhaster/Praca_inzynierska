@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class wrog : MonoBehaviour
 {
-  
+    public Dictionary<Amunicja_SO,float> amunicja_so;
     public static wrog Create(Vector3 position,string nazwa, Transform[] way ,float speed)
         {
             Transform pfEnemy = Resources.Load<Transform>(nazwa);
@@ -15,6 +15,11 @@ public class wrog : MonoBehaviour
             wrog enemy = enemyTransform.GetComponent<wrog>();
             return enemy;
         }
+  
+    private void Start()
+    {
+        amunicja_so = Wyznacznik_fali.instance.GetWartosciPancerza();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("CEL"))

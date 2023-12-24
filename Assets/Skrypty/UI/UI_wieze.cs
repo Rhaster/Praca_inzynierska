@@ -54,14 +54,10 @@ public class UI_wieze : MonoBehaviour
     {
         MechanikaBudowania.Instance.SetActiveBuildingType(null);
         UpdateActiveBuildingTypeButton();
-        //MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
-        //UpdateActiveBuildingTypeButton();
+
     }
 
-    private void BuildingManager_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.OnActiveBuildingTypeChangedEventArgs e)
-    {
-       // UpdateActiveBuildingTypeButton();
-    }
+    
 
     private void UpdateActiveBuildingTypeButton()
     {

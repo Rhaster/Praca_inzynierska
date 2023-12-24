@@ -6,7 +6,8 @@ public class Pociski : MonoBehaviour
 {
     int czyobszarowe;
     int obrazenia;
-    public static Pociski Create(Transform pocisk_prefab, Vector3 position, wrog enemy, int obrazenia, int czyobszarowe = 0)
+    Amunicja_SO amunicja_Local;
+    public static Pociski Create(Transform pocisk_prefab, Vector3 position, wrog enemy, int obrazenia, Amunicja_SO amunicja, int czyobszarowe = 0)
     {
         Transform arrowTransform = Instantiate(pocisk_prefab, position, Quaternion.identity);
 
@@ -14,6 +15,7 @@ public class Pociski : MonoBehaviour
         arrowProjectile.SetTarget(enemy);
         arrowProjectile.czyobszarowe = czyobszarowe;
         arrowProjectile.obrazenia= obrazenia;
+        arrowProjectile.amunicja_Local = amunicja;
         return arrowProjectile;
     }
 
@@ -56,13 +58,15 @@ public class Pociski : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        float mnoznik = collision.GetComponent<wrog>().amunicja_so[amunicja_Local];
         if (czyobszarowe == 0)
         {
             wrog enemy = collision.GetComponent<wrog>();
             if (enemy != null)
             {
-                enemy.GetComponent<SystemHP>().Damage(obrazenia);
-
+                enemy.GetComponent<SystemHP>().Damage((int)(obrazenia* mnoznik));
+                Debug.Log("obrazenia bez mnoznika" + obrazenia.ToString());
+                Debug.Log("obrazenia z mnoznika" +( (int)(obrazenia * mnoznik)).ToString());
                 Destroy(gameObject);
             }
         }
@@ -75,7 +79,8 @@ public class Pociski : MonoBehaviour
                 enemy = collider2D.GetComponent<wrog>();
                 if (enemy != null)
                 {
-                    enemy.GetComponent<SystemHP>().Damage(obrazenia);
+                    enemy.GetComponent<SystemHP>().Damage((int)(obrazenia* mnoznik));
+                   
                 }
             }
             Destroy(gameObject);

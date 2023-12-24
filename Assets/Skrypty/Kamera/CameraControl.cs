@@ -58,8 +58,15 @@ public class CameraControl : MonoBehaviour
         Vector3 moveDir = new Vector3(x, y).normalized;
         float moveSpeed = 30f;
         Vector3 holder;
+        if (Time.timeScale > 1)
+        {
+            holder = transform.position += (moveDir * moveSpeed * Time.unscaledDeltaTime); // anty przyspieszenie kamery
 
-             holder = transform.position += (moveDir * moveSpeed * Time.unscaledDeltaTime); // anty przyspieszenie kamery
+        }
+        else
+        {
+            holder = transform.position += (moveDir * moveSpeed * Time.deltaTime); // anty przyspieszenie kamery
+        }
 
 
         Vector3 clampedPosition = Vector3.zero;
@@ -78,7 +85,7 @@ public class CameraControl : MonoBehaviour
         targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minOrthographicSize, maxOrthographicSize);
 
         float zoomSpeed = 5f;
-        orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);
+        orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.unscaledDeltaTime * zoomSpeed);
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
     }

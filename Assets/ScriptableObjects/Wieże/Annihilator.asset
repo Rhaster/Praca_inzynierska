@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99d9152f889bb3544bc0e0faa30d0c23, type: 3}
   m_Name: Annihilator
   m_EditorClassIdentifier: 
-  wieza_Nazwa: Annihilator
+  wieza_Nazwa: Anihilator
   wieza_Transform: {fileID: 6582936024736937738, guid: 542e3f6ab3788cb4e8345f956438afac, type: 3}
   wieza_zasiegataku_float: 55
   wieza_zasieg_ataku_amunicji_Float: 0
   koszt_StartowaIloscSur_Lista:
+  - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
+    ilosc: 25
   - surowiec: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
     ilosc: 25
   - surowiec: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
-    ilosc: 25
-  - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
     ilosc: 25
   Obrazenia_wiezy_Float: 120
   Czas_przeladowania_wiezy_Float: 3

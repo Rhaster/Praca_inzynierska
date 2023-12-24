@@ -54,6 +54,11 @@ public class UIController : MonoBehaviour
     private Transform UI_Fabryki_Transform;
     private Boolean UI_Fabryki_Transform_CzyOtwarte;
     #endregion
+    #region UI indykatora fali
+
+    private Transform indykator_fali_Transform;
+   
+    #endregion
     public float nextWaveSpawnTimer;
     // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
     public float timemax;
@@ -73,7 +78,7 @@ public class UIController : MonoBehaviour
         zasoby_Transform = transform.Find("UI_Ekonomia");
         czasUI = transform.Find("UI_czas");
         Licznikczasu_transform = czasUI.Find("czas_gry_mod").GetComponent<TextMeshProUGUI>();
-        UI_wavemanager_transfrom = transform.Find("UI_Wavemanager");
+        UI_wavemanager_transfrom = transform.Find("UI_MenadzerFali");
         opcje_transform = transform.Find("OpcjeExpander");
         UI_elektrka = transform.Find("UI_Energia");
         UI_amunicja = transform.Find("UI_Amunicja");
@@ -83,6 +88,7 @@ public class UIController : MonoBehaviour
         UI_Menadzera_energi = transform.Find("UI_MenadzerEnergi");
         UI_Fabryki_Transform = transform.Find("UI_Fabryki");
         UI_GeneratoraEnergi_Transform = transform.Find("UI_GeneratorEnergi");
+        indykator_fali_Transform = transform.Find("UI_Znacznik_Fali");
         #endregion
         #region wylaczenie ui budynkow na starcie
 
@@ -105,6 +111,7 @@ public class UIController : MonoBehaviour
         UI_Fabryki_Transform.gameObject.SetActive(false);
         UI_wiez.gameObject.SetActive(false);
         UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
+        //indykator_fali_Transform.gameObject.SetActive(false);
        // UI_wiezy_ustawienia_Transform.gameObject.SetActive(false);
     }
     #region Zmiana fali update tekstu 
@@ -199,8 +206,8 @@ public class UIController : MonoBehaviour
             {
                 UI_generatoraEnergi_bool = true;
             }
-           
 
+            indykator_fali_Transform.gameObject.SetActive(false);
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
             UI_Fabryki_Transform.gameObject.SetActive(false);
             UI_wiez.gameObject.SetActive(false);
@@ -238,6 +245,7 @@ public class UIController : MonoBehaviour
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(true);
         }
       
+        indykator_fali_Transform.gameObject.SetActive(true);
         UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);
         UI_elektrka.gameObject.SetActive(true);
