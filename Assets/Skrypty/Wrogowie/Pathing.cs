@@ -7,11 +7,11 @@ public class Pathing : MonoBehaviour
 {
     public Transform wroga_Transform;
     public Transform[] waypoints;
-    private int currentWaypointIndex = 0;
-    public float speed;
+    private int obecny_punkt_Indeks = 0;
+    public float predkosc_Float;
     public Rigidbody2D rigidbody2d;
-    public Vector3 moveDir;
-
+    public Vector3 kierunek_ruchu_Vector3;
+    public Transform obecnyWaypoint;
     private void Awake()
     {
         wroga_Transform = transform.Find("sprite");
@@ -25,40 +25,40 @@ public class Pathing : MonoBehaviour
 
     private void HandleMovement(Transform[] target)
     {
-        if (currentWaypointIndex <= target.Length)
+        if (obecny_punkt_Indeks <= target.Length)
         {
-            Transform currentWaypoint = target[currentWaypointIndex];
+            obecnyWaypoint = target[obecny_punkt_Indeks];
 
-            float distanceToWaypoint = Vector3.Distance(transform.position, currentWaypoint.position);
-            if (distanceToWaypoint > 0.9f)
+            float distanceToWaypoint = Vector3.Distance(transform.position, obecnyWaypoint.position);
+            if (distanceToWaypoint > 0.1f)
             {
-                moveDir = (currentWaypoint.position - transform.position).normalized;
-                rigidbody2d.velocity = moveDir * speed;
+                kierunek_ruchu_Vector3 = (obecnyWaypoint.position - transform.position).normalized;
+                rigidbody2d.velocity = kierunek_ruchu_Vector3 * predkosc_Float;
             }
             else
             {
-                currentWaypointIndex++;
+                obecny_punkt_Indeks++;
 
-                if (currentWaypointIndex == target.Length)
+                if (obecny_punkt_Indeks == target.Length)
                 {
                     Destroy(gameObject); // dodac powiazanie z uszkodzeniem obiektu 
                 }
             }
-            if (moveDir.x > 0.5)
+            if (kierunek_ruchu_Vector3.x > 0.5)
             {
 
                 PoruszanieWPrawo();
             }
-            else if (moveDir.y > 0.5)
+            else if (kierunek_ruchu_Vector3.y > 0.5)
             {
               
                 PoruszanieWGore();
             }
-            else if (moveDir.y < -0.5)
+            else if (kierunek_ruchu_Vector3.y < -0.5)
             {
                 PoruszanieWDol();
             }
-            else if (moveDir.x < -0.5)
+            else if (kierunek_ruchu_Vector3.x < -0.5)
             {
                 PoruszanieWLewo();
             }

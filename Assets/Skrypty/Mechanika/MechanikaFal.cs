@@ -9,6 +9,7 @@ public class MechanikaFal : MonoBehaviour
     public static MechanikaFal Instance { get; private set; }
     [SerializeField] public event EventHandler zmianaFali_event;
     [SerializeField] public event EventHandler Fala_Bossa_event;
+    
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
     [SerializeField] private List<string> AktualnySk³adFali;
     private enum status_wavemanager_enum
@@ -28,12 +29,14 @@ public class MechanikaFal : MonoBehaviour
     [SerializeField] private float PredkoscWroga;
     [SerializeField] private int ZczytanyPoziomTrudnosci_Int;
     [SerializeField] private int ZczytanyiloscFal_Int;
+    [SerializeField] private bool flaga_Aktywna_mechanika_Bool;
     private bool flaga_do_kontroli_eventu_Bool = false;
     private bool flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
     [RuntimeInitializeOnLoadMethod]
     private void Awake()
     {
-        flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
+        flaga_Aktywna_mechanika_Bool = true;
+       flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
        ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         ZczytanyiloscFal_Int = LadowaniePlayerPrefs.GetLiczbaFal();
         Debug.Log("Zczytana liczba fal z MechanikiFal :"+ ZczytanyiloscFal_Int.ToString());
@@ -72,57 +75,63 @@ public class MechanikaFal : MonoBehaviour
 
     private void Update()
     {
-        switch (status_Enum)
+        if (flaga_Aktywna_mechanika_Bool)
         {
-            case status_wavemanager_enum.Oczekiwanie:
-                if (Numer_Fali_INT == ZczytanyiloscFal_Int + 1)
-                {
-                    Debug.Log("osiagnieto fale bossa");
-                    Fala_Bossa_event?.Invoke(this, EventArgs.Empty);
-                    gameObject.SetActive(false);
-                }
-                if (flaga_do_kontroli_eventu_spawnu_fali_Bool ==false)
-                {
-                    pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
-                    AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int, 1); // holder do zmiany przy imp budynków 
-                    flaga_do_kontroli_eventu_spawnu_fali_Bool = true;
-                }
-                if (flaga_do_kontroli_eventu_Bool == false)
-                {
-                    zmianaFali_event?.Invoke(this, EventArgs.Empty);
-                    flaga_do_kontroli_eventu_Bool = true;
-                }
-                czas_spawnu_nast_Fali_Float -= Time.deltaTime;
-                if (czas_spawnu_nast_Fali_Float < 0f)
-                {
-                    SpawnWave();
-                }
-                break;
-            case status_wavemanager_enum.TworzenieFali:
-                if (pozostala_ilosc_wrogow_do_utworzenia_Int > 0)
-                {
-                    odstep_miedzy_spawnem_wroga_Float -= Time.deltaTime;
-                    if (odstep_miedzy_spawnem_wroga_Float < 0f)
+            switch (status_Enum)
+            {
+                case status_wavemanager_enum.Oczekiwanie:
+                    if (Numer_Fali_INT == ZczytanyiloscFal_Int + 1)
                     {
-                        odstep_miedzy_spawnem_wroga_Float = UnityEngine.Random.Range(1f, 3f);
-                        wrog.Create(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
-                            holder_Pozycji_Lista, PredkoscWroga); ; //UtilsClass.GetRandomDir() 
-                        AktualnySk³adFali.RemoveAt(0);
-                        //old wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa ,
-                        //holderPozycji,PredkoscWroga); //UtilsClass.GetRandomDir() 
-                        pozostala_ilosc_wrogow_do_utworzenia_Int--;
-                        if (pozostala_ilosc_wrogow_do_utworzenia_Int <= 0)
+                        Debug.Log("osiagnieto fale bossa");
+                        Fala_Bossa_event?.Invoke(this, EventArgs.Empty);
+                        zmianaFali_event?.Invoke(this, EventArgs.Empty);
+                        flaga_Aktywna_mechanika_Bool = false;
+                        break;
+                    }
+                    if (flaga_do_kontroli_eventu_spawnu_fali_Bool == false)
+                    {
+                        pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
+                        AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int, 1); // holder do zmiany przy imp budynków 
+                        flaga_do_kontroli_eventu_spawnu_fali_Bool = true;
+                    }
+                    if (flaga_do_kontroli_eventu_Bool == false)
+                    {
+                        zmianaFali_event?.Invoke(this, EventArgs.Empty);
+                        flaga_do_kontroli_eventu_Bool = true;
+                    }
+                    czas_spawnu_nast_Fali_Float -= Time.deltaTime;
+                    if (czas_spawnu_nast_Fali_Float < 0f)
+                    {
+                        SpawnWave();
+                    }
+                    break;
+                case status_wavemanager_enum.TworzenieFali:
+                    if (pozostala_ilosc_wrogow_do_utworzenia_Int > 0)
+                    {
+                        odstep_miedzy_spawnem_wroga_Float -= Time.deltaTime;
+                        if (odstep_miedzy_spawnem_wroga_Float < 0f)
                         {
-                            flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
-                            pozycja_spawnu_Vector3 = pozycja_spawnu_List[UnityEngine.Random.Range(0, pozycja_spawnu_List.Count)].position;
-                            czas_spawnu_nast_Fali_Float = Mathf.Clamp(30f - 4f * Numer_Fali_INT, 10f, 30f);
-                            flaga_do_kontroli_eventu_Bool = false;
-                            status_Enum = status_wavemanager_enum.Oczekiwanie;
+                            odstep_miedzy_spawnem_wroga_Float = UnityEngine.Random.Range(1f, 3f);
+                            wrog.Create(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
+                                holder_Pozycji_Lista, PredkoscWroga); ; //UtilsClass.GetRandomDir() 
+                            AktualnySk³adFali.RemoveAt(0);
+                            //old wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa ,
+                            //holderPozycji,PredkoscWroga); //UtilsClass.GetRandomDir() 
+                            pozostala_ilosc_wrogow_do_utworzenia_Int--;
+                            if (pozostala_ilosc_wrogow_do_utworzenia_Int <= 0)
+                            {
+                                flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
+                                pozycja_spawnu_Vector3 = pozycja_spawnu_List[UnityEngine.Random.Range(0, pozycja_spawnu_List.Count)].position;
+                                czas_spawnu_nast_Fali_Float = Mathf.Clamp(30f - 4f * Numer_Fali_INT, 10f, 30f);
+                                flaga_do_kontroli_eventu_Bool = false;
+                                status_Enum = status_wavemanager_enum.Oczekiwanie;
 
+                            }
                         }
                     }
-                }
-                break;
+                    break;
+              
+            }
         }
     }
     private void SpawnWave()

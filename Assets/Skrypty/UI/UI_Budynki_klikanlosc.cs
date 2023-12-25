@@ -30,7 +30,7 @@ public class Budynki_klikanlosc : MonoBehaviour
         ui_budowy_transform.gameObject.SetActive(true);
         UI_budynkow_holder = ui_budowy_transform.GetComponent<UI_Budynkow>();
         UI_budynkow_holder.surowiec = generator.surowiecGenerowany;
-        Debug.Log(generator.nazwa_kopalni);
+        //Debug.Log(generator.nazwa_kopalni);
         UI_budynkow_holder.nazwa_kopalni_Text.SetText(generator.nazwa_kopalni);
         UI_budynkow_holder.generator= generator;
         isactive= true;

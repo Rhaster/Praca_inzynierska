@@ -15,6 +15,7 @@ public class opcje_opis_game : MonoBehaviour
     private Transform menu_transform;
     private TextMeshProUGUI text_Poziom_Trudnosci_TMPRO;
     private TextMeshProUGUI text_ilosc_Fal_TMPRO;
+    private float holder_czasu_Float;
     #endregion
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class opcje_opis_game : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape)) // s³uchacz na przycisk Escape (zamknie obiekt)
         {
+            Debug.Log("wcisnieto escape");
             if (Budowanie_Grid.Instance.czyMenuBudowaniaOtwarte() == false)
             {
                 Wznow_gre(); // wznowienie gry
@@ -94,13 +96,13 @@ public class opcje_opis_game : MonoBehaviour
     #region Wstrzymanie Wznowienie gry
     private void WstrzymajGrê()
     {
-        Time.timeScale = 0f; // Ustaw czas gry na 0, co zatrzyma wiêkszoœæ aktywnoœci w grze
+        holder_czasu_Float = Time.timeScale;
+        UI_Czasmanager.instance.StopCzas_Przycisk();
     }
 
     private void Wznow_gre()
     {
-        float xd = UI_Czasmanager.instance.getCurrentTimeScale(); // pobierz aktualny timescale 
-        Time.timeScale = xd; // przypisz go do tej instancji
+        UI_Czasmanager.instance.StartCzas_Przycisk(holder_czasu_Float);
     }
     #endregion
 }

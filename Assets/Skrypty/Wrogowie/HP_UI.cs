@@ -16,8 +16,7 @@ public class HP_UI : MonoBehaviour
 
     private void Start()
     {
-        separatorContainer = transform.Find("separator");
-        PostawSeparatory();
+ 
 
         SystemHP.OnDamaged += HealthSystem_OnDamaged;
         SystemHP.OnHealed += HealthSystem_OnHealed;
@@ -29,7 +28,7 @@ public class HP_UI : MonoBehaviour
 
     private void HealthSystem_OnHealthAmountMaxChanged(object sender, System.EventArgs e)
     {
-        PostawSeparatory();
+        
     }
 
     private void HealthSystem_OnHealed(object sender, System.EventArgs e)
@@ -44,30 +43,7 @@ public class HP_UI : MonoBehaviour
         UpdateHealthBarVisible();
     }
 
-    private void PostawSeparatory()
-    {
-        Transform separatorTemplate = separatorContainer.Find("Template");
-        separatorTemplate.gameObject.SetActive(false);
 
-        foreach (Transform separatorTransform in separatorContainer)
-        {
-            if (separatorTransform == separatorTemplate) continue;
-            Destroy(separatorTransform.gameObject);
-        }
-
-
-        int healthAmountPerSeparator = 20;
-        float barSize = 3;
-        float barOneHealthAmountSize = barSize / SystemHP.GetHealthAmountMax();
-        int healthSeparatorCount = Mathf.FloorToInt(SystemHP.GetHealthAmountMax() / healthAmountPerSeparator);
-
-        for (int i = 1; i < healthSeparatorCount; i++)
-        {
-            Transform separatorTransform = Instantiate(separatorTemplate, separatorContainer);
-            separatorTransform.gameObject.SetActive(true);
-            separatorTransform.localPosition = new Vector3(barOneHealthAmountSize * i * healthAmountPerSeparator, 0, 0);
-        }
-    }
 
     private void UpdateBar()
     {

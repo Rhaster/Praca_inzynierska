@@ -9,7 +9,7 @@ public class wrog : MonoBehaviour
         {
             Transform pfEnemy = Resources.Load<Transform>(nazwa);
             pfEnemy.GetComponent<Pathing>().waypoints = way;  // ustalenie trasy dla danego przeciwnika 
-            pfEnemy.GetComponent<Pathing>().speed= speed; // ustalenie predkosci danego przeciwnika 
+            pfEnemy.GetComponent<Pathing>().predkosc_Float= speed; // ustalenie predkosci danego przeciwnika 
             Transform enemyTransform = Instantiate(pfEnemy, way[0].position, Quaternion.identity);
 
             wrog enemy = enemyTransform.GetComponent<wrog>();
@@ -25,7 +25,12 @@ public class wrog : MonoBehaviour
         if (collision.CompareTag("CEL"))
         {
             collision.GetComponent<SystemHP>().Damage(1);
+            if(GetComponent<MechanikaBossa>() != null)
+            {
+                collision.GetComponent<SystemHP>().Damage(10000);
+            }
         }
+        
     }
     // Update is called once per frame
 }

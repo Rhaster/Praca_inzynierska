@@ -8,7 +8,7 @@ public class Kliker_MenadzeraEnergi : MonoBehaviour
     {
         if(!Przycisk_rozwin.instance.UI_Menadzer_Energia_Object_transform.gameObject.activeSelf)
         {
-
+            Debug.Log("kliknieto na menadzer energi");
             Przycisk_rozwin.instance.AktywujMenuEnergi();
         }
         else

@@ -116,39 +116,6 @@ public class UI_MenadzerEnergi : MonoBehaviour
 
  
     }
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void UsunZMenadzeraEnergi()
-    {
-
-    }
-    public void DodajDoMenadzeraEnergi()
-    {
-
-    }
 }
 
-/*
- *  btnTransform.Find("Nazwa_wiezy").GetComponent<TextMeshProUGUI>().SetText(buildingType.wieza_Nazwa);
-            btnTransform.GetComponent<Button>().onClick.AddListener(() => {
-                MechanikaBudowania.Instance.SetActiveBuildingType(buildingType);
-                UpdateActiveBuildingTypeButton();
-            });
-            mouseEnterExitEvents = btnTransform.GetComponent<MouseEnterExit>();
-            mouseEnterExitEvents.OnMouseEnter += (object sender, EventArgs e) => {
-                //TooltipUI.Instance.Show(buildingType.nameString + "\n" + buildingType.GetConstructionResourceCostString());
-            };
-            mouseEnterExitEvents.OnMouseExit += (object sender, EventArgs e) => {
-                //TooltipUI.Instance.Hide();
-            };
-*/

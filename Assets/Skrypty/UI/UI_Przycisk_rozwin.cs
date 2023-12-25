@@ -75,19 +75,22 @@ public class Przycisk_rozwin : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.B) && StatusMenuBudowy() == false) {
 
+            Debug.Log("wcisnieto b");
             AktywujMenuBudowy();
         }
         else if(Input.GetKeyDown(KeyCode.B) && StatusMenuBudowy() == true)
         {
+            Debug.Log("wcisnieto b");
             DeaktywujMenuBudowy();
         }
         if (Input.GetKeyDown(KeyCode.E) && StatusMenuEnergi() == false)
         {
-
+            Debug.Log("wcisnieto e");
             AktywujMenuEnergi();
         }
         else if (Input.GetKeyDown(KeyCode.E) && StatusMenuEnergi() == true)
         {
+            Debug.Log("wcisnieto e");
             DeaktywujMenuEnergi();
         }
     }

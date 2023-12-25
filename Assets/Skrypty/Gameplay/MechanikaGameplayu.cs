@@ -11,6 +11,7 @@ public class MechanikaGameplayu : MonoBehaviour
     [SerializeField] private int poziomtrudnosci_int;
     [SerializeField] private int iloscFal_int;
     [SerializeField] private Transform boss_Transform;
+    [SerializeField] private float timer_Do_Spawnu_Bossa_Float;
     private string wynik;
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class MechanikaGameplayu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        timer_Do_Spawnu_Bossa_Float = 0;
         boss_Transform.gameObject.SetActive(false);
         poziomtrudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
         iloscFal_int = LadowaniePlayerPrefs.GetLiczbaFal();
@@ -60,10 +62,17 @@ public class MechanikaGameplayu : MonoBehaviour
     }
     private void Instance_Fala_Bossa_event(object sender, EventArgs e)
     {
-        boss_Transform.gameObject.SetActive(true);
+        UIController.instance.aktywacja_bossa_Event += Instance_aktywacja_bossa_Event;
         MechanikaBossa.instance.wygrana_event += Instance_wygrana_event;
+
         Inicjalizacja_Poziomu_trudnosci();
     }
+
+    private void Instance_aktywacja_bossa_Event(object sender, EventArgs e)
+    {
+        boss_Transform.gameObject.SetActive(true);
+    }
+
     public void Dezaktywacja()
     {
         GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");

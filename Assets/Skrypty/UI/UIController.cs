@@ -58,13 +58,16 @@ public class UIController : MonoBehaviour
     #region UI indykatora fali
 
     private Transform indykator_fali_Transform;
-   
+
     #endregion
-    public float nextWaveSpawnTimer;
+    #region Event aktywacji bossa
+    public event EventHandler aktywacja_bossa_Event;
+    #endregion
+    public float timer_spawnu_nast_fali_Float;
     // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
     public float timemax;
     public int i;
-    
+    public int falabossa_znacznik_Int;
     #region UI generatoraEnergi
     private Transform UI_GeneratoraEnergi_Transform;
     private Boolean UI_generatoraEnergi_bool;
@@ -72,6 +75,7 @@ public class UIController : MonoBehaviour
     
     private void Awake()
     {
+        falabossa_znacznik_Int = LadowaniePlayerPrefs.GetLiczbaFal() + 1;
         #region Przypisanie instancji
         instance = this;
         #endregion
@@ -99,7 +103,7 @@ public class UIController : MonoBehaviour
     {
         MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #region Przypisanie sluchacza do eventu zmiany fali
-
+        
         //MechanikaFal.Instance.zmianaFali_event += Instance_zmianaFali_event;
         #endregion
         OnDeaktywacja();
@@ -118,14 +122,26 @@ public class UIController : MonoBehaviour
     #region Zmiana fali update tekstu 
     private void Instance_zmianaFali_event(object sender, EventArgs e)
     {
-        StartCoroutine(CountdownCoroutine());
+        //Debug.Log(falabossa_znacznik_Int + " " + MechanikaFal.Instance.GetNumerFali());
+        if(falabossa_znacznik_Int == MechanikaFal.Instance.GetNumerFali())
+        {
+            StartCoroutine(CountdownCoroutine());
+            nr_fali_TMPRO.SetText("BOSS");
+        }
+        else
+        {
+            StartCoroutine(CountdownCoroutine());
+        }
     }
     IEnumerator CountdownCoroutine()
     {
-        nr_fali_TMPRO.SetText(MechanikaFal.Instance.GetNumerFali().ToString());
-        nextWaveSpawnTimer = MechanikaFal.Instance.GetCzasSpawnuFali();
+        if (falabossa_znacznik_Int != MechanikaFal.Instance.GetNumerFali())
+        {
+            nr_fali_TMPRO.SetText(MechanikaFal.Instance.GetNumerFali().ToString());
+        }
+        timer_spawnu_nast_fali_Float = MechanikaFal.Instance.GetCzasSpawnuFali();
        // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
-        timemax = nextWaveSpawnTimer;
+        timemax = timer_spawnu_nast_fali_Float;
         i = 1;
         timer_czasSpawnuFali_float = 1;
         // Dla oszczêdnoœci zasobów odwo³uje siê do mechaniki fal tylko przy pierwszym wywo³aniu
@@ -149,6 +165,10 @@ public class UIController : MonoBehaviour
         if (timemax <= 0)
         {
             UstawTimerCzasuFali("");
+            if (falabossa_znacznik_Int == MechanikaFal.Instance.GetNumerFali())
+            {
+                aktywacja_bossa_Event?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 
