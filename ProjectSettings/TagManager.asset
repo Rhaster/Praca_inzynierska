@@ -7,6 +7,8 @@ TagManager:
   - CEL
   - wrog
   - UstawienieWiezy
+  - Wieza_Pojedyncza
+  - Wieza_Obszarowa
   layers:
   - Default
   - TransparentFX

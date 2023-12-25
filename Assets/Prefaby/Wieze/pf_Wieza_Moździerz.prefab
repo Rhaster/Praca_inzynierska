@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 2730182181441925007}
   m_Layer: 0
   m_Name: "pf_Wieza_Mo\u017Adzierz"
-  m_TagString: Untagged
+  m_TagString: Wieza_Obszarowa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   czas_przeladowania_Timermax: 0
   holder_Wieza_SO: {fileID: 0}
-  shootTimer_Float: 0
+  timer_strzalu_Float: 0
   targetEnemy_Wrog: {fileID: 0}
   szukanie_celu_TimerMax: 1
   lookForTargetTimerMax: 0.1

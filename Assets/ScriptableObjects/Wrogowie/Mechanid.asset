@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d47d9c34950bfca48877d0eeb250c202, type: 3}
-  m_Name: Example
+  m_Name: Mechanid
   m_EditorClassIdentifier: 
-  wrog_Nazwa: Example
-  wrog_Transform: {fileID: 0}
+  wrog_Nazwa: Mechanid
+  wrog_Transform: {fileID: 6516838316992819135, guid: 14b0b7a1efabd834483e833dcdace803, type: 3}
   wrog_rozdaj_pancerza_Lista: []

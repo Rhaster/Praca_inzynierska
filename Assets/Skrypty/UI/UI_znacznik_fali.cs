@@ -49,15 +49,21 @@ public class UI_znacznik_fali : MonoBehaviour
         Dictionary<string, int> slownik = StworzSlownik(e.wrogow_List);
         int i = 0;
         int offset = 70;
+        int h = 0;
         foreach (string a in slownik.Keys)
         {
-            Transform x = Instantiate(sklad_fali_zawartosc_Transform, sklad_fali_zawartosc_Transform.position,Quaternion.identity, sklad_fali_Transform.transform);
+            Transform x = Instantiate(sklad_fali_zawartosc_Transform, sklad_fali_zawartosc_Transform.position, Quaternion.identity, sklad_fali_Transform.transform);
 
-            x.Find("Image").GetComponent<Image>().sprite = Resources.Load<Transform>("pf_wrog_"+a).Find("sprite").GetComponent<SpriteRenderer>().sprite;
+            x.Find("Image").GetComponent<Image>().sprite = Resources.Load<Transform>("pf_wrog_" + a).Find("sprite").GetComponent<SpriteRenderer>().sprite;
             x.Find("ilosc_text").GetComponent<TextMeshProUGUI>().SetText(slownik[a].ToString());
-            x.GetComponent<RectTransform>().anchoredPosition= new Vector2( -50+ (i * offset), -20);
+            if (h==2) {
+                i += 1;
+                h = 0;
+            }
+            x.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50 + (90*(h)), -20 - (i * offset));
+            h += 1;
             x.gameObject.SetActive(true);
-            i += 1;
+
         }
         sklad_fali_zawartosc_Transform.gameObject.SetActive(false);
     }

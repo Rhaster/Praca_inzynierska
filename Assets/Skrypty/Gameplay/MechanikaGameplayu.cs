@@ -29,6 +29,7 @@ public class MechanikaGameplayu : MonoBehaviour
 
     private void Instance_wygrana_event(object sender, EventArgs e)
     {
+        CameraControl.Instance.Wylacz_kamere();
         Time.timeScale = 0;
         wynik = "Zwyciêstwo";
         Dezaktywacja();
@@ -74,6 +75,7 @@ public class MechanikaGameplayu : MonoBehaviour
     }
     private void Instance_porazka_event(object sender, EventArgs e)
     {
+        CameraControl.Instance.Wylacz_kamere();
         Dezaktywacja();
         wynik = "Pora¿ka";
         Time.timeScale = 0;

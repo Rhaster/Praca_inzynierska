@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using Unity.VisualScripting;
+using TMPro.Examples;
 
 public class UIController : MonoBehaviour
 {
@@ -178,6 +179,7 @@ public class UIController : MonoBehaviour
         #region obsluga przycisku escape 
         if (Input.GetKeyDown(KeyCode.Escape) && (opcje_transform.gameObject.activeSelf == false))
         {
+            CameraControl.Instance.Wylacz_kamere();
             if (UI_budynkow_transform.gameObject.activeSelf)
             {
                 UI_budynkow_czybylootwarte_bool = true;
@@ -227,6 +229,7 @@ public class UIController : MonoBehaviour
     #region Funkcja reaktywujaca interfejs uzytkownika
     public void ReaktuywujUI()
     {
+        CameraControl.Instance.Wlacz_kamere();
         if (UI_budynkow_czybylootwarte_bool == true)
         {
             UI_budynkow_transform.gameObject.SetActive(true);

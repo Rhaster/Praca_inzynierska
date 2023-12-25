@@ -14,6 +14,10 @@ public class Pociski : MonoBehaviour
         Pociski arrowProjectile = arrowTransform.GetComponent<Pociski>();
         arrowProjectile.SetTarget(enemy);
         arrowProjectile.czyobszarowe = czyobszarowe;
+        if(czyobszarowe> 0)
+        {
+            arrowProjectile.transform.localScale *= 3;
+        }
         arrowProjectile.obrazenia= obrazenia;
         arrowProjectile.amunicja_Local = amunicja;
         return arrowProjectile;
@@ -65,8 +69,8 @@ public class Pociski : MonoBehaviour
             if (enemy != null)
             {
                 enemy.GetComponent<SystemHP>().Damage((int)(obrazenia* mnoznik));
-                Debug.Log("obrazenia bez mnoznika" + obrazenia.ToString());
-                Debug.Log("obrazenia z mnoznika" +( (int)(obrazenia * mnoznik)).ToString());
+                //Debug.Log("obrazenia bez mnoznika" + obrazenia.ToString());
+                //Debug.Log("obrazenia z mnoznika" +( (int)(obrazenia * mnoznik)).ToString());
                 Destroy(gameObject);
             }
         }
