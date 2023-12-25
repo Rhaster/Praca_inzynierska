@@ -245,7 +245,26 @@ public class UI_Budynkow : MonoBehaviour
             aktualnailoscenergi_kopalni_Text.SetText(generatorAmunicji.getIloscEnergi().ToString());
                 }
     }
- 
-    // Update is called once per frame
 
+    // Update is called once per frame
+    #region kontrola wyboru amunicji w fabryce poprzez klawisze
+    private void Update()
+    {
+        if (czyFabryka_Bool)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                przycisk_produkuj_amunicje1_button.onClick.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                przycisk_produkuj_amunicje2_button.onClick.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                przycisk_produkuj_amunicje3_button.onClick.Invoke();
+            }
+        }
+    }
+    #endregion
 }

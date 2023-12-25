@@ -56,8 +56,17 @@ public class UI_wieze : MonoBehaviour
         UpdateActiveBuildingTypeButton();
 
     }
+    private void Update()
+    {
+        if(Input.GetMouseButtonDown(1))
+            {
 
-    
+
+            MechanikaBudowania.Instance.SetActiveBuildingType(null);
+            UpdateActiveBuildingTypeButton();
+        }
+    }
+
 
     private void UpdateActiveBuildingTypeButton()
     {
@@ -86,6 +95,12 @@ public class UI_wieze : MonoBehaviour
     }
     private void OnDisable()
     {
+        arrowBtn.Find("wybrany").gameObject.SetActive(false);
+        foreach (Wieze_SO buildingType in btnTransformDictionary.Keys)
+        {
+            Transform btnTransform = btnTransformDictionary[buildingType];
+            btnTransform.Find("wybrany").gameObject.SetActive(false);
+        }
         MechanikaBudowania.Instance.SetActiveBuildingType(null);
     }
 }

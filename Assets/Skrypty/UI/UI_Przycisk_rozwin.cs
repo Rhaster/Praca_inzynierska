@@ -69,4 +69,27 @@ public class Przycisk_rozwin : MonoBehaviour
     {
         return UI_Menadzer_Budowanie_Object_transform.gameObject.activeSelf;
     }
+
+    // Obsluga klawiszy na rozwiniecie menu budowy 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B) && StatusMenuBudowy() == false) {
+
+            AktywujMenuBudowy();
+        }
+        else if(Input.GetKeyDown(KeyCode.B) && StatusMenuBudowy() == true)
+        {
+            DeaktywujMenuBudowy();
+        }
+        if (Input.GetKeyDown(KeyCode.E) && StatusMenuEnergi() == false)
+        {
+
+            AktywujMenuEnergi();
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && StatusMenuEnergi() == true)
+        {
+            DeaktywujMenuEnergi();
+        }
+    }
+    // Obsluga klawiszy na rozwiniecie menu budowy 
 }

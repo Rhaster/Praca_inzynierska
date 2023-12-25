@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
@@ -49,6 +50,12 @@ public class Budowanie_Grid : MonoBehaviour
             Ustaw_aktywna_wieze(e.aktywna_wieza_so.wieza_Transform);
             AktywujBudowanie();
         }
+        else
+        {
+            holder_Wieza =null;
+            Ustaw_aktywna_wieze(null);
+            DeaktywujBudowanie();
+        }
 
     }
     #region Metody Budowanie
@@ -71,10 +78,11 @@ public class Budowanie_Grid : MonoBehaviour
                 Podswietl_kratke();
                 timer = 0;
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 StawiajNaGridzie();
             }
+
         }
     }
 

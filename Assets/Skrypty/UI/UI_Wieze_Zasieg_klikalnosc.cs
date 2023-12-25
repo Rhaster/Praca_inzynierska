@@ -223,4 +223,24 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
 
         }
     }
+    #region kontrola klawiszy zmiany amnicji w danej wiezy
+    private void Update()
+    {
+        if (ui_wiezy_ustawienia_Transform.gameObject.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                przycisk_produkuj_amunicje1_button.onClick.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                przycisk_produkuj_amunicje2_button.onClick.Invoke();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                przycisk_produkuj_amunicje3_button.onClick.Invoke();
+            }
+        }
+    }
+    #endregion
 }

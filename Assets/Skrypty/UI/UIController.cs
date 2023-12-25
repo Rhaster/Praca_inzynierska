@@ -224,6 +224,7 @@ public class UIController : MonoBehaviour
             UI_Menadzera_energi.gameObject.SetActive(false);
 
         }
+       
         #endregion
     }
     #region Funkcja reaktywujaca interfejs uzytkownika
@@ -258,4 +259,7 @@ public class UIController : MonoBehaviour
 
     }
     #endregion
+
+    
+
 }

@@ -75,6 +75,12 @@ public class MechanikaFal : MonoBehaviour
         switch (status_Enum)
         {
             case status_wavemanager_enum.Oczekiwanie:
+                if (Numer_Fali_INT == ZczytanyiloscFal_Int + 1)
+                {
+                    Debug.Log("osiagnieto fale bossa");
+                    Fala_Bossa_event?.Invoke(this, EventArgs.Empty);
+                    gameObject.SetActive(false);
+                }
                 if (flaga_do_kontroli_eventu_spawnu_fali_Bool ==false)
                 {
                     pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
@@ -85,12 +91,6 @@ public class MechanikaFal : MonoBehaviour
                 {
                     zmianaFali_event?.Invoke(this, EventArgs.Empty);
                     flaga_do_kontroli_eventu_Bool = true;
-                }
-                if (Numer_Fali_INT == ZczytanyiloscFal_Int+1)
-                {
-                    Debug.Log("osiagnieto fale bossa");
-                    Fala_Bossa_event?.Invoke(this,EventArgs.Empty);
-                    gameObject.SetActive(false);
                 }
                 czas_spawnu_nast_Fali_Float -= Time.deltaTime;
                 if (czas_spawnu_nast_Fali_Float < 0f)

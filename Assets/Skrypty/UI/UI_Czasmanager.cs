@@ -80,5 +80,6 @@ public class UI_Czasmanager : MonoBehaviour
     {
         return Debug_czasu;
     }
+  
 
 }
