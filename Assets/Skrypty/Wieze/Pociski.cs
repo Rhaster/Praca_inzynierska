@@ -68,7 +68,7 @@ public class Pociski : MonoBehaviour
             wrog enemy = collision.GetComponent<wrog>();
             if (enemy != null)
             {
-                enemy.GetComponent<SystemHP>().Damage((int)(obrazenia* mnoznik));
+                enemy.GetComponent<SystemHP>().Obrazenia((int)(obrazenia* mnoznik));
                 //Debug.Log("obrazenia bez mnoznika" + obrazenia.ToString());
                 //Debug.Log("obrazenia z mnoznika" +( (int)(obrazenia * mnoznik)).ToString());
                 Destroy(gameObject);
@@ -83,7 +83,7 @@ public class Pociski : MonoBehaviour
                 enemy = collider2D.GetComponent<wrog>();
                 if (enemy != null)
                 {
-                    enemy.GetComponent<SystemHP>().Damage((int)(obrazenia* mnoznik));
+                    enemy.GetComponent<SystemHP>().Obrazenia((int)(obrazenia* mnoznik));
                    
                 }
             }

@@ -47,7 +47,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         wieza_Holder = GetComponent<HolderRodzajuWiezy>().holderWiezy;
         kontrola_Wieza = this.gameObject.GetComponent<Wieza>();
         podswietlenie = transform.Find("wieza").Find("aktywny");
-        ustawpodswietlenie();
+        Ustaw_podswietlenie();
         #region grabberi settery pod statystyki wiez
         zasieg_wiezy = kontrola_Wieza.zasieg_wiezy_Float;
 
@@ -113,14 +113,14 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[0];
             AktywujSelekcje(grabberButton1.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
-            ustawpodswietlenie();
+            Ustaw_podswietlenie();
         });
         przycisk_produkuj_amunicje2_button.onClick.AddListener(() => {
 
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[1];
             AktywujSelekcje(grabberButton2.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
-            ustawpodswietlenie();
+            Ustaw_podswietlenie();
         });
 
         przycisk_produkuj_amunicje3_button.onClick.AddListener(() => {
@@ -128,7 +128,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
             kontrola_Wieza.amunicja_Wybrana_Amunicja_SO = lista_Amunicji[2];
             AktywujSelekcje(grabberButton3.position);
             zmianaAmunicji?.Invoke(this, EventArgs.Empty);
-            ustawpodswietlenie();
+            Ustaw_podswietlenie();
         });
         #endregion
     }
@@ -140,7 +140,7 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
     }
 
  
-    private void ustawpodswietlenie()
+    private void Ustaw_podswietlenie()
     {
         Color newColor = Color.blue;
         newColor.a = 0.5f;

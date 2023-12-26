@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wrogowie_so_Lista:
   - {fileID: 11400000, guid: 04531e31db5335347ae645d1b76d33f3, type: 2}
-  - {fileID: 11400000, guid: 700e5fa3418b502429fa478c905d1bf2, type: 2}
   - {fileID: 11400000, guid: c35e437b8c5eea647805d1811705566b, type: 2}
+  - {fileID: 11400000, guid: 700e5fa3418b502429fa478c905d1bf2, type: 2}
+  - {fileID: 11400000, guid: 6ef5be337200378438b7dea13e0c8346, type: 2}

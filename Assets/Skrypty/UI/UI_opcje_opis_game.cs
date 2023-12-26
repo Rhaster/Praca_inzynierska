@@ -74,6 +74,7 @@ public class opcje_opis_game : MonoBehaviour
         #region Logika przy aktywnym obiekcie menu
         if (Time.timeScale > 0) // Wstrzymaj gre jesli obiekt jest aktywny
         {
+
             WstrzymajGrê();
         }
         if (Input.GetKeyDown(KeyCode.Escape)) // s³uchacz na przycisk Escape (zamknie obiekt)

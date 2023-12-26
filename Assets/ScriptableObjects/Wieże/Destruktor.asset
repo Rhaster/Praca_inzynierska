@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wieza_Nazwa: Destruktor
   wieza_Transform: {fileID: 9166983747188634945, guid: 119adaacc8eff324691e9c6dfc46a7c7, type: 3}
-  wieza_zasiegataku_float: 25
+  wieza_zasiegataku_float: 35
   wieza_zasieg_ataku_amunicji_Float: 0
   koszt_StartowaIloscSur_Lista:
   - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}

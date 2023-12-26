@@ -88,5 +88,15 @@ public class UI_generatoraEnergi : MonoBehaviour
         MechanikaEnergi.Instance.ZmniejszMaxIloscEnergi();
         AktualizacjaTextu();
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            DodanieMaxEnergi.onClick.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            OdjecieMaxEnergi.onClick.Invoke();
+        }
+    }
 }

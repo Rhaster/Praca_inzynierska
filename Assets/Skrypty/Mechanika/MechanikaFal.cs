@@ -86,12 +86,14 @@ public class MechanikaFal : MonoBehaviour
                         Fala_Bossa_event?.Invoke(this, EventArgs.Empty);
                         zmianaFali_event?.Invoke(this, EventArgs.Empty);
                         flaga_Aktywna_mechanika_Bool = false;
+                        AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int, true);
                         break;
                     }
                     if (flaga_do_kontroli_eventu_spawnu_fali_Bool == false)
                     {
-                        pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT;
-                        AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int, 1); // holder do zmiany przy imp budynków 
+                        pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT * ZczytanyPoziomTrudnosci_Int +1;
+                        AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int,false); // holder do zmiany przy imp budynków 
+                        pozostala_ilosc_wrogow_do_utworzenia_Int = AktualnySk³adFali.Count;
                         flaga_do_kontroli_eventu_spawnu_fali_Bool = true;
                     }
                     if (flaga_do_kontroli_eventu_Bool == false)
@@ -102,7 +104,7 @@ public class MechanikaFal : MonoBehaviour
                     czas_spawnu_nast_Fali_Float -= Time.deltaTime;
                     if (czas_spawnu_nast_Fali_Float < 0f)
                     {
-                        SpawnWave();
+                        TworzenieFali();
                     }
                     break;
                 case status_wavemanager_enum.TworzenieFali:
@@ -111,8 +113,8 @@ public class MechanikaFal : MonoBehaviour
                         odstep_miedzy_spawnem_wroga_Float -= Time.deltaTime;
                         if (odstep_miedzy_spawnem_wroga_Float < 0f)
                         {
-                            odstep_miedzy_spawnem_wroga_Float = UnityEngine.Random.Range(1f, 3f);
-                            wrog.Create(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
+                            odstep_miedzy_spawnem_wroga_Float = 0.5f;
+                            wrog.Stworz(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
                                 holder_Pozycji_Lista, PredkoscWroga); ; //UtilsClass.GetRandomDir() 
                             AktualnySk³adFali.RemoveAt(0);
                             //old wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa ,
@@ -134,7 +136,7 @@ public class MechanikaFal : MonoBehaviour
             }
         }
     }
-    private void SpawnWave()
+    private void TworzenieFali()
     {
         
         status_Enum = status_wavemanager_enum.TworzenieFali;

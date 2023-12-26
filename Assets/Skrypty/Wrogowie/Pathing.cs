@@ -6,7 +6,7 @@ using UnityEngine;
 public class Pathing : MonoBehaviour
 {
     public Transform wroga_Transform;
-    public Transform[] waypoints;
+    public Transform[] punkty_Transform;
     private int obecny_punkt_Indeks = 0;
     public float predkosc_Float;
     public Rigidbody2D rigidbody2d;
@@ -20,7 +20,7 @@ public class Pathing : MonoBehaviour
 
     void Update()
     {
-        HandleMovement(waypoints);
+        HandleMovement(punkty_Transform);
     }
 
     private void HandleMovement(Transform[] target)

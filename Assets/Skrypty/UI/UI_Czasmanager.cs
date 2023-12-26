@@ -108,7 +108,7 @@ public class UI_Czasmanager : MonoBehaviour
     {
         if (x == 1)
         { 
-        start_przycisk_Button.onClick.Invoke();
+            start_przycisk_Button.onClick.Invoke();
         }
         else if(x == 2) 
         {
@@ -123,6 +123,7 @@ public class UI_Czasmanager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P)) {
             Debug.Log("Wcisnieto P");
+
             if (Time.timeScale == 1)
             {
                 holder_czasu_Int = 1;
@@ -145,4 +146,5 @@ public class UI_Czasmanager : MonoBehaviour
             }
         }
     }
+
 }

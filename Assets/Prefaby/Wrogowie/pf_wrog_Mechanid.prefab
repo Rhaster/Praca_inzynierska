@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7669260844230177837}
   - component: {fileID: 2942263287916598904}
   - component: {fileID: -7638059250968953013}
-  - component: {fileID: 797912289813438790}
   m_Layer: 0
   m_Name: pf_wrog_Mechanid
   m_TagString: wrog
@@ -52,15 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wroga_Transform: {fileID: 0}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 15
+  punkty_Transform: []
+  predkosc_Float: 0
   rigidbody2d: {fileID: 0}
-  moveDir: {x: 0, y: 0, z: 0}
+  kierunek_ruchu_Vector3: {x: 0, y: 0, z: 0}
+  obecnyWaypoint: {fileID: 0}
 --- !u!50 &3730145670888109513
 Rigidbody2D:
   serializedVersion: 4
@@ -157,25 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90addffb05896ad4ba6702cd2bf3c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 30
+  healthAmountMax: 50
   healthAmount: 0
---- !u!114 &797912289813438790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 421996572983600753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27b6a5112779c774da3ac9fc1b011746, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wroga_Transform: {fileID: 0}
-  sprite_wroga: {fileID: 0}
-  stanie: {fileID: -1232999238, guid: cf29328b0ce52034cad583e4e9a5e469, type: 3}
-  poruszanie: {fileID: 926503789, guid: cf29328b0ce52034cad583e4e9a5e469, type: 3}
-  rigidbody2d: {fileID: 0}
 --- !u!1 &3040807699160003475
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,9 +53,16 @@ public class UI_znacznik_fali : MonoBehaviour
         foreach (string a in slownik.Keys)
         {
             Transform x = Instantiate(sklad_fali_zawartosc_Transform, sklad_fali_zawartosc_Transform.position, Quaternion.identity, sklad_fali_Transform.transform);
-
-            x.Find("Image").GetComponent<Image>().sprite = Resources.Load<Transform>("pf_wrog_" + a).Find("sprite").GetComponent<SpriteRenderer>().sprite;
-            x.Find("ilosc_text").GetComponent<TextMeshProUGUI>().SetText(slownik[a].ToString());
+            if (slownik.Count >1 || MechanikaFal.Instance.GetNumerFali() != LadowaniePlayerPrefs.GetLiczbaFal()+1)
+            {
+                x.Find("Image").GetComponent<Image>().sprite = Resources.Load<Transform>("pf_wrog_" + a).Find("sprite").GetComponent<SpriteRenderer>().sprite;
+                x.Find("ilosc_text").GetComponent<TextMeshProUGUI>().SetText(slownik[a].ToString());
+            }
+            else
+            {
+                x.Find("Image").GetComponent<Image>().sprite =  Resources.Load<Transform>("pf_BOSS_" + a).Find("sprite").GetComponent<SpriteRenderer>().sprite;
+                x.Find("ilosc_text").GetComponent<TextMeshProUGUI>().SetText(1.ToString());
+            }
             if (h==2) {
                 i += 1;
                 h = 0;

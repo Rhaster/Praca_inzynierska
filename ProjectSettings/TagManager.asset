@@ -9,6 +9,7 @@ TagManager:
   - UstawienieWiezy
   - Wieza_Pojedyncza
   - Wieza_Obszarowa
+  - UI_wroga
   layers:
   - Default
   - TransparentFX

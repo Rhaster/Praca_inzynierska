@@ -264,6 +264,15 @@ public class UI_Budynkow : MonoBehaviour
             {
                 przycisk_produkuj_amunicje3_button.onClick.Invoke();
             }
+            
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            przycisk_dodaj_energia_button.onClick.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            przycisk_odejmij_energia_button.onClick.Invoke();
         }
     }
     #endregion

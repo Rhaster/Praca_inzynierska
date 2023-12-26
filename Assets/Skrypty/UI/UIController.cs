@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
 {
 
     #region Kontrola czasu
-    private float gameTime = 0f;
+    private float czas_gry_float = 0f;
     [SerializeField]private float timer = 0f;
     [SerializeField] private float timer_czasSpawnuFali_float;
     private float logInterval = 1f;
@@ -63,11 +63,13 @@ public class UIController : MonoBehaviour
     #region Event aktywacji bossa
     public event EventHandler aktywacja_bossa_Event;
     #endregion
+    #region corutyna  oraz kontrola flow gry
     public float timer_spawnu_nast_fali_Float;
     // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
-    public float timemax;
+    public float timemax_Float;
     public int i;
     public int falabossa_znacznik_Int;
+    #endregion
     #region UI generatoraEnergi
     private Transform UI_GeneratoraEnergi_Transform;
     private Boolean UI_generatoraEnergi_bool;
@@ -75,7 +77,9 @@ public class UIController : MonoBehaviour
     
     private void Awake()
     {
+        #region flaga dla eventu konca gry
         falabossa_znacznik_Int = LadowaniePlayerPrefs.GetLiczbaFal() + 1;
+        #endregion
         #region Przypisanie instancji
         instance = this;
         #endregion
@@ -95,9 +99,7 @@ public class UIController : MonoBehaviour
         UI_GeneratoraEnergi_Transform = transform.Find("UI_GeneratorEnergi");
         indykator_fali_Transform = transform.Find("UI_Znacznik_Fali");
         #endregion
-        #region wylaczenie ui budynkow na starcie
 
-        #endregion
     }
     void Start()
     {
@@ -125,15 +127,15 @@ public class UIController : MonoBehaviour
         //Debug.Log(falabossa_znacznik_Int + " " + MechanikaFal.Instance.GetNumerFali());
         if(falabossa_znacznik_Int == MechanikaFal.Instance.GetNumerFali())
         {
-            StartCoroutine(CountdownCoroutine());
+            StartCoroutine(Odliczanie_Corutine());
             nr_fali_TMPRO.SetText("BOSS");
         }
         else
         {
-            StartCoroutine(CountdownCoroutine());
+            StartCoroutine(Odliczanie_Corutine());
         }
     }
-    IEnumerator CountdownCoroutine()
+    IEnumerator Odliczanie_Corutine()
     {
         if (falabossa_znacznik_Int != MechanikaFal.Instance.GetNumerFali())
         {
@@ -141,28 +143,28 @@ public class UIController : MonoBehaviour
         }
         timer_spawnu_nast_fali_Float = MechanikaFal.Instance.GetCzasSpawnuFali();
        // Debug.Log("Czas spawnu fali " + nextWaveSpawnTimer);
-        timemax = timer_spawnu_nast_fali_Float;
+        timemax_Float = timer_spawnu_nast_fali_Float;
         i = 1;
         timer_czasSpawnuFali_float = 1;
         // Dla oszczêdnoœci zasobów odwo³uje siê do mechaniki fal tylko przy pierwszym wywo³aniu
         // celem uzyskania czasu max spawnu
-        while (timemax >= 0)
+        while (timemax_Float >= 0)
         {
             timer_czasSpawnuFali_float -= Time.deltaTime;
             if (timer_czasSpawnuFali_float <= 0f)
             {
                 timer_czasSpawnuFali_float = 1;
                 
-                timemax -= i;
-                if (timemax >= 0)
+                timemax_Float -= i;
+                if (timemax_Float >= 0)
                 {
-                    UstawTimerCzasuFali(((timemax).ToString("F0") + " sekund"));
+                    UstawTimerCzasuFali(((timemax_Float).ToString("F0") + " sekund"));
                 }
             }
             yield return null; // Oczekaj na nastêpn¹ klatkê
         }
 
-        if (timemax <= 0)
+        if (timemax_Float <= 0)
         {
             UstawTimerCzasuFali("");
             if (falabossa_znacznik_Int == MechanikaFal.Instance.GetNumerFali())
@@ -182,23 +184,24 @@ public class UIController : MonoBehaviour
     void Update()
     {
         #region Kontrola czasu w UI 
-        gameTime += Time.deltaTime;
+        czas_gry_float += Time.deltaTime;
         timer += Time.deltaTime;
 
         // Loguj co sekundê
         if (timer >= logInterval)
         {
             
-            int minutes = Mathf.FloorToInt(gameTime / 60);
-            int seconds = Mathf.FloorToInt(gameTime % 60);
+            int minuty = Mathf.FloorToInt(czas_gry_float / 60);
+            int sekundy = Mathf.FloorToInt(czas_gry_float % 60);
            
-            Licznikczasu_transform.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
+            Licznikczasu_transform.SetText(string.Format("{0:00}:{1:00}", minuty, sekundy));
             timer = 0f; // Zresetuj licznik czasu
         }
         #endregion
         #region obsluga przycisku escape 
         if (Input.GetKeyDown(KeyCode.Escape) && (opcje_transform.gameObject.activeSelf == false))
         {
+            Dezaktywacja();
             CameraControl.Instance.Wylacz_kamere();
             if (UI_budynkow_transform.gameObject.activeSelf)
             {
@@ -228,7 +231,18 @@ public class UIController : MonoBehaviour
             {
                 UI_generatoraEnergi_bool = true;
             }
-
+            else
+            {
+                UI_generatoraEnergi_bool =false;
+            }
+            if(UI_Fabryki_Transform.gameObject.activeSelf)
+            {
+                UI_Fabryki_Transform_CzyOtwarte = true;
+            }
+            else
+            {
+                UI_Fabryki_Transform_CzyOtwarte = false;
+            }
             indykator_fali_Transform.gameObject.SetActive(false);
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
             UI_Fabryki_Transform.gameObject.SetActive(false);
@@ -237,15 +251,47 @@ public class UIController : MonoBehaviour
             UI_elektrka.gameObject.SetActive(false);
             zasoby_Transform.gameObject.SetActive(false);
             //czasUI.gameObject.SetActive(false); 
+            czasUI.gameObject.SetActive(true);
+            transform.Find("UI_Ustawienie_Czasu").gameObject.SetActive(true);
             UI_wavemanager_transfrom.gameObject.SetActive(false);
             opcje_transform.gameObject.SetActive(true);
             UI_Menu_Przycisk_rozwin.gameObject.SetActive(false);
             UI_budynkow_transform.gameObject.SetActive(false);
             UI_Menadzera_energi.gameObject.SetActive(false);
+            
+        }
+       if(Input.GetKeyDown(KeyCode.V)) {
+
+            Dezaktywacja();
+            indykator_fali_Transform.gameObject.SetActive(false);
+            UI_GeneratoraEnergi_Transform.gameObject.SetActive(false);
+            UI_Fabryki_Transform.gameObject.SetActive(false);
+            UI_wiez.gameObject.SetActive(false);
+            UI_amunicja.gameObject.SetActive(false);
+            UI_elektrka.gameObject.SetActive(false);
+            zasoby_Transform.gameObject.SetActive(false);
+            czasUI.gameObject.SetActive(false); 
+            UI_wavemanager_transfrom.gameObject.SetActive(false);
+            UI_Menu_Przycisk_rozwin.gameObject.SetActive(false);
+            UI_budynkow_transform.gameObject.SetActive(false);
+            UI_Menadzera_energi.gameObject.SetActive(false);
+            transform.Find("UI_Ustawienie_Czasu").gameObject.SetActive(false);
 
         }
-       
         #endregion
+    }
+    public void Dezaktywacja()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UstawienieWiezy");
+        GameObject[] obiektyZTagiem1 = GameObject.FindGameObjectsWithTag("UI_wroga");
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
+        foreach (GameObject obiekt in obiektyZTagiem1)
+        {
+            obiekt.SetActive(false);
+        }
     }
     #region Funkcja reaktywujaca interfejs uzytkownika
     public void ReaktuywujUI()
@@ -268,7 +314,10 @@ public class UIController : MonoBehaviour
         {
             UI_GeneratoraEnergi_Transform.gameObject.SetActive(true);
         }
-      
+       if(UI_Fabryki_Transform_CzyOtwarte == true)
+        {
+            UI_Fabryki_Transform.gameObject.SetActive(true);
+        }
         indykator_fali_Transform.gameObject.SetActive(true);
         UI_Menu_Przycisk_rozwin.gameObject.SetActive(true);
         UI_amunicja.gameObject.SetActive(true);

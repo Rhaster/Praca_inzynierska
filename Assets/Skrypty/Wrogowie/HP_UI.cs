@@ -18,7 +18,7 @@ public class HP_UI : MonoBehaviour
     {
  
 
-        SystemHP.OnDamaged += HealthSystem_OnDamaged;
+        SystemHP.Zadano_Obrazenia += HealthSystem_OnDamaged;
         SystemHP.OnHealed += HealthSystem_OnHealed;
         SystemHP.OnHealthAmountMaxChanged += HealthSystem_OnHealthAmountMaxChanged;
 

@@ -6,7 +6,7 @@ using UnityEngine;
 public class SystemHP : MonoBehaviour
 {
     public event EventHandler OnHealthAmountMaxChanged;
-    public event EventHandler OnDamaged;
+    public event EventHandler Zadano_Obrazenia;
     public event EventHandler OnHealed;
     public event EventHandler OnDied;
 
@@ -19,12 +19,12 @@ public class SystemHP : MonoBehaviour
         healthAmount = healthAmountMax;
     }
 
-    public void Damage(int damageAmount)
+    public void Obrazenia(int damageAmount)
     {
         healthAmount -= damageAmount;
         healthAmount = Mathf.Clamp(healthAmount, 0, healthAmountMax);
 
-        OnDamaged?.Invoke(this, EventArgs.Empty);
+        Zadano_Obrazenia?.Invoke(this, EventArgs.Empty);
 
         if (IsDead())
         {
