@@ -20,11 +20,9 @@ public class Budowanie_Grid : MonoBehaviour
     public float rozmiarGridu = 5.0f;
     public Boolean once;
     private Boolean trybBudowania;
-    [SerializeField] private Konverter sprite_wiezy_Konverter;
+    
     [SerializeField]
     private Transform Wieza_Transform;
-    private Vector3Int PodswietlonaPozycja_Vector3;
-    private bool podswietlono;
     private Wieze_SO holder_Wieza;
     #endregion
     #region zmienne timera do oszczedzenia zasobów 
@@ -33,9 +31,7 @@ public class Budowanie_Grid : MonoBehaviour
     #endregion
     private void Awake()
     {
-        sprite_wiezy_Konverter = new Konverter();
-        sprite_wiezy_Konverter.sprite = Resources.Load<Sprite>("weapons");
-        podswietlony_Tile = sprite_wiezy_Konverter;
+
         once = true;
         Instance= this; // przypisanie aktualnej instancji 
         trybBudowania= false;
@@ -75,7 +71,6 @@ public class Budowanie_Grid : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > timermax)
             {
-                Podswietl_kratke();
                 timer = 0;
             }
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
@@ -93,7 +88,6 @@ public class Budowanie_Grid : MonoBehaviour
     public void DeaktywujBudowanie()
     {
         trybBudowania = false;
-        WylaczPodswietlenie();
     }
     private void Ustaw_aktywna_wieze(Transform wieza_aktualna)
     {
@@ -130,50 +124,8 @@ public class Budowanie_Grid : MonoBehaviour
         }
 
     }
-    private void WylaczPodswietlenie()
-    {
-        if (grid != null && Glowny_TileMap != null)
-        {
-                Glowny_TileMap.SetTile(PodswietlonaPozycja_Vector3, poprzedniTile);
-        }
-    }
-    private void Podswietl_kratke()
-    {
-        Vector3Int pozycja_grid = PozycjaKursoraNaGridzie(); // pobierz pozycje na gridzie 
-        if (grid != null) // sprawdz czy grid jest zainicjowany 
-        {
-            if (Dodatkowy_TileMap.GetTile(PozycjaKursoraNaGridzie()) == null) // sprawdz czy kursor jest w granicy budowania 
-            {
-                if (PodswietlonaPozycja_Vector3 != pozycja_grid )
-                {
-                    if(PodswietlonaPozycja_Vector3 != Vector3Int.zero) {
-                        Glowny_TileMap.SetTile(PodswietlonaPozycja_Vector3, poprzedniTile);
-                    }
-
-                    TileBase tile = Glowny_TileMap.GetTile(pozycja_grid);
-                    if (tile)
-                    {
-                        poprzedniTile = Glowny_TileMap.GetTile(pozycja_grid);
-                        Glowny_TileMap.SetTile(pozycja_grid, podswietlony_Tile);
-                        podswietlony_Tile = Glowny_TileMap.GetTile(pozycja_grid); 
-                        PodswietlonaPozycja_Vector3 = pozycja_grid;
-                    }
-                    else
-                    {
-                        WylaczPodswietlenie();
-                    }
-                }
-                else
-                {
-                    Debug.Log("wykryto zmiane pola");
-                }
-            }
-            else
-            {
-               WylaczPodswietlenie();
-            }
-        }
-    }
+   
+    
     #endregion
 
 

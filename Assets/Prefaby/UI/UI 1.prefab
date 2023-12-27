@@ -3180,6 +3180,8 @@ MonoBehaviour:
   index: 0
   odleglosc: 0
   holder_Generatora_Amunicji: {fileID: 0}
+  zuzywanaEnergia_Transform: {fileID: 0}
+  maksymalnaEnergia_Transform: {fileID: 0}
 --- !u!1 &4295272243857780649
 GameObject:
   m_ObjectHideFlags: 0
@@ -6935,7 +6937,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 39834979034503139, guid: 86274aa24835d3d468648be05a3eff74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -63
+      value: -442
       objectReference: {fileID: 0}
     - target: {fileID: 39834979034503139, guid: 86274aa24835d3d468648be05a3eff74, type: 3}
       propertyPath: m_AnchoredPosition.y

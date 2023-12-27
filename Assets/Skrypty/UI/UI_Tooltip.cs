@@ -18,11 +18,11 @@ public class UI_Tooltip : MonoBehaviour
             Transform btnTemplate = transform.Find("Tooltip_template");
             btnTemplate.gameObject.SetActive(false);
 
-            Lista_Wieze_SO wieze_Lista = Resources.Load<Lista_Wieze_SO>("Wieze_Lista");
 
-            wieze_Slownik = new Dictionary<Wieze_SO, Transform>();
+        List<Wieze_SO> wieze_ = LadowaniePlayerPrefs.OdczytajListeWiez();
+        wieze_Slownik = new Dictionary<Wieze_SO, Transform>();
 
-            foreach (Wieze_SO buildingType in wieze_Lista.Wieze_Lista)
+            foreach (Wieze_SO buildingType in wieze_)
             {
             if (buildingType != null)
             {

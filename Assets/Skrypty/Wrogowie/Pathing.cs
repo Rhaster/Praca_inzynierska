@@ -11,7 +11,7 @@ public class Pathing : MonoBehaviour
     public float predkosc_Float;
     public Rigidbody2D rigidbody2d;
     public Vector3 kierunek_ruchu_Vector3;
-    public Transform obecnyWaypoint;
+    public Transform obecnyWaypoint_transorm;
     private void Awake()
     {
         wroga_Transform = transform.Find("sprite");
@@ -27,12 +27,13 @@ public class Pathing : MonoBehaviour
     {
         if (obecny_punkt_Indeks <= target.Length)
         {
-            obecnyWaypoint = target[obecny_punkt_Indeks];
+            obecnyWaypoint_transorm = target[obecny_punkt_Indeks];
 
-            float distanceToWaypoint = Vector3.Distance(transform.position, obecnyWaypoint.position);
-            if (distanceToWaypoint > 0.1f)
+            float odleglosc_od_waypointu_Float = Vector3.Distance(transform.position, obecnyWaypoint_transorm.position);
+            if (odleglosc_od_waypointu_Float > 0.5f)
             {
-                kierunek_ruchu_Vector3 = (obecnyWaypoint.position - transform.position).normalized;
+                kierunek_ruchu_Vector3 = (obecnyWaypoint_transorm.position - transform.position).normalized;
+                
                 rigidbody2d.velocity = kierunek_ruchu_Vector3 * predkosc_Float;
             }
             else
@@ -41,8 +42,7 @@ public class Pathing : MonoBehaviour
 
                 if (obecny_punkt_Indeks == target.Length)
                 {
-                    Destroy(gameObject); // dodac powiazanie z uszkodzeniem obiektu 
-                }
+                    Destroy(gameObject);                }
             }
             if (kierunek_ruchu_Vector3.x > 0.5)
             {

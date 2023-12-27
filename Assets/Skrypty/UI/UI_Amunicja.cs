@@ -21,7 +21,7 @@ public class UI_Amunicja : MonoBehaviour
             Transform resourceTransform = Instantiate(resourceTemplate, transform);
             resourceTransform.gameObject.SetActive(true);
 
-            float offsetAmount = -75f;
+            float offsetAmount = 75f;
             resourceTransform.GetComponent<RectTransform>().anchoredPosition = new Vector2(offsetAmount * index, 0);
 
             resourceTransform.Find("icon").GetComponent<Image>().sprite = surowiec.amunicja_Sprite;

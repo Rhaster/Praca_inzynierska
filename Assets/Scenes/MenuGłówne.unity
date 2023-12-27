@@ -153,11 +153,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 237374914}
+  m_Father: {fileID: 207443404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -224.57123, y: 234.89276}
+  m_AnchoredPosition: {x: -100.57123, y: 58.89276}
   m_SizeDelta: {x: 275.1018, y: 309.2284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21400407
@@ -173,14 +173,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10980392, g: 0.18771335, b: 0.8784314, a: 1}
+  m_Color: {r: 0.06407974, g: 0.9056604, b: 0.08228176, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 90e9368d76b1ef24a88218856525c1cc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 575e847b6c405644c8fda8bfb14dd03b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1175,6 +1175,7 @@ RectTransform:
   - {fileID: 1321265577}
   - {fileID: 1974262861}
   - {fileID: 237374914}
+  - {fileID: 21400406}
   - {fileID: 2139736028}
   - {fileID: 85041285}
   - {fileID: 854597468}
@@ -1203,8 +1204,8 @@ MonoBehaviour:
   wyswietlenieWybranejMapy1: {fileID: 2139736029}
   SpritewyswietlenieMapy:
   - {fileID: 21300000, guid: 83e533179bd03a644bf5f8b3917e88b4, type: 3}
-  - {fileID: -2413806693520163455, guid: c458b18a5ca64af4db88a80f488d22aa, type: 3}
-  - {fileID: 7482667652216324306, guid: 56ca56bee2f135b4494f766941fe55b6, type: 3}
+  - {fileID: 21300000, guid: aabcb27900fb0974eaea06544c8d2731, type: 3}
+  - {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
   flowmanager: {fileID: 1934263769}
   defaultMapSprite: {fileID: 21300000, guid: f41d1eaa166759948963f40f8ae040aa, type: 3}
   defaultDifficultySprite: {fileID: 21300000, guid: c48098d5bd6414543b9a1acf176c81d8, type: 3}
@@ -1212,7 +1213,7 @@ MonoBehaviour:
   - MAPA1
   - MAPA2
   - MAPA3
-  iloscFal_Lista: 030000000f0000001400000019000000
+  iloscFal_Lista: 050000000f0000001400000019000000
 --- !u!1 &222648002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,7 +1338,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1361035574}
-  - {fileID: 21400406}
   m_Father: {fileID: 207443404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2013,8 +2013,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoClips:
-  - {fileID: 32900000, guid: aabde946a7179b146b826aeeb1e0fe47, type: 3}
-  - {fileID: 32900000, guid: efce562cd1a9efb46b7627ff1d5c8236, type: 3}
+  - {fileID: 32900000, guid: 51b3e1b28b1e20244aeb09e86869c8ff, type: 3}
+  - {fileID: 32900000, guid: cf69ad222a703ad42926205eab0729d8, type: 3}
+  - {fileID: 32900000, guid: 5c269b0cd306c0f448e1810d53f17856, type: 3}
   timer: 0
   timermax: 12
 --- !u!328 &424562147

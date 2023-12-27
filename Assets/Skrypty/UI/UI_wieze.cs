@@ -16,8 +16,8 @@ public class UI_wieze : MonoBehaviour
         Transform btnTemplate = transform.Find("Template");
         btnTemplate.gameObject.SetActive(false);
 
-        Lista_Wieze_SO wieze_Lista = Resources.Load<Lista_Wieze_SO>("Wieze_Lista");
 
+        List<Wieze_SO> wieze_Lista = LadowaniePlayerPrefs.OdczytajListeWiez();
         btnTransformDictionary = new Dictionary<Wieze_SO, Transform>();
 
         int index = 0;
@@ -28,7 +28,7 @@ public class UI_wieze : MonoBehaviour
         float offsetAmount = +130f;
 
 
-        foreach (Wieze_SO buildingType in wieze_Lista.Wieze_Lista)
+        foreach (Wieze_SO buildingType in wieze_Lista)
         {
             Transform btnTransform = Instantiate(btnTemplate, transform);
             btnTransform.gameObject.SetActive(true);

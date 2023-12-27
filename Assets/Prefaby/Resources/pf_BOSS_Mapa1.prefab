@@ -455,16 +455,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wroga_Transform: {fileID: 6214090708601317086}
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  punkty_Transform: []
   predkosc_Float: 5
   rigidbody2d: {fileID: 2592464308565241501}
   kierunek_ruchu_Vector3: {x: 0, y: 0, z: 0}
-  obecnyWaypoint: {fileID: 0}
+  obecnyWaypoint_transorm: {fileID: 0}
 --- !u!114 &5643932255926510663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +532,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.4585991}
+  m_Offset: {x: 0, y: 0.05341339}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -548,7 +543,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.9198685}
+  m_Size: {x: 1, y: 0.8958435}
   m_EdgeRadius: 0
 --- !u!114 &2917839354342252794
 MonoBehaviour:
@@ -826,7 +821,7 @@ Transform:
   m_GameObject: {fileID: 6616445719448402270}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -942,11 +937,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5092824252993104940, guid: 0113ed8de4171844cb2a3adde2c904ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.4
+      value: -6.37
       objectReference: {fileID: 0}
     - target: {fileID: 5092824252993104940, guid: 0113ed8de4171844cb2a3adde2c904ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 4.21
       objectReference: {fileID: 0}
     - target: {fileID: 5092824252993104940, guid: 0113ed8de4171844cb2a3adde2c904ec, type: 3}
       propertyPath: m_LocalPosition.z

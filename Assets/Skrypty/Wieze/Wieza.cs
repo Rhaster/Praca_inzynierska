@@ -56,20 +56,20 @@ private Vector3 ostatni_rucu_Vector3;
     {
         if (amunicja_Wybrana_Amunicja_SO != null)
         {
-            HandleTargeting();
-            HandleShooting();
+            Celowanie();
+            Strzelanie();
 
         }
 
     }
 
-    private void HandleTargeting()
+    private void Celowanie()
     {
         szukanie_celu_TimerMax -= Time.deltaTime;
         if (szukanie_celu_TimerMax < 0f)
         {
             szukanie_celu_TimerMax += lookForTargetTimerMax;
-            LookForTargets();
+            Szukaj_celu();
         }
     }
     private void Start()
@@ -145,7 +145,7 @@ private Vector3 ostatni_rucu_Vector3;
 
         }
     }
-    private void HandleShooting()
+    private void Strzelanie()
     {
 
         MechanikaStrzelania();
@@ -177,11 +177,8 @@ private Vector3 ostatni_rucu_Vector3;
         }
         
     }
-    private void UstawUzywanaAmunicje(Amunicja_SO amu)
-    {
 
-    }
-    private void LookForTargets()
+    private void Szukaj_celu()
     {
         Collider2D[] collider2DArray = Physics2D.OverlapCircleAll(transform.position, zasieg_wiezy_Float);
         bool check = false;
@@ -218,10 +215,7 @@ private Vector3 ostatni_rucu_Vector3;
     {
         return timer_strzalu_Float/ czas_przeladowania_Timermax;
     }
-    public bool GetCzyPRzeladowano()
-    {
-        return czy_przeladowano_bool;
-    }
+
    
 
 }

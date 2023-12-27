@@ -14,7 +14,7 @@ public class WyborMapy : MonoBehaviour
     public List<Sprite> SpritewyswietlenieMapy;
     public Transform flowmanager; 
     /// Klucze player prefs 
-    private string wybrana_mapa_String = "WybranaMapa";
+    private string wybrana_mapa_String = "MAPA";
     private string difficultyKey = "Difficulty";
     private string faleKey = "FALE";
 
@@ -92,9 +92,9 @@ public class WyborMapy : MonoBehaviour
         mapDropdown.ClearOptions();
         mapDropdown.AddOptions(new List<TMP_Dropdown.OptionData>
         {
-            new TMP_Dropdown.OptionData("Mapa1", defaultMapSprite),
-            new TMP_Dropdown.OptionData("Mapa2", defaultMapSprite),
-            new TMP_Dropdown.OptionData("Mapa3", defaultMapSprite)
+            new TMP_Dropdown.OptionData("S³oneczne lasy", defaultMapSprite),
+            new TMP_Dropdown.OptionData("Lodowate pola", defaultMapSprite),
+            new TMP_Dropdown.OptionData("Ch³odna polana", defaultMapSprite)
         });
 
         // Opcje dla poziomu trudnoœci.
@@ -110,7 +110,8 @@ public class WyborMapy : MonoBehaviour
         {
             new TMP_Dropdown.OptionData(iloscFal_Lista[0].ToString(), defaultMapSprite),
             new TMP_Dropdown.OptionData(iloscFal_Lista[1].ToString(), defaultMapSprite),
-            new TMP_Dropdown.OptionData(iloscFal_Lista[2].ToString(), defaultMapSprite)
+            new TMP_Dropdown.OptionData(iloscFal_Lista[2].ToString(), defaultMapSprite),
+            new TMP_Dropdown.OptionData(iloscFal_Lista[3].ToString(), defaultMapSprite)
         });
         faleDropdown.RefreshShownValue();
         mapDropdown.RefreshShownValue();

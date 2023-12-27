@@ -35,6 +35,7 @@ public class MechanikaGameplayu : MonoBehaviour
         Time.timeScale = 0;
         wynik = "Zwyciêstwo";
         Dezaktywacja();
+        Dezaktywacja1();
         UI_ekran_Transform.gameObject.SetActive(true);
     }
 
@@ -43,13 +44,13 @@ public class MechanikaGameplayu : MonoBehaviour
         switch (poziomtrudnosci_int) // czas przed pierwsza fala 
         {
             case 1:
-                MechanikaBossa.instance.wyznaczHP(50000);
+                MechanikaBossa.instance.wyznaczHP(25000);
                 break;
             case 2:
-                MechanikaBossa.instance.wyznaczHP(100000);
+                MechanikaBossa.instance.wyznaczHP(50000);
                 break;
             case 3:
-                MechanikaBossa.instance.wyznaczHP(200000);
+                MechanikaBossa.instance.wyznaczHP(100000);
                 break;
             default:
                 MechanikaBossa.instance.wyznaczHP(899);
@@ -86,12 +87,21 @@ public class MechanikaGameplayu : MonoBehaviour
     {
         CameraControl.Instance.Wylacz_kamere();
         Dezaktywacja();
+        Dezaktywacja1();
         wynik = "Pora¿ka";
         Time.timeScale = 0;
         
         UI_ekran_Transform.gameObject.SetActive(true);
     }
+    public void Dezaktywacja1()
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("UI_wroga");
 
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.SetActive(false);
+        }
+    }
     // Update is called once per frame
 
 }

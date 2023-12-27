@@ -55,16 +55,16 @@ public class MechanikaFal : MonoBehaviour
         switch (ZczytanyPoziomTrudnosci_Int) // czas przed pierwsza fala 
         {
             case 1:
-                czas_spawnu_nast_Fali_Float = 40f;
+                czas_spawnu_nast_Fali_Float = 50f;
                 break;
             case 2:
-                czas_spawnu_nast_Fali_Float = 30f;
+                czas_spawnu_nast_Fali_Float = 45f;
                 break;
             case 3:
-                czas_spawnu_nast_Fali_Float = 20f;
+                czas_spawnu_nast_Fali_Float = 40f;
                 break;
             default:
-                czas_spawnu_nast_Fali_Float = 30f;
+                czas_spawnu_nast_Fali_Float = 50f;
                 break;
         }
         Debug.Log(czas_spawnu_nast_Fali_Float);
@@ -91,7 +91,13 @@ public class MechanikaFal : MonoBehaviour
                     }
                     if (flaga_do_kontroli_eventu_spawnu_fali_Bool == false)
                     {
-                        pozostala_ilosc_wrogow_do_utworzenia_Int = 3 + 2 * Numer_Fali_INT * ZczytanyPoziomTrudnosci_Int +1;
+                        if(ZczytanyPoziomTrudnosci_Int== 0)
+                        {
+                            pozostala_ilosc_wrogow_do_utworzenia_Int = 1 + 2 * Numer_Fali_INT;
+                        }
+                        else{
+                            pozostala_ilosc_wrogow_do_utworzenia_Int = 1 + 2 * Numer_Fali_INT * ZczytanyPoziomTrudnosci_Int;
+                        }
                         AktualnySk³adFali = wyznacznik_fali.ustalfale(pozostala_ilosc_wrogow_do_utworzenia_Int,false); // holder do zmiany przy imp budynków 
                         pozostala_ilosc_wrogow_do_utworzenia_Int = AktualnySk³adFali.Count;
                         flaga_do_kontroli_eventu_spawnu_fali_Bool = true;

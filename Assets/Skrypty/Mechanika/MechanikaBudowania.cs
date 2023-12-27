@@ -15,20 +15,11 @@ public class MechanikaBudowania : MonoBehaviour
         public Wieze_SO aktywna_wieza_so;
     }
 
-    private Camera mainCamera;
-    private Lista_Wieze_SO wieze_Lista;
     private Wieze_SO aktywna_Wieza_so;
 
     private void Awake()
     {
         Instance = this;
-
-        wieze_Lista = Resources.Load<Lista_Wieze_SO>("Wieze_Lista");
-    }
-
-    private void Start()
-    {
-
 
 
     }

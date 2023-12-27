@@ -19,8 +19,8 @@ public class MechanikaAmunicji : MonoBehaviour
         IloscAmunicji_slownik = new Dictionary<Amunicja_SO, int>();
 
         amunicja_List = Resources.Load<Lista_Amunicja_SO>("Amunicja_Lista");
-
-        foreach (Amunicja_SO resourceType in amunicja_List.amunicja_Lista)
+        List<Amunicja_SO> amunicja_ = amunicja_List.amunicja_Lista;
+        foreach (Amunicja_SO resourceType in amunicja_)
         {
             IloscAmunicji_slownik[resourceType] = 0;
         }
