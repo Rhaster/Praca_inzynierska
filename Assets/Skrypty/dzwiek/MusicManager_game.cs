@@ -11,24 +11,26 @@ public class MusicManager_game : MonoBehaviour
 
     public static MusicManager_game Instance { get; private set; }
 
-    public Slider volumeMusicSlider;
-    public Slider volumeSoundSlider;
-    public AudioMixerGroup musicAudioGroup;
-    public AudioMixerGroup soundEffectsGroup;
-    public Color lowVolumeColor = Color.green;
-    public Color mediumVolumeColor = Color.yellow;
-    public Color highVolumeColor = Color.red;
+    public Slider wartosc_slidera_muzyki_Slider;
+    public Slider wartosc_slidera_dzwieku_Slider;
+    public AudioMixerGroup grupa_muzyki_AMG;
+    public AudioMixerGroup efekty_grupy_AMG;
+    public Color niska_wart_koloru_Color = Color.green;
+    public Color srednia_wart_koloru_Color = Color.yellow;
+    public Color wysoka_wart_Koloru_Color = Color.red;
     //const string MIXER_MUSIC = "MusicVolume";
     //const string MIXER_SOUND = "SOUNDVolume";
-    private Image sliderFill;
-    private Image sliderSoundFill;
+    private Image napelnienie_Slidera;
+    private Image napelnienie_muzyka_slider;
 
-    [SerializeField] private float soundVolume;
-    [SerializeField] private float musicVolume;
+    [SerializeField] private float dzwiek_gloscnosc_Float;
+    [SerializeField] private float muzyka_wartosc_Float;
 
     [SerializeField] private AudioClip[] audioClips;
 
     private AudioSource audioSource;
+    public AudioClip muzyka_Boss_AudioClip;
+
 
     private void Awake()
     {
@@ -36,34 +38,34 @@ public class MusicManager_game : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioClips.Length > 0)
         {
-            PlayAudioListInLoop();
+            Graj_Muzyke_w_petli();
         }
         else
         {
             Debug.LogWarning("Audio list is empty. Add audio clips in the inspector.");
         }
         Instance = this;
-        volumeSoundSlider.value = 1;
-        volumeMusicSlider.value = 1;
+        wartosc_slidera_dzwieku_Slider.value = 1;
+        wartosc_slidera_muzyki_Slider.value = 1;
         if (PlayerPrefs.HasKey("Volume"))
         {
-            soundVolume = PlayerPrefs.GetFloat("Volume");
-            volumeSoundSlider.value = soundVolume;
+            dzwiek_gloscnosc_Float = PlayerPrefs.GetFloat("Volume");
+            wartosc_slidera_dzwieku_Slider.value = dzwiek_gloscnosc_Float;
         }
         else
         {
-            soundVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup,true);
+            dzwiek_gloscnosc_Float = GetVolumeFromAudioMixerGroup(grupa_muzyki_AMG,true);
         }
         if (PlayerPrefs.HasKey("Volume1"))
         {
-            musicVolume = PlayerPrefs.GetFloat("Volume1");
-            volumeMusicSlider.value = musicVolume;
+            muzyka_wartosc_Float = PlayerPrefs.GetFloat("Volume1");
+            wartosc_slidera_muzyki_Slider.value = muzyka_wartosc_Float;
         }
         else
         {
-            musicVolume = GetVolumeFromAudioMixerGroup(musicAudioGroup, false);
+            muzyka_wartosc_Float = GetVolumeFromAudioMixerGroup(grupa_muzyki_AMG, false);
         }
-        audioSource.volume = musicVolume;
+        audioSource.volume = muzyka_wartosc_Float;
     }
     float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup, bool x)
     {
@@ -85,80 +87,89 @@ public class MusicManager_game : MonoBehaviour
 
     void Start()
     {
-        volumeSoundSlider.value = soundVolume;
-        volumeSoundSlider.onValueChanged.AddListener(SetSoundVolume);
-        sliderFill = volumeSoundSlider.fillRect.GetComponent<Image>();
+        wartosc_slidera_dzwieku_Slider.value = dzwiek_gloscnosc_Float;
+        wartosc_slidera_dzwieku_Slider.onValueChanged.AddListener(SetSoundVolume);
+        napelnienie_Slidera = wartosc_slidera_dzwieku_Slider.fillRect.GetComponent<Image>();
 
-        volumeMusicSlider.value = musicVolume;
-        volumeMusicSlider.onValueChanged.AddListener(SetMusicVolume);
-        sliderSoundFill = volumeMusicSlider.fillRect.GetComponent<Image>();
-        sliderFill.color = highVolumeColor;
-        sliderSoundFill.color = highVolumeColor;
+        wartosc_slidera_muzyki_Slider.value = muzyka_wartosc_Float;
+        wartosc_slidera_muzyki_Slider.onValueChanged.AddListener(SetMusicVolume);
+        napelnienie_muzyka_slider = wartosc_slidera_muzyki_Slider.fillRect.GetComponent<Image>();
+        napelnienie_Slidera.color = wysoka_wart_Koloru_Color;
+        napelnienie_muzyka_slider.color = wysoka_wart_Koloru_Color;
 
-        ChangeColorByVolume1(musicVolume, volumeMusicSlider);
-        ChangeColorByVolume(soundVolume, volumeSoundSlider);
+        Zmien_kolor_przez_wart(muzyka_wartosc_Float, wartosc_slidera_muzyki_Slider);
+        Zmien_kolor_przez_wartosc(dzwiek_gloscnosc_Float, wartosc_slidera_dzwieku_Slider);
     }
 
     private void SetMusicVolume(float volume)
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
-        musicAudioGroup.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
-        musicVolume = volume;
-        ChangeColorByVolume1(volume, volumeMusicSlider);
-        audioSource.volume = musicVolume;
-        PlayerPrefs.SetFloat("Volume1", musicVolume);
+        grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
+        muzyka_wartosc_Float = volume;
+        Zmien_kolor_przez_wart(volume, wartosc_slidera_muzyki_Slider);
+        audioSource.volume = muzyka_wartosc_Float;
+        PlayerPrefs.SetFloat("Volume1", muzyka_wartosc_Float);
         PlayerPrefs.Save();
     }
     private void SetSoundVolume(float volume)
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
-        soundEffectsGroup.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
-        soundVolume = volume;
+        efekty_grupy_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
+        dzwiek_gloscnosc_Float = volume;
 
-        ChangeColorByVolume(volume, volumeSoundSlider);
-        PlayerPrefs.SetFloat("Volume", soundVolume);
+        Zmien_kolor_przez_wartosc(volume, wartosc_slidera_dzwieku_Slider);
+        PlayerPrefs.SetFloat("Volume", dzwiek_gloscnosc_Float);
         PlayerPrefs.Save();
     }
 
-    void ChangeColorByVolume(float volume1, Slider x)
+    void Zmien_kolor_przez_wartosc(float volume1, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume1);
-        Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        Color newColor = Color.Lerp(niska_wart_koloru_Color, wysoka_wart_Koloru_Color, normalizedVolume);
         x.value = volume1;
-        sliderFill.color = newColor;
+        napelnienie_Slidera.color = newColor;
     }
-    void ChangeColorByVolume1(float volume, Slider x)
+    void Zmien_kolor_przez_wart(float volume, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume);
-        Color newColor = Color.Lerp(lowVolumeColor, highVolumeColor, normalizedVolume);
+        Color newColor = Color.Lerp(niska_wart_koloru_Color, wysoka_wart_Koloru_Color, normalizedVolume);
         x.value = volume;
-        sliderSoundFill.color = newColor;
+        napelnienie_muzyka_slider.color = newColor;
     }
 
 
 
 
     #region Muzyka
-    private void PlayAudioListInLoop()
+    private bool stopCoroutine = false;
+    public void Wlacz_musyzke_bossa()
     {
-        // Uruchom coroutine do odtwarzania w nieskoñczonoœæ
-        StartCoroutine(PlayAudioListCoroutine());
+        Zatrzymaj_muzyke();
+        audioSource.clip = muzyka_Boss_AudioClip;
+        audioSource.Play();
+    }
+    private void Zatrzymaj_muzyke()
+    {
+        stopCoroutine = true;
+    }
+    private void Graj_Muzyke_w_petli()
+    {
+
+        StartCoroutine(Graj_audio_corutine());
     }
 
-    private System.Collections.IEnumerator PlayAudioListCoroutine()
+
+    private System.Collections.IEnumerator Graj_audio_corutine()
     {
-        while (true)
+        while (!stopCoroutine)
         {
-            // PrzejdŸ przez wszystkie pliki audio w liœcie
             for (int i = 0; i < audioClips.Length; i++)
             {
-                // Ustaw aktualny plik audio
-                audioSource.clip = audioClips[i];
-
-                // Odtwórz dŸwiêk
-                audioSource.Play();
-
-                // Poczekaj na zakoñczenie odtwarzania
+                if (!stopCoroutine)
+                {
+                    audioSource.clip = audioClips[i];
+                    audioSource.Play();
+                }
                 yield return new WaitForSeconds(audioSource.clip.length);
             }
         }

@@ -14,11 +14,14 @@ public class FlowManager : MonoBehaviour
     [SerializeField] private string Mapa4;
     private Transform Nowagra_Transform;
     private Transform Opcje_Transform;
+    private Transform jak_grac_Transform;
     private Transform Wyjscie_Transform;
     public Transform Wybor_Mapy_Transform;
+    public Transform jak_grac_szcze_Transform;
     public static FlowManager Instance { get; private set; }
     private void Awake()
     {
+        jak_grac_Transform = transform.Find("jak_grac_btn");
         Nowagra_Transform = transform.Find("Nowa_gra_btn");
         Opcje_Transform = transform.Find("Opcje_btn");
         Wyjscie_Transform = transform.Find("Wyjscie_btn");
@@ -32,6 +35,11 @@ public class FlowManager : MonoBehaviour
             Wybor_Mapy_Transform.gameObject.SetActive(true);
             gameObject.SetActive(false);
            // SceneManager.LoadScene(Mapa1);
+        });
+        jak_grac_Transform.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            jak_grac_szcze_Transform.gameObject.SetActive(true);
+            // SceneManager.LoadScene(Mapa1);
         });
         Opcje_Transform.GetComponent<Button>().onClick.AddListener(() =>
         {

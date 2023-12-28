@@ -509,7 +509,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.3056868, y: -3.3699}
+  m_Offset: {x: -1.8052596, y: -3.3699}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -520,7 +520,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.911316, y: 5.6506343}
+  m_Size: {x: 9.9104595, y: 5.6506343}
   m_EdgeRadius: 0
 --- !u!114 &39083394
 MonoBehaviour:
@@ -11657,7 +11657,6 @@ MonoBehaviour:
   poziomtrudnosci_int: 0
   iloscFal_int: 0
   boss_Transform: {fileID: 1784326415672241082}
-  timer_Do_Spawnu_Bossa_Float: 0
 --- !u!1 &210144826
 GameObject:
   m_ObjectHideFlags: 0
@@ -30230,16 +30229,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97517ee78316904eb6a521e3a07f2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeMusicSlider: {fileID: 1428216968}
-  volumeSoundSlider: {fileID: 2107109908}
-  musicAudioGroup: {fileID: -6961789258298631923, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  soundEffectsGroup: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  lowVolumeColor: {r: 0, g: 1, b: 0, a: 1}
-  mediumVolumeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  highVolumeColor: {r: 1, g: 0, b: 0, a: 1}
-  soundVolume: 1
-  musicVolume: 1
-  audioClips: []
+  wartosc_slidera_muzyki_Slider: {fileID: 1428216968}
+  wartosc_slidera_dzwieku_Slider: {fileID: 2107109908}
+  grupa_muzyki_AMG: {fileID: -6961789258298631923, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
+  efekty_grupy_AMG: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
+  niska_wart_koloru_Color: {r: 0, g: 1, b: 0, a: 1}
+  srednia_wart_koloru_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  wysoka_wart_Koloru_Color: {r: 1, g: 0, b: 0, a: 1}
+  dzwiek_gloscnosc_Float: 0
+  muzyka_wartosc_Float: 0
+  audioClips:
+  - {fileID: 8300000, guid: 220a2233a46f6584ca8b33bff76013ab, type: 3}
+  - {fileID: 8300000, guid: 577a2177c473c2a49873e68ad1ea7563, type: 3}
+  - {fileID: 8300000, guid: 402314beccc9fb04dbc8e7d08dd7cad4, type: 3}
+  - {fileID: 8300000, guid: 6a7c74aebfac2cc4bbc12e05ad05842e, type: 3}
+  muzyka_Boss_AudioClip: {fileID: 8300000, guid: 1cf1bbee4912f9c45aa9bd6d3520cff5, type: 3}
 --- !u!82 &1382742700
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36156,7 +36160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ilosc_energi_Int: 0
-  Limit: 0
   ilosc_energi_Startowa_Int: 8
 --- !u!1 &2064690403
 GameObject:

@@ -64,7 +64,7 @@ public class MechanikaGameplayu : MonoBehaviour
     {
         UIController.instance.aktywacja_bossa_Event += Instance_aktywacja_bossa_Event;
         MechanikaBossa.instance.wygrana_event += Instance_wygrana_event;
-
+        MusicManager_game.Instance.Wlacz_musyzke_bossa();
         Inicjalizacja_Poziomu_trudnosci();
     }
 
