@@ -7,13 +7,11 @@ using UnityEngine;
 public class MechanikaEnergi : MonoBehaviour
 {
     [SerializeField] private int ilosc_energi_Int;
-    [SerializeField] private int Limit;
     [SerializeField] private int ilosc_energi_Startowa_Int;
     public  event EventHandler zmiana_ilosci_energi_event;
     public static MechanikaEnergi Instance { get;private set; }
     private void Awake()
     {
-        Limit = 8;
         Instance = this;
         ilosc_energi_Int = ilosc_energi_Startowa_Int;
         zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);

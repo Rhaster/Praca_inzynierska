@@ -1198,21 +1198,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36e9ba22573d234eb4f5daaf4f343e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapDropdown: {fileID: 1321265578}
-  difficultyDropdown: {fileID: 1842635272}
-  faleDropdown: {fileID: 854597469}
-  wyswietlenieWybranejMapy1: {fileID: 2139736029}
-  SpritewyswietlenieMapy:
+  mapa_Dropdown: {fileID: 1321265578}
+  poziom_trudnosci_Dropdown: {fileID: 1842635272}
+  fale_Dropdown: {fileID: 854597469}
+  wyswietlenie_Wybranej_Mapy1: {fileID: 2139736029}
+  Sprite_wyswietlenie_Mapy:
+  - {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
   - {fileID: 21300000, guid: 83e533179bd03a644bf5f8b3917e88b4, type: 3}
   - {fileID: 21300000, guid: aabcb27900fb0974eaea06544c8d2731, type: 3}
-  - {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
-  flowmanager: {fileID: 1934263769}
-  defaultMapSprite: {fileID: 21300000, guid: f41d1eaa166759948963f40f8ae040aa, type: 3}
+  flowmanager_Transform: {fileID: 1934263769}
+  domyslny_mapy_Sprite: {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
   defaultDifficultySprite: {fileID: 21300000, guid: c48098d5bd6414543b9a1acf176c81d8, type: 3}
   mapy:
+  - MAPA3
   - MAPA1
   - MAPA2
-  - MAPA3
   iloscFal_Lista: 050000000f0000001400000019000000
 --- !u!1 &222648002
 GameObject:
@@ -2012,12 +2012,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d63ce8f9b25cb7448a8d199faa72f6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoClips:
-  - {fileID: 32900000, guid: 51b3e1b28b1e20244aeb09e86869c8ff, type: 3}
-  - {fileID: 32900000, guid: cf69ad222a703ad42926205eab0729d8, type: 3}
-  - {fileID: 32900000, guid: 5c269b0cd306c0f448e1810d53f17856, type: 3}
-  timer: 0
-  timermax: 12
+  clipy_VideoClip:
+  - {fileID: 32900000, guid: e0eb8685c88bb4f459bda58df72cd661, type: 3}
 --- !u!328 &424562147
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -2026,7 +2022,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424562144}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: aabde946a7179b146b826aeeb1e0fe47, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: e0eb8685c88bb4f459bda58df72cd661, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 519420031}
@@ -2040,17 +2036,15 @@ VideoPlayer:
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: 
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 00
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -2249,7 +2243,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8029,8 +8023,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4292997386
-  m_fontColor: {r: 0.039215684, g: 0.94509804, b: 0.8804555, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -8047,8 +8041,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 88
+  m_fontSizeBase: 88
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

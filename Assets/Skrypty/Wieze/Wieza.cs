@@ -20,7 +20,6 @@ public class Wieza : MonoBehaviour
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
-    private float ograniczenie_sprawdzania_amunicji_wart_normalna_float;
     private bool flaga_czy_stac_bool;
     private bool flaga_czy_oplacono_bool;
     public event EventHandler<Status> zmianaCzasuPrzeladowania;
@@ -37,7 +36,6 @@ private Vector3 ostatni_rucu_Vector3;
     private void Awake()
     {
         flaga_czy_oplacono_bool = false;
-        ograniczenie_sprawdzania_amunicji_wart_normalna_float = 0.2f;
         timer_strzalu_Float = czas_przeladowania_Timermax;
         czy_przeladowano_bool = false;
         wieza_sprite_rotacja_Transform = transform.Find("wieza");
@@ -48,8 +46,7 @@ private Vector3 ostatni_rucu_Vector3;
         rodzaj_wiezy_Float = holder_Wieza_SO.wieza_zasieg_ataku_amunicji_Float;
         zasieg_wiezy_Float = holder_Wieza_SO.wieza_zasiegataku_float;
         instancja_ui_wiezy = GetComponent<UI_Wieze_Zasieg_klikalnosc>();
-        //projectileSpawnPosition = transform.Find("projectileSpawnPosition").position;
-       
+
     }
 
     private void Update()

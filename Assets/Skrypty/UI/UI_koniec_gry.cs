@@ -14,10 +14,9 @@ public class UI_koniec_gry : MonoBehaviour
     private const string KilledUnitsKey = "KilledUnits";
     private const string postawione_Key = "POSTAWIONEBUDYNKI";
     private const string wydobyte_Key = "Wydobyte";
-    int currentKilledUnits;
+    int obecnie_zabite_jednostki_Int;
     int currentpostawioneUnits;
-    int currentwydobyteUnits;
-    public Button wyjscie;
+    public Button wyjscie_Button;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -25,16 +24,15 @@ public class UI_koniec_gry : MonoBehaviour
     }
     void Start()
     {
-        wyjscie = transform.Find("menu").GetComponent<Button>();
+        wyjscie_Button = transform.Find("menu").GetComponent<Button>();
         Wynik_tmpro=transform.Find("wynik").GetComponent<TextMeshProUGUI>();
         ilosc_zabitych_tmpro = transform.Find("il_zab").GetComponent<TextMeshProUGUI>();
         ilosc_postawionych_wiez_tmpro = transform.Find("Post_wieze").GetComponent<TextMeshProUGUI>();
         Wynik_ekonomi_tmpro = transform.Find("wyn_ekonomi").GetComponent<TextMeshProUGUI>();
-        currentKilledUnits = PlayerPrefs.GetInt(KilledUnitsKey, 0);
+        obecnie_zabite_jednostki_Int = PlayerPrefs.GetInt(KilledUnitsKey, 0);
         currentpostawioneUnits = PlayerPrefs.GetInt(postawione_Key, 0);
-        currentwydobyteUnits =0;
         ilosc_postawionych_wiez_tmpro.SetText(currentpostawioneUnits.ToString());
-        wyjscie.onClick.AddListener(() =>
+        wyjscie_Button.onClick.AddListener(() =>
         { SceneManager.LoadScene("MenuG³ówne"); }
         );
         inicjalizacja();
@@ -42,13 +40,9 @@ public class UI_koniec_gry : MonoBehaviour
     private void inicjalizacja()
     {
         Wynik_tmpro.SetText(  MechanikaGameplayu.instance.getWynik());
-        ilosc_zabitych_tmpro.SetText(currentKilledUnits.ToString());
+        ilosc_zabitych_tmpro.SetText(obecnie_zabite_jednostki_Int.ToString());
         ilosc_postawionych_wiez_tmpro.SetText(currentpostawioneUnits.ToString());
         Wynik_ekonomi_tmpro.SetText(MechanikaEkonomi.Instance.wydobyte_sur().ToString());
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

@@ -37,7 +37,7 @@ public class Budowanie_Grid : MonoBehaviour
         trybBudowania= false;
     }
 
-    private void Instance_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.OnActiveBuildingTypeChangedEventArgs e)
+    private void Instance_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.Holder_Typu_Budowli e)
     {
         //Debug.Log("wywolano" + e.aktywna_wieza_so.wieza_Transform);
         if (e.aktywna_wieza_so != null)
@@ -61,7 +61,7 @@ public class Budowanie_Grid : MonoBehaviour
     }
     private void Start()
     {
-        MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += Instance_OnActiveBuildingTypeChanged;
+        MechanikaBudowania.Instance.Zmiana_aktywnego_typu_wiezy += Instance_OnActiveBuildingTypeChanged;
     }
 
     private void Update()

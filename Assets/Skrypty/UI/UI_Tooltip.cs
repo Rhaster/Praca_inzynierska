@@ -6,30 +6,27 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UI_Tooltip : MonoBehaviour
 {
-    #region Transformy 
-    private Transform tlo_transform;
-    #endregion
+
     private Dictionary<Wieze_SO, Transform> wieze_Slownik;
-    private RectTransform tooltip_polozenie_RectTransform;
     // Start is called before the first frame update
 
         private void Awake()
         {
-            Transform btnTemplate = transform.Find("Tooltip_template");
-            btnTemplate.gameObject.SetActive(false);
+            Transform btnTemplate_Transform = transform.Find("Tooltip_template");
+            btnTemplate_Transform.gameObject.SetActive(false);
 
 
         List<Wieze_SO> wieze_ = LadowaniePlayerPrefs.OdczytajListeWiez();
         wieze_Slownik = new Dictionary<Wieze_SO, Transform>();
 
-            foreach (Wieze_SO buildingType in wieze_)
+            foreach (Wieze_SO typ_budoli_Wieze_SO in wieze_)
             {
-            if (buildingType != null)
+            if (typ_budoli_Wieze_SO != null)
             {
-                Transform btnTransform = Instantiate(btnTemplate, transform);
-                btnTransform.GetComponent<UI_tooltip_content>().wieza_Wieza_SO = buildingType;
+                Transform btnTransform = Instantiate(btnTemplate_Transform, transform);
+                btnTransform.GetComponent<UI_tooltip_content>().wieza_Wieza_SO = typ_budoli_Wieze_SO;
                 btnTransform.gameObject.SetActive(false);
-                wieze_Slownik[buildingType] = btnTransform;
+                wieze_Slownik[typ_budoli_Wieze_SO] = btnTransform;
             }
             }
         
@@ -38,10 +35,10 @@ public class UI_Tooltip : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        MechanikaBudowania.Instance.OnActiveBuildingTypeChanged += Instance_OnActiveBuildingTypeChanged;
+        MechanikaBudowania.Instance.Zmiana_aktywnego_typu_wiezy += Instance_Zmiana_aktywnego_typu_wiezy;
     }
 
-    private void Instance_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.OnActiveBuildingTypeChangedEventArgs e)
+    private void Instance_Zmiana_aktywnego_typu_wiezy(object sender, MechanikaBudowania.Holder_Typu_Budowli e)
     {
         foreach (Wieze_SO wieza in wieze_Slownik.Keys)
         {

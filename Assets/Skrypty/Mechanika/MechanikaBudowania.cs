@@ -8,9 +8,9 @@ using UnityEngine.EventSystems;
 public class MechanikaBudowania : MonoBehaviour
 {
     public static MechanikaBudowania Instance { get; private set; }
-    public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
+    public event EventHandler<Holder_Typu_Budowli> Zmiana_aktywnego_typu_wiezy;
 
-    public class OnActiveBuildingTypeChangedEventArgs : EventArgs
+    public class Holder_Typu_Budowli : EventArgs
     {
         public Wieze_SO aktywna_wieza_so;
     }
@@ -24,25 +24,21 @@ public class MechanikaBudowania : MonoBehaviour
 
     }
 
-    public void SetActiveBuildingType(Wieze_SO buildingType)
+    public void Ustaw_aktywny_typ_budowli(Wieze_SO buildingType)
     {
         aktywna_Wieza_so = buildingType;
 
-        OnActiveBuildingTypeChanged?.Invoke(this,
-            new OnActiveBuildingTypeChangedEventArgs { aktywna_wieza_so = aktywna_Wieza_so }
+        Zmiana_aktywnego_typu_wiezy?.Invoke(this,
+            new Holder_Typu_Budowli { aktywna_wieza_so = aktywna_Wieza_so }
         );
     }
 
-    public Wieze_SO GetActiveBuildingType()
+    public Wieze_SO Get_aktywny_budynek()
     {
         return aktywna_Wieza_so;
     }
 
-    private bool CanSpawnBuilding(Wieze_SO buildingType, Vector3 position, out string errorMessage)
-    {
-        errorMessage = "Nie stac";
-        return true;
-    }
+ 
 
  
 }

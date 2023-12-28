@@ -11,7 +11,7 @@ public class MechanikaGameplayu : MonoBehaviour
     [SerializeField] private int poziomtrudnosci_int;
     [SerializeField] private int iloscFal_int;
     [SerializeField] private Transform boss_Transform;
-    [SerializeField] private float timer_Do_Spawnu_Bossa_Float;
+
     private string wynik;
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class MechanikaGameplayu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timer_Do_Spawnu_Bossa_Float = 0;
         boss_Transform.gameObject.SetActive(false);
         poziomtrudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
         iloscFal_int = LadowaniePlayerPrefs.GetLiczbaFal();

@@ -9,20 +9,18 @@ using System.IO;
 
 public class VideoPlayerManager : MonoBehaviour
 {
-    public VideoClip[] videoClips;
-    private int currentClipIndex = 0;
-    private VideoPlayer videoPlayer;
-    [SerializeField]private float timer;
-    [SerializeField] private float timermax;
+    public VideoClip[] clipy_VideoClip;
+    private int obecny_index_Int = 0;
+    private VideoPlayer odtwazacz_VideoPlayer;
+
 
     void Awake()
     {
         Time.timeScale = 1f; // anty prze³adowanie
-        timer = timermax;
-        videoPlayer = GetComponent<VideoPlayer>();
-        videoPlayer.SetDirectAudioMute(0, true);
+        odtwazacz_VideoPlayer = GetComponent<VideoPlayer>();
+        odtwazacz_VideoPlayer.SetDirectAudioMute(0, true);
 
-        if (videoClips.Length > 0)
+        if (clipy_VideoClip.Length > 0)
         {
             PlayNextVideo();
         }
@@ -30,31 +28,17 @@ public class VideoPlayerManager : MonoBehaviour
         {
             Debug.LogError("Lista Video Clip jest pusta. Dodaj co najmniej jeden Video Clip.");
         }
+
     }
 
-    void Update()
-    {
-        timer -= Time.deltaTime;
-        if (timer <= 0f)
-        {
-            PlayNextVideo();
-        }
-    }
+
 
     void PlayNextVideo()
     {
-        // Zatrzymaj odtwarzanie poprzedniego klipu
-        videoPlayer.Stop();
 
-        // Ustaw nowy klip i rozpocznij odtwarzanie
-        videoPlayer.clip = videoClips[currentClipIndex];
-        videoPlayer.Play();
 
-        // PrzejdŸ do nastêpnego klipu w liœcie
-        currentClipIndex = (currentClipIndex + 1) % videoClips.Length;
-        timer = timermax;
-
-        // Zwolnij pamiêæ podrêczn¹
-        videoPlayer.GetComponent<VideoPlayer>().Prepare();
+        odtwazacz_VideoPlayer.clip = clipy_VideoClip[obecny_index_Int];
+        odtwazacz_VideoPlayer.Play();
+        odtwazacz_VideoPlayer.GetComponent<VideoPlayer>().Prepare();
     }
 }

@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510ea4a592602a04f98eb5483ea76675, type: 3}
+  m_Name: Rozdrabniacz
+  m_EditorClassIdentifier: 
+  amunicja_nazwa_String: Rozdrabniacz
+  amunicja_Transform: {fileID: 2455982682799163746, guid: 074ac3fb63db6b747a86fc7b4ca375fb, type: 3}
+  amunicja_rodzaj_obrazen_Enum: 1
+  amunicja_Sprite: {fileID: 21300000, guid: fa15892ae8401584d87b45f8baf49407, type: 3}

@@ -36,8 +36,8 @@ public class MechanikaFal : MonoBehaviour
     private void Awake()
     {
         flaga_Aktywna_mechanika_Bool = true;
-       flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
-       ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
+        flaga_do_kontroli_eventu_spawnu_fali_Bool = false;
+        ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         ZczytanyiloscFal_Int = LadowaniePlayerPrefs.GetLiczbaFal();
         Debug.Log("Zczytana liczba fal z MechanikiFal :"+ ZczytanyiloscFal_Int.ToString());
         Instance = this;
@@ -121,10 +121,8 @@ public class MechanikaFal : MonoBehaviour
                         {
                             odstep_miedzy_spawnem_wroga_Float = 0.5f;
                             wrog.Stworz(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
-                                holder_Pozycji_Lista, PredkoscWroga); ; //UtilsClass.GetRandomDir() 
+                                holder_Pozycji_Lista, PredkoscWroga); ; 
                             AktualnySk³adFali.RemoveAt(0);
-                            //old wrog.Create(spawnPosition  * UnityEngine.Random.Range(0f, 5f),"pf_wrog_"+wrog_lista.wrogowie_so_Lista[0].wrog_Nazwa ,
-                            //holderPozycji,PredkoscWroga); //UtilsClass.GetRandomDir() 
                             pozostala_ilosc_wrogow_do_utworzenia_Int--;
                             if (pozostala_ilosc_wrogow_do_utworzenia_Int <= 0)
                             {
@@ -147,8 +145,7 @@ public class MechanikaFal : MonoBehaviour
         
         status_Enum = status_wavemanager_enum.TworzenieFali;
         Numer_Fali_INT++;
-        //zmianaFali_event?.Invoke(this, EventArgs.Empty);
-        //OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
+
     }
 
     public int GetNumerFali()
@@ -161,10 +158,7 @@ public class MechanikaFal : MonoBehaviour
         return czas_spawnu_nast_Fali_Float;
     }
 
-    public Vector3 GetSpawnPosition()
-    {
-        return pozycja_spawnu_Vector3;
-    }
+
 
 }
 
