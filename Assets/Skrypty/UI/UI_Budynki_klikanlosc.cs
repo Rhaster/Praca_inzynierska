@@ -12,28 +12,28 @@ public class Budynki_klikanlosc : MonoBehaviour
     public Transform ui_wiezy_ustawienia_Transform;
     public Transform ui_fabryki_Transform;
     // Przypisz przycisk UI do tej zmiennej w inspektorze Unity
-    private GeneratorSurowcow generator;
+    private GeneratorSurowcow generator_GeneratorSurowcow;
     private UI_Budynkow UI_budynkow_holder;
-    public Button przyciskUI;
-    bool isactive;
+    
+    bool czy_aktywny_Bool;
     void Start()
     {
-        isactive= false;
+        czy_aktywny_Bool= false;
     }
     void InstancjonujObiekt()
     {
         // Instancjonuj obiekt przy u¿yciu pozycji i rotacji aktualnego Transforma
-        generator = GetComponent<GeneratorSurowcow>();
+        generator_GeneratorSurowcow = GetComponent<GeneratorSurowcow>();
         ui_budowy_transform_parent.gameObject.SetActive(true);
         DezaktywujDzieci();
         UI_Fabryka_klikalnosc.instance.DezaktywujDzieci();
         ui_budowy_transform.gameObject.SetActive(true);
         UI_budynkow_holder = ui_budowy_transform.GetComponent<UI_Budynkow>();
-        UI_budynkow_holder.surowiec = generator.surowiecGenerowany;
+        UI_budynkow_holder.surowiec_Surowce_SO = generator_GeneratorSurowcow.surowiecGenerowany;
         //Debug.Log(generator.nazwa_kopalni);
-        UI_budynkow_holder.nazwa_kopalni_Text.SetText(generator.nazwa_kopalni);
-        UI_budynkow_holder.generator= generator;
-        isactive= true;
+        UI_budynkow_holder.nazwa_kopalni_Text.SetText(generator_GeneratorSurowcow.nazwa_kopalni);
+        UI_budynkow_holder.generator= generator_GeneratorSurowcow;
+        czy_aktywny_Bool= true;
     }
     private void Awake()
     {
@@ -62,7 +62,7 @@ public class Budynki_klikanlosc : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (!isactive)
+        if (!czy_aktywny_Bool)
         {
             InstancjonujObiekt();
            
@@ -70,7 +70,7 @@ public class Budynki_klikanlosc : MonoBehaviour
         else
         {
             ui_budowy_transform.gameObject.SetActive(false);
-            isactive= false;
+            czy_aktywny_Bool= false;
             DezaktywujDzieci();
         }
     }

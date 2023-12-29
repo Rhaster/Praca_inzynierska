@@ -3116,7 +3116,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Wie\u017Ce - Strzelaj\u0105 do \nnadchodz\u0105cych fal wrog\xF3w.\nDo
-    dzia\u0142ania potrzebuj\u0105 \namunicji."
+    dzia\u0142ania potrzebuj\u0105 \namunicji"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9771,7 +9771,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Zmniejszenie energi
+  m_text: Zmniejszenie energii
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11991,8 +11991,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Fabryka - Produkuje amunicje,\njej dzia\u0142anie kosztuje po \n1 z ka\u017Cdego
-    surowca i\n produkuje 5 amunicji na cykl"
+  m_text: "Fabryka - Produkuje amunicj\u0119,\n Dzia\u0142anie kosztuje 1 jednostk\u0119
+    \nka\u017Cdego surowca. Wytwarza\n5 amunicji w jednym cyklu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13035,7 +13035,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Zwi\u0119kszenie energi"
+  m_text: "Zwi\u0119kszenie energii"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

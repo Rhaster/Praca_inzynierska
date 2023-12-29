@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class UI_Budynkow : MonoBehaviour
 {
-    private Transform templateTransform;
+    private Transform schemat_Transform;
     public Button przycisk_dodaj_energia_button;
     public Button przycisk_odejmij_energia_button;
-    public Surowce_SO surowiec;
+    public Surowce_SO surowiec_Surowce_SO;
     public TextMeshProUGUI nazwa_kopalni_Text;
     public TextMeshProUGUI aktualnailoscenergi_kopalni_Text; 
-    private Transform statystykaTransform;
+    private Transform statystyka_Transform;
     public TextMeshProUGUI Statystyka_Text;
     public GeneratorSurowcow generator;
     public GeneratorAmunicji generatorAmunicji;
@@ -29,7 +29,7 @@ public class UI_Budynkow : MonoBehaviour
     private Lista_Amunicja_SO surowce_Lista;
     #endregion
     #region transform selectu amunicji 
-    private Transform selected_Transform;
+    private Transform wybrany_Transform;
     #endregion
     void Start()
     {
@@ -37,17 +37,17 @@ public class UI_Budynkow : MonoBehaviour
  
         if (!czyFabryka_Bool)
         {
-            templateTransform = transform.Find("Sekcja_zasilania_" + generator.surowiecGenerowany.surowiec_nazwa_String);
+            schemat_Transform = transform.Find("Sekcja_zasilania_" + generator.surowiecGenerowany.surowiec_nazwa_String);
         }
         else
         {
-            templateTransform = transform.Find("Sekcja_Fabryki");
-            selected_Transform = templateTransform.Find("Sekcja_generatora").Find("selected");
-            selected_Transform.gameObject.SetActive(false);
+            schemat_Transform = transform.Find("Sekcja_Fabryki");
+            wybrany_Transform = schemat_Transform.Find("Sekcja_generatora").Find("selected");
+            wybrany_Transform.gameObject.SetActive(false);
         }
-        aktualnailoscenergi_kopalni_Text = templateTransform.transform.Find("aktualna_ilosc_energi_wkopalni_text").GetComponent<TextMeshProUGUI>();
-        przycisk_odejmij_energia_button = templateTransform.Find("odejmij_energi_button").GetComponent<Button>();
-        przycisk_dodaj_energia_button = templateTransform.Find("dodaj_energi_button").GetComponent<Button>();
+        aktualnailoscenergi_kopalni_Text = schemat_Transform.transform.Find("aktualna_ilosc_energi_wkopalni_text").GetComponent<TextMeshProUGUI>();
+        przycisk_odejmij_energia_button = schemat_Transform.Find("odejmij_energi_button").GetComponent<Button>();
+        przycisk_dodaj_energia_button = schemat_Transform.Find("dodaj_energi_button").GetComponent<Button>();
         przycisk_dodaj_energia_button.onClick.AddListener(() =>
         {
             if (!czyFabryka_Bool)
@@ -127,9 +127,9 @@ public class UI_Budynkow : MonoBehaviour
 
 
         #region Statystyki generatora UI 
-        statystykaTransform = templateTransform.Find("Sekcja_generatora");
-        Statystyka_Text = statystykaTransform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
-        pasek_image = statystykaTransform.Find("Image").Find("pasek").GetComponent<Image>();
+        statystyka_Transform = schemat_Transform.Find("Sekcja_generatora");
+        Statystyka_Text = statystyka_Transform.Find("Statystyka").GetComponent<TextMeshProUGUI>();
+        pasek_image = statystyka_Transform.Find("Image").Find("pasek").GetComponent<Image>();
         if(!czyFabryka_Bool)
         {
             generator.ZmianaTimeraEvent += Generator_ZmianaTimeraEvent;
@@ -142,9 +142,9 @@ public class UI_Budynkow : MonoBehaviour
         #region Kontrola Fabryki
         if(czyFabryka_Bool)
         {
-            Transform grabberButton1 = statystykaTransform.Find("Button_1");
-            Transform grabberButton2 = statystykaTransform.Find("Button_2");
-            Transform grabberButton3 = statystykaTransform.Find("Button_3");
+            Transform grabberButton1 = statystyka_Transform.Find("Button_1");
+            Transform grabberButton2 = statystyka_Transform.Find("Button_2");
+            Transform grabberButton3 = statystyka_Transform.Find("Button_3");
             przycisk_produkuj_amunicje1_button = grabberButton1.GetComponent<Button>();
             przycisk_produkuj_amunicje2_button = grabberButton2.GetComponent<Button>();
             przycisk_produkuj_amunicje3_button = grabberButton3.GetComponent<Button>();
@@ -193,12 +193,12 @@ public class UI_Budynkow : MonoBehaviour
     }
     private void AktywujSelekcje(Vector3 pos)
     {
-        selected_Transform.gameObject.SetActive(true);
-        selected_Transform.GetComponent<RectTransform>().position = pos;
+        wybrany_Transform.gameObject.SetActive(true);
+        wybrany_Transform.GetComponent<RectTransform>().position = pos;
     }
     private void DeaktywujSelekcje()
     {
-        selected_Transform.gameObject.SetActive(false);
+        wybrany_Transform.gameObject.SetActive(false);
     }
     private void Awake()
     {
