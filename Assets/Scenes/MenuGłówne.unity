@@ -835,7 +835,7 @@ GameObject:
   - component: {fileID: 149066396}
   - component: {fileID: 149066395}
   m_Layer: 0
-  m_Name: MusicManager
+  m_Name: Menadzer_muzyki
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2582,7 +2582,7 @@ GameObject:
   - component: {fileID: 424562147}
   - component: {fileID: 424562146}
   m_Layer: 0
-  m_Name: VideoPlayerManager
+  m_Name: Kontroler_filmow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
