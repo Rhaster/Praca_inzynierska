@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 public class MusicManager_game : MonoBehaviour
 {
@@ -25,8 +26,8 @@ public class MusicManager_game : MonoBehaviour
 
     [SerializeField] private float dzwiek_gloscnosc_Float;
     [SerializeField] private float muzyka_wartosc_Float;
-
-    [SerializeField] private AudioClip[] audioClips;
+    [FormerlySerializedAs("audioClips")]
+    [SerializeField] private AudioClip[] klipy_audio_AudioClip;
 
     private AudioSource audioSource;
     public AudioClip muzyka_Boss_AudioClip;
@@ -36,7 +37,7 @@ public class MusicManager_game : MonoBehaviour
     {
 
         audioSource = GetComponent<AudioSource>();
-        if (audioClips.Length > 0)
+        if (klipy_audio_AudioClip.Length > 0)
         {
             Graj_Muzyke_w_petli();
         }
@@ -163,11 +164,11 @@ public class MusicManager_game : MonoBehaviour
     {
         while (!stopCoroutine)
         {
-            for (int i = 0; i < audioClips.Length; i++)
+            for (int i = 0; i < klipy_audio_AudioClip.Length; i++)
             {
                 if (!stopCoroutine)
                 {
-                    audioSource.clip = audioClips[i];
+                    audioSource.clip = klipy_audio_AudioClip[i];
                     audioSource.Play();
                 }
                 yield return new WaitForSeconds(audioSource.clip.length);

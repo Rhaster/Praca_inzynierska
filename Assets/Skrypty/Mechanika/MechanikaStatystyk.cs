@@ -41,7 +41,7 @@ public class MechanikaStatystyk : MonoBehaviour
         PlayerPrefs.Save(); // Wa¿ne: zapisz zmiany
 
     }
-    public void IncreaseBuilded()
+    public void Zwieksz_statystyke_zbudowanych_wiez()
     {
         // Odczytaj aktualn¹ wartoœæ
         int obecnie_zab_jedn_Int = PlayerPrefs.GetInt(postawione_Key, 0);

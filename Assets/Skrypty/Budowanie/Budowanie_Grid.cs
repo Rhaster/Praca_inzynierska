@@ -14,27 +14,24 @@ public class Budowanie_Grid : MonoBehaviour
     public Grid grid;
     public Tilemap Glowny_TileMap;
     public Tilemap Dodatkowy_TileMap;
-    public TileBase podswietlony_Tile;
     public TileBase Blokujacy_Tile;
-    public TileBase poprzedniTile;
-    public float rozmiarGridu = 5.0f;
-    public Boolean once;
-    private Boolean trybBudowania;
+    public float rozmiarGridu_Float = 5.0f;
+    private Boolean tryb_budowania_Bool;
     
     [SerializeField]
     private Transform Wieza_Transform;
+
     private Wieze_SO holder_Wieza;
     #endregion
     #region zmienne timera do oszczedzenia zasobów 
-    private float timer=0;
-    private float timermax=0.2f;
+    private float timer_Float=0;
+    private float timer_max_float=0.2f;
     #endregion
     private void Awake()
     {
 
-        once = true;
         Instance= this; // przypisanie aktualnej instancji 
-        trybBudowania= false;
+        tryb_budowania_Bool= false;
     }
 
     private void Instance_OnActiveBuildingTypeChanged(object sender, MechanikaBudowania.Holder_Typu_Budowli e)
@@ -57,7 +54,7 @@ public class Budowanie_Grid : MonoBehaviour
     #region Metody Budowanie
     public bool czyMenuBudowaniaOtwarte()
     {
-        return trybBudowania;
+        return tryb_budowania_Bool;
     }
     private void Start()
     {
@@ -66,12 +63,12 @@ public class Budowanie_Grid : MonoBehaviour
 
     private void Update()
     {
-        if (trybBudowania)
+        if (tryb_budowania_Bool)
         {
-            timer += Time.deltaTime;
-            if (timer > timermax)
+            timer_Float += Time.deltaTime;
+            if (timer_Float > timer_max_float)
             {
-                timer = 0;
+                timer_Float = 0;
             }
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
@@ -83,28 +80,22 @@ public class Budowanie_Grid : MonoBehaviour
 
     public void AktywujBudowanie()
     {
-        trybBudowania = true;
+        tryb_budowania_Bool = true;
     }
     public void DeaktywujBudowanie()
     {
-        trybBudowania = false;
+        tryb_budowania_Bool = false;
     }
     private void Ustaw_aktywna_wieze(Transform wieza_aktualna)
     {
         Wieza_Transform = wieza_aktualna;
     }
-    private Vector3Int PozycjaKursoraNaGridzie()
-    {
-        Vector3 pozycja = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3Int pozycja_grid = Glowny_TileMap.WorldToCell(pozycja);
-        pozycja_grid.z = 0;
-        return pozycja_grid;
-    }
+
     void StawiajNaGridzie()
     {
-        Vector3 clickPosition = Uzyteczne.GetMouseWorldPosition();
+        Vector3 pozycja_myszki_Vector3 = Uzyteczne.GetMouseWorldPosition();
         // Pozyskaj pozycjê œrodka komórki na siatce
-        Vector3Int roundedPosition_Vector3 = grid.WorldToCell(clickPosition);
+        Vector3Int roundedPosition_Vector3 = grid.WorldToCell(pozycja_myszki_Vector3);
         // SprawdŸ, czy na danej komórce ju¿ jest obiekt
         if (MechanikaEkonomi.Instance.CzyStac(holder_Wieza.koszt_StartowaIloscSur_Lista))
         {
@@ -116,9 +107,9 @@ public class Budowanie_Grid : MonoBehaviour
                     // Twórz kopiê prefabu na pozycji œrodka komórki
                     Transform newObject = Instantiate(Wieza_Transform, grid.GetCellCenterWorld(roundedPosition_Vector3), Quaternion.identity);
                     // Ustaw odpowiedni tile na dodatkowej TileMapie
-                    Dodatkowy_TileMap.SetTile(roundedPosition_Vector3, Blokujacy_Tile);
+                    Dodatkowy_TileMap.SetTile(roundedPosition_Vector3, Blokujacy_Tile);  // ten tilemap mówi czy cos jest juz postawione 
                     MechanikaEkonomi.Instance.WydajSurowce(holder_Wieza.koszt_StartowaIloscSur_Lista);
-                    MechanikaStatystyk.instance.IncreaseBuilded();
+                    MechanikaStatystyk.instance.Zwieksz_statystyke_zbudowanych_wiez();
                 }
             }
         }

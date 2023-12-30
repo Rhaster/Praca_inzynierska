@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 public class SoundManager_game : MonoBehaviour
 {
    
     public static SoundManager_game Instance { get; private set; }
-
+    [FormerlySerializedAs("musicAudioGroup")]
     public AudioMixerGroup musicAudioGroup;
     [SerializeField] private AudioClip[] audioClips;
     public enum Sound
