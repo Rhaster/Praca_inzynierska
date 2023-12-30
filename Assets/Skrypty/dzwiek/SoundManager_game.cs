@@ -8,7 +8,7 @@ public class SoundManager_game : MonoBehaviour
 {
    
     public static SoundManager_game Instance { get; private set; }
-    [FormerlySerializedAs("musicAudioGroup")]
+    [FormerlySerializedAs("grupa_muzyki_AMG")]
     public AudioMixerGroup musicAudioGroup;
     [SerializeField] private AudioClip[] audioClips;
     public enum Sound

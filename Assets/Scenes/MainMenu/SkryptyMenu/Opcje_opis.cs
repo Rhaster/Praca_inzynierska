@@ -12,19 +12,19 @@ public class Opcje_opis : MonoBehaviour
     {
         t³o_transform = transform.Find("T³o");
         wyjscie_transform = transform.Find("wyjscie");
-        //przycisk_transform = transform.Find("")
+
         gameObject.SetActive(false);
     }
     private void Start()
     {
-        //transform.Find("T³o").gameObject.SetActive(false);
+
 
         wyjscie_transform.GetComponent<Button>().onClick.AddListener(() =>
         {
-            ButtonHandler xd = wyjscie_transform.GetComponent<ButtonHandler>();
-            xd.Reset();
+            Podswietlenie_przyciskow pod_przyc = wyjscie_transform.GetComponent<Podswietlenie_przyciskow>();
+            pod_przyc.Reset();
             gameObject.SetActive(false);
-            FlowManager.Instance.gameObject.SetActive(true);
+            Kontroler_UI.Instance.gameObject.SetActive(true);
         });
     }
 

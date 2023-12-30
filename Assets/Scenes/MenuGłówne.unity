@@ -868,15 +868,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fc0d72f9f79bc4091de6acf3ada479, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeMusicSlider: {fileID: 589413429}
-  volumeSoundSlider: {fileID: 2070385099}
-  musicAudioGroup: {fileID: -6961789258298631923, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  soundEffectsGroup: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  lowVolumeColor: {r: 0, g: 1, b: 0, a: 1}
-  mediumVolumeColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  highVolumeColor: {r: 1, g: 0, b: 0, a: 1}
-  soundVolume: 1
-  musicVolume: 1
+  myzyka_Slider: {fileID: 589413429}
+  dzwiek_Slider: {fileID: 2070385099}
+  grupa_muzyki_AMG: {fileID: -6961789258298631923, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
+  grupa_efekow_AMG: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
+  niski_dzwiek_Color: {r: 0, g: 1, b: 0, a: 1}
+  sredni_dzwiek_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  wysoki_dzwiek_Color: {r: 1, g: 0, b: 0, a: 1}
+  wartosc_dzwieku_Float: 0
+  wartosc_myzuki_Float: 0
 --- !u!82 &149066396
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
   - {fileID: 21300000, guid: 83e533179bd03a644bf5f8b3917e88b4, type: 3}
   - {fileID: 21300000, guid: aabcb27900fb0974eaea06544c8d2731, type: 3}
-  flowmanager_Transform: {fileID: 1934263769}
+  kontroler_UI_Transform: {fileID: 1934263769}
   domyslny_mapy_Sprite: {fileID: 21300000, guid: b9adb53ea3934c946b9255c6efaefe44, type: 3}
   defaultDifficultySprite: {fileID: 21300000, guid: c48098d5bd6414543b9a1acf176c81d8, type: 3}
   mapy:
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clipy_VideoClip:
-  - {fileID: 32900000, guid: 73619bcdc5f14f14ab999667fb72af9d, type: 3}
+  - {fileID: 32900000, guid: 6be4d57d609dc324c997c4545e38db33, type: 3}
 --- !u!328 &424562147
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -12171,7 +12171,7 @@ GameObject:
   - component: {fileID: 1934263769}
   - component: {fileID: 1934263770}
   m_Layer: 5
-  m_Name: FlowManager
+  m_Name: Kontroler_UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12213,10 +12213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 827626832c6f21440afe5093ba395323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mapa1: 
-  Mapa2: 
-  Mapa3: 
-  Mapa4: 
   Wybor_Mapy_Transform: {fileID: 207443404}
   jak_grac_szcze_Transform: {fileID: 923037948}
 --- !u!1 &1951664921

@@ -12,15 +12,16 @@ public class WyborMapy : MonoBehaviour
     public TMP_Dropdown fale_Dropdown;
     public Image wyswietlenie_Wybranej_Mapy1;
     public List<Sprite> Sprite_wyswietlenie_Mapy;
-    public Transform flowmanager_Transform;
+    public Transform kontroler_UI_Transform;
     #region Klucze player prefs 
     private string wybrana_mapa_String = "MAPA";
-    private string poziom_trudnosci_klucz_String = "Difficulty";
+    private string poziom_trudnosci_klucz_String = "TRUDNOSC";
     private string fale_klucz_String = "FALE";
     #endregion
     private Button powrot_button;
     private Button start_button;
     public Sprite domyslny_mapy_Sprite;
+    
     public Sprite defaultDifficultySprite;
     public List<string> mapy;
     public List<int> iloscFal_Lista;
@@ -79,7 +80,7 @@ public class WyborMapy : MonoBehaviour
         poziom_trudnosci_Dropdown.onValueChanged.AddListener(delegate { Ustaw_poziom_trudnosci(); });
         powrot_button.onClick.AddListener(() =>
         {
-            flowmanager_Transform.gameObject.SetActive(true);
+            kontroler_UI_Transform.gameObject.SetActive(true);
             gameObject.SetActive(false);
         });
         start_button.onClick.AddListener(() =>
@@ -139,7 +140,6 @@ public class WyborMapy : MonoBehaviour
     public void Ustaw_fale()
     {
         int ddd = fale_Dropdown.value;
-        Debug.Log("wybrane ==================================" + ddd);
         PlayerPrefs.SetInt(fale_klucz_String, iloscFal_Lista[ddd]);
         PlayerPrefs.Save();
         string wybrany_fale_String = fale_Dropdown.options[ddd].text;

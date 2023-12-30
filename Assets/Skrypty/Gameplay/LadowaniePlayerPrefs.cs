@@ -8,11 +8,10 @@ public class LadowaniePlayerPrefs : MonoBehaviour
 
     public static int GetDifficulty()
     {
-        string difficultyKey = "Difficulty";
+        string difficultyKey = "TRUDNOSC";
 
         if (PlayerPrefs.HasKey(difficultyKey))
         {
-            //Debug.Log("zaladowano poziom trudnosci:" + PlayerPrefs.GetInt(difficultyKey).ToString());
             return PlayerPrefs.GetInt(difficultyKey);
         }
         else
@@ -45,25 +44,25 @@ public class LadowaniePlayerPrefs : MonoBehaviour
             //Debug.Log("zaladowano ilosc fal:" + PlayerPrefs.GetInt(faleKey).ToString());
             if (PlayerPrefs.GetInt(faleKey) == 0)
             {
-                List<Wieze_SO> xd = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA3").Wieze_Lista;
-                return xd;
+                List<Wieze_SO> tymczasowa = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA3").Wieze_Lista;
+                return tymczasowa;
             }
 
             else if (PlayerPrefs.GetInt(faleKey) == 1)
             {
-                List<Wieze_SO> xd = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA1").Wieze_Lista;
-                return xd;
+                List<Wieze_SO> tymczasowa = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA1").Wieze_Lista;
+                return tymczasowa;
             }
             else
             {
-                List<Wieze_SO> xd = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA2").Wieze_Lista;
-                return xd;
+                List<Wieze_SO> tymczasowa = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA2").Wieze_Lista;
+                return tymczasowa;
             }
         }
         else
         {
-            List<Wieze_SO> xd = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA1").Wieze_Lista;
-            return xd;
+            List<Wieze_SO> tymczasowa = Resources.Load<Lista_Wieze_SO>("Wieze_Lista_MAPA1").Wieze_Lista;
+            return tymczasowa;
         }
     }
 
