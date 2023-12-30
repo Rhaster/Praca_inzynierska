@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wrog_Nazwa: Mechanid
   wrog_Transform: {fileID: 6516838316992819135, guid: 14b0b7a1efabd834483e833dcdace803, type: 3}
-  wrog_rozdaj_pancerza_Lista: []
+  liczba_hp_Int: 50

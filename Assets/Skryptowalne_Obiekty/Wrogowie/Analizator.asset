@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wrog_Nazwa: Analizator
   wrog_Transform: {fileID: 1905601218261602374, guid: e2ee3965cd1b6764c8c9d6b6f00be8d3, type: 3}
-  wrog_Lista_animacji_Lista: []
+  liczba_hp_Int: 30
