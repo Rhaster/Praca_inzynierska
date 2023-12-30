@@ -23581,9 +23581,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 294560543
+  m_SortingLayer: 2
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 58a41b930936b6a48bb64395616d6a18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28952,7 +28952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicAudioGroup: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  audioClips: []
+  klipy_AudioClips: []
 --- !u!82 &1600517872
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32745,6 +32745,22 @@ PrefabInstance:
       propertyPath: punkty_Transform.Array.data[4]
       value: 
       objectReference: {fileID: 1775855832}
+    - target: {fileID: 5250075551333464805, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: m_Size.x
+      value: 2.4827194
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250075551333464805, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: m_Size.y
+      value: 3.9930878
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250075551333464805, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.14827347
+      objectReference: {fileID: 0}
+    - target: {fileID: 5250075551333464805, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: m_Offset.y
+      value: 1.2395897
+      objectReference: {fileID: 0}
     - target: {fileID: 6214090708601317086, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
       propertyPath: m_LocalScale.x
       value: 4

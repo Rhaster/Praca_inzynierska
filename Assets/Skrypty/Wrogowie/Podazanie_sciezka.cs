@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pathing : MonoBehaviour
+public class Podazanie_sciezka : MonoBehaviour
 {
     public Transform wroga_Transform;
     public Transform[] punkty_Transform;
