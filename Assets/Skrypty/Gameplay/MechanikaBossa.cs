@@ -16,17 +16,17 @@ public class MechanikaBossa : MonoBehaviour
     void Start()
     {
         syshp= GetComponent<SystemHP>();
-        syshp.OnDied += Syshp_OnDied;
+        syshp.Zgon += Syshp_Zgon;
     }
 
-    private void Syshp_OnDied(object sender, EventArgs e)
+    private void Syshp_Zgon(object sender, EventArgs e)
     {
         wygrana_event?.Invoke(this, EventArgs.Empty);
     }
 
     public void wyznaczHP(int x)
     {
-        syshp.SetHealthAmountMax(x,true);
+        syshp.Set_maxymalne_hp(x,true);
     }
 
 }

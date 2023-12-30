@@ -120,8 +120,8 @@ public class MechanikaFal : MonoBehaviour
                         if (odstep_miedzy_spawnem_wroga_Float < 0f)
                         {
                             odstep_miedzy_spawnem_wroga_Float = 0.5f;
-                            wrog.Stworz(pozycja_spawnu_Vector3 * UnityEngine.Random.Range(0f, 5f), "pf_wrog_" + AktualnySk³adFali[0],
-                                holder_Pozycji_Lista, PredkoscWroga); ; 
+                            wrog.Stworz("pf_wrog_" + AktualnySk³adFali[0],
+                                holder_Pozycji_Lista, PredkoscWroga, Numer_Fali_INT, ZczytanyPoziomTrudnosci_Int); ; 
                             AktualnySk³adFali.RemoveAt(0);
                             pozostala_ilosc_wrogow_do_utworzenia_Int--;
                             if (pozostala_ilosc_wrogow_do_utworzenia_Int <= 0)

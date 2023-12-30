@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Pogromca
   m_EditorClassIdentifier: 
   wrog_Nazwa: Pogromca
-  wrog_Transform: {fileID: 0}
-  wrog_Lista_animacji_Lista: []
+  liczba_hp_Int: 500

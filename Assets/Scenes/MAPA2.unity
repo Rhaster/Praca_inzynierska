@@ -475,8 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90addffb05896ad4ba6702cd2bf3c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 10
-  healthAmount: 5
+  maxymalne_hp_Int: 25
+  aktualne_hp_Int: 25
 --- !u!61 &39083393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -43387,6 +43387,14 @@ PrefabInstance:
     - target: {fileID: 6214090708601317086, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
       propertyPath: m_LocalScale.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513160458322770540, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: aktualne_hp_Int
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513160458322770540, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: maxymalne_hp_Int
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6754010099615892776, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
       propertyPath: m_LocalPosition.x

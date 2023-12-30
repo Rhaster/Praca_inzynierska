@@ -475,8 +475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90addffb05896ad4ba6702cd2bf3c679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmountMax: 10
-  healthAmount: 5
+  maxymalne_hp_Int: 25
+  aktualne_hp_Int: 25
 --- !u!61 &39083393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28731,7 +28731,7 @@ Transform:
   m_GameObject: {fileID: 1181464622}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30238,7 +30238,7 @@ MonoBehaviour:
   wysoka_wart_Koloru_Color: {r: 1, g: 0, b: 0, a: 1}
   dzwiek_gloscnosc_Float: 0
   muzyka_wartosc_Float: 0
-  audioClips:
+  klipy_audio_AudioClip:
   - {fileID: 8300000, guid: 220a2233a46f6584ca8b33bff76013ab, type: 3}
   - {fileID: 8300000, guid: 577a2177c473c2a49873e68ad1ea7563, type: 3}
   - {fileID: 8300000, guid: 402314beccc9fb04dbc8e7d08dd7cad4, type: 3}
@@ -32166,7 +32166,7 @@ Transform:
   m_GameObject: {fileID: 1567169128}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -32487,7 +32487,7 @@ Transform:
   m_GameObject: {fileID: 1607213014}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -25, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -33467,11 +33467,8 @@ MonoBehaviour:
   grid: {fileID: 2045198298}
   Glowny_TileMap: {fileID: 164127622}
   Dodatkowy_TileMap: {fileID: 458132662}
-  podswietlony_Tile: {fileID: 0}
   Blokujacy_Tile: {fileID: 11400000, guid: 39a705dccee6475499d295f64d313aa2, type: 2}
-  poprzedniTile: {fileID: 0}
-  rozmiarGridu: 5
-  once: 0
+  rozmiarGridu_Float: 5
   Wieza_Transform: {fileID: 0}
 --- !u!224 &1683869857 stripped
 RectTransform:
@@ -36954,6 +36951,14 @@ PrefabInstance:
     - target: {fileID: 6214090708601317086, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
       propertyPath: m_LocalScale.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513160458322770540, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: aktualne_hp_Int
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6513160458322770540, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
+      propertyPath: maxymalne_hp_Int
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6754010099615892776, guid: be14e3bbf3c60b748964ccc5b3e288a0, type: 3}
       propertyPath: m_LocalPosition.x

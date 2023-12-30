@@ -20,9 +20,9 @@ MonoBehaviour:
   - surowiec: {fileID: 11400000, guid: 268cab5f830d0c941897293cf3cae951, type: 2}
     ilosc: 7
   - surowiec: {fileID: 11400000, guid: 76e647bc2ca3ed4408e46e5e89e1c195, type: 2}
-    ilosc: 10
+    ilosc: 7
   - surowiec: {fileID: 11400000, guid: a468fd06cff09b148a70fce46015dcdc, type: 2}
-    ilosc: 8
-  Obrazenia_wiezy_Float: 35
-  Czas_przeladowania_wiezy_Float: 3
+    ilosc: 7
+  Obrazenia_wiezy_Float: 100
+  Czas_przeladowania_wiezy_Float: 2
   wieza_Sprite: {fileID: -1847055787, guid: 6ffcaade505f37d42948cddc565e023b, type: 3}

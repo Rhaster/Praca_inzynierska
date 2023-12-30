@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: Niszczyciel
   m_EditorClassIdentifier: 
   wrog_Nazwa: Niszczyciel
-  wrog_Transform: {fileID: 6516838316992819135, guid: 1def1def585defd4797c3ce9420680e2, type: 3}
-  wrog_rozdaj_pancerza_Lista:
-  - 0.5
-  - 0.5
-  - 1
+  liczba_hp_Int: 50

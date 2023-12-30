@@ -30,14 +30,14 @@ public class UI_wrogowie_info : MonoBehaviour
         nazwa_Text = sekcja_informacnji_Transform.Find("nazwa").GetComponent<TextMeshProUGUI>();
         lokalny_Wrog_SO = GetComponent<Wrog_holder>();
         nazwa_Text.SetText(lokalny_Wrog_SO.wrog_Wrogowie_SO.wrog_Nazwa);
-        wskaznik_hp_Image.fillAmount = lokalny_SystemHP.GetHealthAmountNormalized();
-        ilosc_hp_Text.SetText(lokalny_SystemHP.GetHealthAmount().ToString());
+        wskaznik_hp_Image.fillAmount = lokalny_SystemHP.Get_znormalizowane_hp();
+        ilosc_hp_Text.SetText(lokalny_SystemHP.Get_aktualne_hp().ToString());
     }
 
     private void Lokalny_SystemHP_OnDamaged(object sender, System.EventArgs e)
     {
-        wskaznik_hp_Image.fillAmount = lokalny_SystemHP.GetHealthAmountNormalized();
-        ilosc_hp_Text.SetText(lokalny_SystemHP.GetHealthAmount().ToString());
+        wskaznik_hp_Image.fillAmount = lokalny_SystemHP.Get_znormalizowane_hp();
+        ilosc_hp_Text.SetText(lokalny_SystemHP.Get_aktualne_hp().ToString());
 
         }
     private void OnMouseDown()

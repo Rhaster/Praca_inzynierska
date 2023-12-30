@@ -13,8 +13,4 @@ MonoBehaviour:
   m_Name: Pancernik
   m_EditorClassIdentifier: 
   wrog_Nazwa: Pancernik
-  wrog_Transform: {fileID: 8865242716963678726, guid: 5d99771c9572ba04fb34cb2cb34b2050, type: 3}
-  wrog_rozdaj_pancerza_Lista:
-  - 1
-  - 0.7
-  - 0.3
+  liczba_hp_Int: 300

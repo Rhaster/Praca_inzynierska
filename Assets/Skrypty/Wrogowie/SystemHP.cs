@@ -5,24 +5,24 @@ using UnityEngine;
 
 public class SystemHP : MonoBehaviour
 {
-    public event EventHandler OnHealthAmountMaxChanged;
+    public event EventHandler Zmiana_Max_HP;
     public event EventHandler Zadano_Obrazenia;
-    public event EventHandler OnHealed;
-    public event EventHandler OnDied;
+    public event EventHandler Uzdrowiono;
+    public event EventHandler Zgon;
 
-    [SerializeField] private int healthAmountMax;
-    [SerializeField] private int healthAmount;
+    [SerializeField] private int maxymalne_hp_Int;
+    [SerializeField] private int aktualne_hp_Int;
 
     private void Awake()
     {
 
-        healthAmount = healthAmountMax;
+        aktualne_hp_Int = maxymalne_hp_Int;
     }
 
     public void Obrazenia(int damageAmount)
     {
-        healthAmount -= damageAmount;
-        healthAmount = Mathf.Clamp(healthAmount, 0, healthAmountMax);
+        aktualne_hp_Int -= damageAmount;
+        aktualne_hp_Int = Mathf.Clamp(aktualne_hp_Int, 0, maxymalne_hp_Int);
 
         Zadano_Obrazenia?.Invoke(this, EventArgs.Empty);
 
@@ -32,60 +32,60 @@ public class SystemHP : MonoBehaviour
             {
                 MechanikaStatystyk.instance.IncreaseKilledUnits();
             }
-            OnDied?.Invoke(this, EventArgs.Empty);
+            Zgon?.Invoke(this, EventArgs.Empty);
             Destroy(gameObject);
         }
     }
 
     public void Heal(int healAmount)
     {
-        healthAmount += healAmount;
-        healthAmount = Mathf.Clamp(healthAmount, 0, healthAmountMax);
+        aktualne_hp_Int += healAmount;
+        aktualne_hp_Int = Mathf.Clamp(aktualne_hp_Int, 0, maxymalne_hp_Int);
 
-        OnHealed?.Invoke(this, EventArgs.Empty);
+        Uzdrowiono?.Invoke(this, EventArgs.Empty);
     }
 
     public void HealFull()
     {
-        healthAmount = healthAmountMax;
+        aktualne_hp_Int = maxymalne_hp_Int;
 
-        OnHealed?.Invoke(this, EventArgs.Empty);
+        Uzdrowiono?.Invoke(this, EventArgs.Empty);
     }
 
     public bool IsDead()
     {
-        return healthAmount == 0;
+        return aktualne_hp_Int == 0;
     }
 
-    public bool IsFullHealth()
+    public bool Czy_pelne_hp()
     {
-        return healthAmount == healthAmountMax;
+        return aktualne_hp_Int == maxymalne_hp_Int;
     }
 
-    public int GetHealthAmount()
+    public int Get_aktualne_hp()
     {
-        return healthAmount;
+        return aktualne_hp_Int;
     }
 
-    public int GetHealthAmountMax()
+    public int Get_maxymalne_hp()
     {
-        return healthAmountMax;
+        return maxymalne_hp_Int;
     }
 
-    public float GetHealthAmountNormalized()
+    public float Get_znormalizowane_hp()
     {
-        return (float)healthAmount / healthAmountMax;
+        return (float)aktualne_hp_Int / maxymalne_hp_Int;
     }
 
-    public void SetHealthAmountMax(int healthAmountMax, bool updateHealthAmount)
+    public void Set_maxymalne_hp(int nowe_hp_max_Int, bool czy_zaktualizowac_Bool)
     {
-        this.healthAmountMax = healthAmountMax;
+        this.maxymalne_hp_Int = nowe_hp_max_Int;
 
-        if (updateHealthAmount)
+        if (czy_zaktualizowac_Bool)
         {
-            healthAmount = healthAmountMax;
+            aktualne_hp_Int = nowe_hp_max_Int;
         }
 
-        OnHealthAmountMaxChanged?.Invoke(this, EventArgs.Empty);
+        Zmiana_Max_HP?.Invoke(this, EventArgs.Empty);
     }
 }

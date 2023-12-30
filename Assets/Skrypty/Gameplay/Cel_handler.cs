@@ -15,7 +15,7 @@ public class Cel_handler : MonoBehaviour
     }
     private void Start()
     {
-        syshp.OnDied += Syshp_OnDied;
+        syshp.Zgon += Syshp_OnDied;
     }
     private void Syshp_OnDied(object sender, System.EventArgs e)
     {

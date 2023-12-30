@@ -7,7 +7,6 @@ public class HP_UI : MonoBehaviour
     [SerializeField] private SystemHP SystemHP;
 
     private Transform barTransform;
-    private Transform separatorContainer;
 
     private void Awake()
     {
@@ -19,17 +18,14 @@ public class HP_UI : MonoBehaviour
  
 
         SystemHP.Zadano_Obrazenia += HealthSystem_OnDamaged;
-        SystemHP.OnHealed += HealthSystem_OnHealed;
-        SystemHP.OnHealthAmountMaxChanged += HealthSystem_OnHealthAmountMaxChanged;
+        SystemHP.Uzdrowiono += HealthSystem_OnHealed;
+ 
 
         UpdateBar();
         UpdateHealthBarVisible();
     }
 
-    private void HealthSystem_OnHealthAmountMaxChanged(object sender, System.EventArgs e)
-    {
-        
-    }
+
 
     private void HealthSystem_OnHealed(object sender, System.EventArgs e)
     {
@@ -47,12 +43,12 @@ public class HP_UI : MonoBehaviour
 
     private void UpdateBar()
     {
-        barTransform.localScale = new Vector3(SystemHP.GetHealthAmountNormalized(), 1, 1);
+        barTransform.localScale = new Vector3(SystemHP.Get_znormalizowane_hp(), 1, 1);
     }
 
     private void UpdateHealthBarVisible()
     {
-        if (SystemHP.IsFullHealth())
+        if (SystemHP.Czy_pelne_hp())
         {
             gameObject.SetActive(false);
         }
