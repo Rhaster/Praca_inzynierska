@@ -89,48 +89,48 @@ public class Menadzer_muzyki_scena_gry : MonoBehaviour
     void Start()
     {
         wartosc_slidera_dzwieku_Slider.value = dzwiek_gloscnosc_Float;
-        wartosc_slidera_dzwieku_Slider.onValueChanged.AddListener(SetSoundVolume);
+        wartosc_slidera_dzwieku_Slider.onValueChanged.AddListener(Ustaw_wartosc_dzwieku);
         napelnienie_Slidera = wartosc_slidera_dzwieku_Slider.fillRect.GetComponent<Image>();
 
         wartosc_slidera_muzyki_Slider.value = muzyka_wartosc_Float;
-        wartosc_slidera_muzyki_Slider.onValueChanged.AddListener(SetMusicVolume);
+        wartosc_slidera_muzyki_Slider.onValueChanged.AddListener(Ustaw_wartosc_muzyki);
         napelnienie_muzyka_slider = wartosc_slidera_muzyki_Slider.fillRect.GetComponent<Image>();
         napelnienie_Slidera.color = wysoka_wart_Koloru_Color;
         napelnienie_muzyka_slider.color = wysoka_wart_Koloru_Color;
 
-        Zmien_kolor_przez_wart(muzyka_wartosc_Float, wartosc_slidera_muzyki_Slider);
-        Zmien_kolor_przez_wartosc(dzwiek_gloscnosc_Float, wartosc_slidera_dzwieku_Slider);
+        Zmien_kolor_przez_wartosc_muzyki(muzyka_wartosc_Float, wartosc_slidera_muzyki_Slider);
+        Zmien_kolor_przez_wartosc_dzwieku(dzwiek_gloscnosc_Float, wartosc_slidera_dzwieku_Slider);
     }
 
-    private void SetMusicVolume(float volume)
+    private void Ustaw_wartosc_muzyki(float volume)
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
         grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(volume) * 20);
         muzyka_wartosc_Float = volume;
-        Zmien_kolor_przez_wart(volume, wartosc_slidera_muzyki_Slider);
+        Zmien_kolor_przez_wartosc_muzyki(volume, wartosc_slidera_muzyki_Slider);
         audioSource.volume = muzyka_wartosc_Float;
         PlayerPrefs.SetFloat("Volume1", muzyka_wartosc_Float);
         PlayerPrefs.Save();
     }
-    private void SetSoundVolume(float volume)
+    private void Ustaw_wartosc_dzwieku(float volume)
     {
         volume = Mathf.Clamp(volume, (float)0.001, 1);
         efekty_grupy_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(volume) * 20);
         dzwiek_gloscnosc_Float = volume;
 
-        Zmien_kolor_przez_wartosc(volume, wartosc_slidera_dzwieku_Slider);
+        Zmien_kolor_przez_wartosc_dzwieku(volume, wartosc_slidera_dzwieku_Slider);
         PlayerPrefs.SetFloat("Volume", dzwiek_gloscnosc_Float);
         PlayerPrefs.Save();
     }
 
-    void Zmien_kolor_przez_wartosc(float volume1, Slider x)
+    void Zmien_kolor_przez_wartosc_dzwieku(float volume1, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume1);
         Color newColor = Color.Lerp(niska_wart_koloru_Color, wysoka_wart_Koloru_Color, normalizedVolume);
         x.value = volume1;
         napelnienie_Slidera.color = newColor;
     }
-    void Zmien_kolor_przez_wart(float volume, Slider x)
+    void Zmien_kolor_przez_wartosc_muzyki(float volume, Slider x)
     {
         float normalizedVolume = Mathf.InverseLerp(x.minValue, x.maxValue, volume);
         Color newColor = Color.Lerp(niska_wart_koloru_Color, wysoka_wart_Koloru_Color, normalizedVolume);

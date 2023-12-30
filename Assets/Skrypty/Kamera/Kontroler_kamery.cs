@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraControl : MonoBehaviour
+public class Kontroler_kamery : MonoBehaviour
 {
-    public static CameraControl Instance { get; private set; }
+    public static Kontroler_kamery Instance { get; private set; }
 
     public float minOgraniczenieX;
     public float maxOgraniczenieX;

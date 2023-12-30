@@ -14,7 +14,7 @@ public class Wyznacznik_fali : MonoBehaviour
     [SerializeField] private Lista_Wrogowie_SO wrog_lista;
     [SerializeField]private int ZczytanyPoziomTrudnosci_Int;
     private Dictionary<Amunicja_SO,float > amunicja_so_Dictionary;
-    int poziom_trudnosci_int;
+   
     public event EventHandler<Holder_fali> Wyznaczenie_fali_ui_event;
     public event EventHandler<Holder_pancerza> Wyznaczenie_pancerza_ui_event;
     private List<Amunicja_SO> amunicja_;
@@ -26,6 +26,10 @@ public class Wyznacznik_fali : MonoBehaviour
     {
         public Dictionary<Amunicja_SO, float> amunicja_Dictionary;
     };
+    float Zaokraglanie(float value)
+    {
+        return Mathf.Floor(value + 0.5f);
+    }
     private void Awake()
     {
         
@@ -33,7 +37,6 @@ public class Wyznacznik_fali : MonoBehaviour
         // Wczytanie poziomu trudnosci
         ZczytanyPoziomTrudnosci_Int = LadowaniePlayerPrefs.GetDifficulty();
         wrog_lista = Resources.Load<Lista_Wrogowie_SO>("Wrogowie_Lista");
-        poziom_trudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
         amunicja_so_Dictionary = new Dictionary<Amunicja_SO, float>();
          amunicja_ = MechanikaAmunicji.Instance.lista().amunicja_Lista;
     }
@@ -95,8 +98,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     else if(  wynik_odejmowania_wiez_Int>0)// jesli  jest przewaga wiez obszarowych
                     {
                         
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);
@@ -137,8 +141,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     }
                     else // jesli  jest przewaga wiez single target 
                     {
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);
@@ -251,8 +256,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     else if (wynik_odejmowania_wiez_Int > 0)// jesli  jest przewaga wiez obszarowych
                     {
 
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);
@@ -293,8 +299,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     }
                     else // jesli  jest przewaga wiez single target 
                     {
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);
@@ -407,8 +414,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     else if (wynik_odejmowania_wiez_Int > 0)// jesli  jest przewaga wiez obszarowych
                     {
 
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);
@@ -449,8 +457,9 @@ public class Wyznacznik_fali : MonoBehaviour
                     }
                     else // jesli  jest przewaga wiez single target 
                     {
-                        float waga = wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
-                        int wynik_Kalkulacja_Int = (int)Mathf.Clamp((float)(holder - waga), 0, 3);
+                        float waga = (float)wynik_odejmowania_wiez_Int / totalna_liczba_wiez_Int;
+                        int wynik_Kalkulacja_Int = (int)Zaokraglanie(Mathf.Clamp((float)(holder - waga), 0, 3));
+                        Debug.Log("wartosc wylosowana" + holder);
                         Debug.Log("waga " + waga);
                         Debug.Log("wynik odejmowania " + wynik_odejmowania_wiez_Int);
                         Debug.Log("wartosc po kalkulacjach" + wynik_Kalkulacja_Int);

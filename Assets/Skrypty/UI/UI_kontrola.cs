@@ -201,7 +201,7 @@ public class UI_kontrola : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && (opcje_transform.gameObject.activeSelf == false))
         {
             Dezaktywacja();
-            CameraControl.Instance.Wylacz_kamere();
+            Kontroler_kamery.Instance.Wylacz_kamere();
             if (UI_budynkow_transform.gameObject.activeSelf)
             {
                 UI_budynkow_czybylootwarte_bool = true;
@@ -295,7 +295,7 @@ public class UI_kontrola : MonoBehaviour
     #region Funkcja reaktywujaca interfejs uzytkownika
     public void ReaktuywujUI()
     {
-        CameraControl.Instance.Wlacz_kamere();
+        Kontroler_kamery.Instance.Wlacz_kamere();
         if (UI_budynkow_czybylootwarte_bool == true)
         {
             UI_budynkow_transform.gameObject.SetActive(true);
