@@ -37312,7 +37312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicAudioGroup: {fileID: -143063074764205185, guid: a4f276828864a7741a51040e01ea8efa, type: 2}
-  audioClips: []
+  klipy_AudioClips: []
 --- !u!82 &1600517872
 AudioSource:
   m_ObjectHideFlags: 0

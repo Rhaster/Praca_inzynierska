@@ -24,7 +24,7 @@ public class UI_Tooltip : MonoBehaviour
             if (typ_budoli_Wieze_SO != null)
             {
                 Transform btnTransform = Instantiate(btnTemplate_Transform, transform);
-                btnTransform.GetComponent<UI_tooltip_content>().wieza_Wieza_SO = typ_budoli_Wieze_SO;
+                btnTransform.GetComponent<UI_tooltip_zawartosc>().wieza_Wieza_SO = typ_budoli_Wieze_SO;
                 btnTransform.gameObject.SetActive(false);
                 wieze_Slownik[typ_budoli_Wieze_SO] = btnTransform;
             }

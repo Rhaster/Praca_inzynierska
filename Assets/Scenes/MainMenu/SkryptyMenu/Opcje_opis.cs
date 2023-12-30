@@ -21,7 +21,7 @@ public class Opcje_opis : MonoBehaviour
 
         wyjscie_transform.GetComponent<Button>().onClick.AddListener(() =>
         {
-            Podswietlenie_przyciskow pod_przyc = wyjscie_transform.GetComponent<Podswietlenie_przyciskow>();
+            Podswietlenie_przyciskow1 pod_przyc = wyjscie_transform.GetComponent<Podswietlenie_przyciskow1>();
             pod_przyc.Reset();
             gameObject.SetActive(false);
             Kontroler_UI.Instance.gameObject.SetActive(true);

@@ -23,7 +23,7 @@ public class MechanikaGameplayu : MonoBehaviour
         boss_Transform.gameObject.SetActive(false);
         poziomtrudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
         iloscFal_int = LadowaniePlayerPrefs.GetLiczbaFal();
-        Cel_handler.instance.porazka_event += Instance_porazka_event;
+        Cel.instance.porazka_event += Instance_porazka_event;
         MechanikaFal.Instance.Fala_Bossa_event += Instance_Fala_Bossa_event;
 
     }
@@ -62,9 +62,9 @@ public class MechanikaGameplayu : MonoBehaviour
     }
     private void Instance_Fala_Bossa_event(object sender, EventArgs e)
     {
-        UIController.instance.aktywacja_bossa_Event += Instance_aktywacja_bossa_Event;
+        UI_kontrola.instance.aktywacja_bossa_Event += Instance_aktywacja_bossa_Event;
         MechanikaBossa.instance.wygrana_event += Instance_wygrana_event;
-        MusicManager_game.Instance.Wlacz_musyzke_bossa();
+        Menadzer_muzyki_scena_gry.Instance.Wlacz_musyzke_bossa();
         Inicjalizacja_Poziomu_trudnosci();
     }
 

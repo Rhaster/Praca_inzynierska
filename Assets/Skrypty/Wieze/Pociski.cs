@@ -9,38 +9,38 @@ public class Pociski : MonoBehaviour
     Amunicja_SO amunicja_Local;
     public static Pociski Create(Transform pocisk_prefab, Vector3 position, wrog enemy, int obrazenia, Amunicja_SO amunicja, int czyobszarowe = 0)
     {
-        Transform arrowTransform = Instantiate(pocisk_prefab, position, Quaternion.identity);
+        Transform pocisk_Transform = Instantiate(pocisk_prefab, position, Quaternion.identity);
 
-        Pociski arrowProjectile = arrowTransform.GetComponent<Pociski>();
-        arrowProjectile.SetTarget(enemy);
-        arrowProjectile.czyobszarowe = czyobszarowe;
+        Pociski Pocisk = pocisk_Transform.GetComponent<Pociski>();
+        Pocisk.SetTarget(enemy);
+        Pocisk.czyobszarowe = czyobszarowe;
         if(czyobszarowe> 0)
         {
-            arrowProjectile.transform.localScale *= 3;
+            Pocisk.transform.localScale *= 3;
         }
-        arrowProjectile.obrazenia= obrazenia;
-        arrowProjectile.amunicja_Local = amunicja;
-        return arrowProjectile;
+        Pocisk.obrazenia= obrazenia;
+        Pocisk.amunicja_Local = amunicja;
+        return Pocisk;
     }
 
 
 
-    private wrog targetEnemy;
-    private Vector3 lastMoveDir;
-    private float timeToDie = 4f;
+    private wrog cel_Wrog;
+    private Vector3 ostatni_kierunek_Vector3;
+    private float czas_do_exploji_float = 4f;
 
     private void Update()
     {
         Vector3 moveDir;
 
-        if (targetEnemy != null)
+        if (cel_Wrog != null)
         {
-            moveDir = (targetEnemy.transform.position - transform.position).normalized;
-            lastMoveDir = moveDir;
+            moveDir = (cel_Wrog.transform.position - transform.position).normalized;
+            ostatni_kierunek_Vector3 = moveDir;
         }
         else
         {
-            moveDir = lastMoveDir;
+            moveDir = ostatni_kierunek_Vector3;
         }
 
         float moveSpeed = 30f;
@@ -48,8 +48,8 @@ public class Pociski : MonoBehaviour
 
         transform.eulerAngles = new Vector3(0, 0, Uzyteczne.GetAngleFromVector(moveDir));
 
-        timeToDie -= Time.deltaTime;
-        if (timeToDie < 0f)
+        czas_do_exploji_float -= Time.deltaTime;
+        if (czas_do_exploji_float < 0f)
         {
             Destroy(gameObject);
         }
@@ -57,7 +57,7 @@ public class Pociski : MonoBehaviour
 
     private void SetTarget(wrog targetEnemy)
     {
-        this.targetEnemy = targetEnemy;
+        this.cel_Wrog = targetEnemy;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

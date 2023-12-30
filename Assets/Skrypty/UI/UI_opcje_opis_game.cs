@@ -57,8 +57,8 @@ public class opcje_opis_game : MonoBehaviour
         wyjscie_transform.GetComponent<Button>().onClick.AddListener(() => // s³uchacz gdy wcisnie siê przycisk wyjscie 
         {
             Wznow_gre();   // wznów gre 
-            ButtonHandler_game xd = wyjscie_transform.GetComponent<ButtonHandler_game>(); // znajdz przycisk 
-            UIController.instance.ReaktuywujUI(); // reaktywuj UI gracza 
+            UI_podswietlenie_przyc xd = wyjscie_transform.GetComponent<UI_podswietlenie_przyc>(); // znajdz przycisk 
+            UI_kontrola.instance.ReaktuywujUI(); // reaktywuj UI gracza 
             gameObject.SetActive(false); // wy³¹cz obiekt 
             
         });
@@ -83,7 +83,7 @@ public class opcje_opis_game : MonoBehaviour
             if (Budowanie_Grid.Instance.czyMenuBudowaniaOtwarte() == false)
             {
                 Wznow_gre(); // wznowienie gry
-                UIController.instance.ReaktuywujUI(); // reaktywacja ui 
+                UI_kontrola.instance.ReaktuywujUI(); // reaktywacja ui 
                 gameObject.SetActive(false); // wy³¹czenie opcji 
             }
             else

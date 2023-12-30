@@ -20,10 +20,10 @@ public class Pathing : MonoBehaviour
 
     void Update()
     {
-        HandleMovement(punkty_Transform);
+        Wyznacz_kierunek(punkty_Transform);
     }
 
-    private void HandleMovement(Transform[] target)
+    private void Wyznacz_kierunek(Transform[] target)
     {
         if (obecny_punkt_Indeks <= target.Length)
         {

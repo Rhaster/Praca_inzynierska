@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class UI_tooltip_content : MonoBehaviour
+public class UI_tooltip_zawartosc : MonoBehaviour
 {
     public Wieze_SO wieza_Wieza_SO;
     private List<StartowaIloscSur> holderSur_Lista;
     // Start is called before the first frame update
-    void Awake()
-    {
 
-        
-    }
     private void Start()
     {
         Transform surowce = transform.Find("template");

@@ -4,30 +4,27 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Serialization;
 
-public class SoundManager_game : MonoBehaviour
+public class Menadzer_dzwieku_scena_gry : MonoBehaviour
 {
    
-    public static SoundManager_game Instance { get; private set; }
+    public static Menadzer_dzwieku_scena_gry Instance { get; private set; }
     [FormerlySerializedAs("grupa_muzyki_AMG")]
     public AudioMixerGroup musicAudioGroup;
-    [SerializeField] private AudioClip[] audioClips;
+    [SerializeField] private AudioClip[] klipy_AudioClips;
     public enum Sound
     {
         ZmianaElektryki,
         DodanieEnergi,
-        BudynekPostawienie,
-        WrogGinie,
-        WrogTrafiony,
-        GameOver,
+
     }
 
     private AudioSource audioSource;
-    private Dictionary<Sound, AudioClip> soundAudioClipDictionary;
+    private Dictionary<Sound, AudioClip> dzwieki_Slownik;
     private float Volume;
 
     private void Awake()
     {
-        audioClips = new AudioClip[10];
+        klipy_AudioClips = new AudioClip[10];
         Instance = this;
         float volumeValue = 1;
         if (PlayerPrefs.HasKey("Volume"))
@@ -37,14 +34,14 @@ public class SoundManager_game : MonoBehaviour
         Volume= volumeValue;
         audioSource = GetComponent<AudioSource>();
 
-        soundAudioClipDictionary = new Dictionary<Sound, AudioClip>();
+        dzwieki_Slownik = new Dictionary<Sound, AudioClip>();
         int i = 0;
         foreach (Sound sound in System.Enum.GetValues(typeof(Sound)))
         {
-            soundAudioClipDictionary[sound] = Resources.Load<AudioClip>(sound.ToString());
-            if (soundAudioClipDictionary[sound]!=null)
+            dzwieki_Slownik[sound] = Resources.Load<AudioClip>(sound.ToString());
+            if (dzwieki_Slownik[sound]!=null)
             {
-                audioClips[i]= soundAudioClipDictionary[sound];
+                klipy_AudioClips[i]= dzwieki_Slownik[sound];
                 i += 1;
             }
         }
@@ -52,7 +49,7 @@ public class SoundManager_game : MonoBehaviour
 
     public void PlaySound(Sound sound)
     {
-        audioSource.PlayOneShot(soundAudioClipDictionary[sound]);
+        audioSource.PlayOneShot(dzwieki_Slownik[sound]);
         //audioSource.Play();
     }
 

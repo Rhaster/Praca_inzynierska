@@ -12,15 +12,13 @@ public class Wieza : MonoBehaviour
     [SerializeField] private float timer_strzalu_Float;
     [SerializeField] private wrog targetEnemy_Wrog;
     [SerializeField] private float szukanie_celu_TimerMax =1;
-    [SerializeField] private float lookForTargetTimerMax = .1f; // odswiezanie skanowania w poszukiwaniu celów 
-    private Vector3 projectileSpawnPosition_Vector3;
+    [SerializeField] private float szukanie_celu_float = .1f; // odswiezanie skanowania w poszukiwaniu celów 
     public float zasieg_wiezy_Float;
     [SerializeField]private Transform wieza_sprite_rotacja_Transform;
     [SerializeField] private Transform Punkt_wystrzalu_Transform;
     [SerializeField] private Transform PrefabPocisku_Testy_Transform;
     [SerializeField] public Amunicja_SO amunicja_Wybrana_Amunicja_SO;
     [SerializeField] private bool czy_przeladowano_bool;
-    private bool flaga_czy_stac_bool;
     private bool flaga_czy_oplacono_bool;
     public event EventHandler<Status> zmianaCzasuPrzeladowania;
     [SerializeField] private float OBrazenia_wiezy_Float;
@@ -65,7 +63,7 @@ private Vector3 ostatni_rucu_Vector3;
         szukanie_celu_TimerMax -= Time.deltaTime;
         if (szukanie_celu_TimerMax < 0f)
         {
-            szukanie_celu_TimerMax += lookForTargetTimerMax;
+            szukanie_celu_TimerMax += szukanie_celu_float;
             Szukaj_celu();
         }
     }

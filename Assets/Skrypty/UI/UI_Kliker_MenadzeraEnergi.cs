@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Kliker_MenadzeraEnergi : MonoBehaviour
+public class UI_Kliker_MenadzeraEnergi : MonoBehaviour
 {
     void OnMouseDown()
     {

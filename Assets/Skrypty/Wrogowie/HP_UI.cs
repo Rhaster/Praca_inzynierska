@@ -17,36 +17,36 @@ public class HP_UI : MonoBehaviour
     {
  
 
-        SystemHP.Zadano_Obrazenia += HealthSystem_OnDamaged;
-        SystemHP.Uzdrowiono += HealthSystem_OnHealed;
+        SystemHP.Zadano_Obrazenia += SystemHP_ZadanoObrazenia;
+        SystemHP.Uzdrowiono += SystemHP_Uleczono;
  
 
-        UpdateBar();
-        UpdateHealthBarVisible();
+        Zaktualizuj_bar();
+        Schowaj_Bar_lub_pokaz();
     }
 
 
 
-    private void HealthSystem_OnHealed(object sender, System.EventArgs e)
+    private void SystemHP_Uleczono(object sender, System.EventArgs e)
     {
-        UpdateBar();
-        UpdateHealthBarVisible();
+        Zaktualizuj_bar();
+        Schowaj_Bar_lub_pokaz();
     }
 
-    private void HealthSystem_OnDamaged(object sender, System.EventArgs e)
+    private void SystemHP_ZadanoObrazenia(object sender, System.EventArgs e)
     {
-        UpdateBar();
-        UpdateHealthBarVisible();
+        Zaktualizuj_bar();
+        Schowaj_Bar_lub_pokaz();
     }
 
 
 
-    private void UpdateBar()
+    private void Zaktualizuj_bar()
     {
         barTransform.localScale = new Vector3(SystemHP.Get_znormalizowane_hp(), 1, 1);
     }
 
-    private void UpdateHealthBarVisible()
+    private void Schowaj_Bar_lub_pokaz()
     {
         if (SystemHP.Czy_pelne_hp())
         {

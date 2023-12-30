@@ -7,10 +7,10 @@ using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-public class MusicManager_game : MonoBehaviour
+public class Menadzer_muzyki_scena_gry : MonoBehaviour
 {
 
-    public static MusicManager_game Instance { get; private set; }
+    public static Menadzer_muzyki_scena_gry Instance { get; private set; }
 
     public Slider wartosc_slidera_muzyki_Slider;
     public Slider wartosc_slidera_dzwieku_Slider;
@@ -26,7 +26,7 @@ public class MusicManager_game : MonoBehaviour
 
     [SerializeField] private float dzwiek_gloscnosc_Float;
     [SerializeField] private float muzyka_wartosc_Float;
-    [FormerlySerializedAs("audioClips")]
+    [FormerlySerializedAs("klipy_AudioClips")]
     [SerializeField] private AudioClip[] klipy_audio_AudioClip;
 
     private AudioSource audioSource;

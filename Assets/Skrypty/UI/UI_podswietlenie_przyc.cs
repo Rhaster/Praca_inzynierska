@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 
-public class Podswietlenie_przyciskow : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler
+public class UI_podswietlenie_przyc : MonoBehaviour ,IPointerEnterHandler, IPointerExitHandler
 {
     private AudioSource zrodlo_AudioSource;
 
@@ -21,7 +21,7 @@ public class Podswietlenie_przyciskow : MonoBehaviour ,IPointerEnterHandler, IPo
             normalny_Color = Color.green;
         }
         zrodlo_AudioSource = GetComponent<AudioSource>();
-        
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)

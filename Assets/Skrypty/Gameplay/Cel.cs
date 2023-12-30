@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
-public class Cel_handler : MonoBehaviour
+public class Cel : MonoBehaviour
 {
-    public static Cel_handler instance;
+    public static Cel instance;
     public event EventHandler porazka_event;
     public SystemHP syshp;
     private void Awake()

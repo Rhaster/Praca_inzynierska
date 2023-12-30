@@ -5,7 +5,7 @@ using TMPro;
 using System;
 
 
-public class UIController : MonoBehaviour
+public class UI_kontrola : MonoBehaviour
 {
 
     #region Kontrola czasu
@@ -20,7 +20,7 @@ public class UIController : MonoBehaviour
     private Transform zasoby_Transform;
     #endregion
     #region Deklaracja instancji skryptu
-    public static UIController instance;
+    public static UI_kontrola instance;
     #endregion
     #region Kontrola tekstu w UI 
     [SerializeField] private TextMeshProUGUI czas_do_nast_fali_TMPRO;

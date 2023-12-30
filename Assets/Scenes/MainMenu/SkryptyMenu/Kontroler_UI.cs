@@ -40,7 +40,7 @@ public class Kontroler_UI : MonoBehaviour
         });
         Opcje_Transform.GetComponent<Button>().onClick.AddListener(() =>
         {
-            Opcje_Transform.GetComponent<Podswietlenie_przyciskow>().Reset();
+            Opcje_Transform.GetComponent<Podswietlenie_przyciskow1>().Reset();
             gameObject.SetActive(false);
             Rozwin_opcje?.Invoke(this, EventArgs.Empty);
         });
