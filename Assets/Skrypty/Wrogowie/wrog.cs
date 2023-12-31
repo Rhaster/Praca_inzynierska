@@ -6,7 +6,7 @@ using UnityEngine;
 public class wrog : MonoBehaviour
 {
     public Dictionary<Amunicja_SO,float> amunicja_so;
-    private static int poziom_trudnosci_int;
+
     public static wrog Stworz(string nazwa, Transform[] way ,float speed,int numerfali_Int,int poziomtrudnsci_int)
         {
             Transform pf_Wrog_Transform = Resources.Load<Transform>(nazwa);
@@ -19,10 +19,6 @@ public class wrog : MonoBehaviour
             wrog wrog_Wrog = wrog_Transform.GetComponent<wrog>();
             return wrog_Wrog;
         }
-    private void Awake()
-    {
-        poziom_trudnosci_int = LadowaniePlayerPrefs.GetDifficulty();
-    }
 
     private void Start()
     {

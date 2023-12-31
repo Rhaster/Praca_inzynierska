@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Niszczyciel
   m_EditorClassIdentifier: 
   wrog_Nazwa: Niszczyciel
-  liczba_hp_Int: 50
+  liczba_hp_Int: 60

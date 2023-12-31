@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Mechanid
   m_EditorClassIdentifier: 
   wrog_Nazwa: Mechanid
-  wrog_Transform: {fileID: 6516838316992819135, guid: 14b0b7a1efabd834483e833dcdace803, type: 3}
-  liczba_hp_Int: 50
+  liczba_hp_Int: 100
