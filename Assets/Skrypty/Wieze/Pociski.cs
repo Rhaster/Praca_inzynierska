@@ -6,6 +6,8 @@ public class Pociski : MonoBehaviour
 {
     int czyobszarowe;
     int obrazenia;
+    int numerFali;
+    
     Amunicja_SO amunicja_Local;
     public static Pociski Create(Transform pocisk_prefab, Vector3 position, wrog enemy, int obrazenia, Amunicja_SO amunicja, int czyobszarowe = 0)
     {
@@ -18,7 +20,9 @@ public class Pociski : MonoBehaviour
         {
             Pocisk.transform.localScale *= 3;
         }
-        Pocisk.obrazenia= obrazenia;
+        Pocisk.numerFali = MechanikaFal.Instance.GetNumerFali();
+        Pocisk.obrazenia= (int)(obrazenia + (obrazenia* (Pocisk.numerFali * 0.04f)));
+        Debug.Log(Pocisk.obrazenia);
         Pocisk.amunicja_Local = amunicja;
         return Pocisk;
     }

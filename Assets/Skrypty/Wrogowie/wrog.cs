@@ -11,9 +11,8 @@ public class wrog : MonoBehaviour
         {
             Transform pf_Wrog_Transform = Resources.Load<Transform>(nazwa);
             pf_Wrog_Transform.GetComponent<Podazanie_sciezka>().punkty_Transform = way;  // ustalenie trasy dla danego przeciwnika 
-            pf_Wrog_Transform.GetComponent<Podazanie_sciezka>().predkosc_Float= speed; // ustalenie predkosci danego przeciwnika 
-        
-            pf_Wrog_Transform.GetComponent<SystemHP>().Set_maxymalne_hp(pf_Wrog_Transform.GetComponent<Wrog_holder>().wrog_Wrogowie_SO.liczba_hp_Int * (int)(1 +(poziomtrudnsci_int * ((float)numerfali_Int/5))),true);
+            pf_Wrog_Transform.GetComponent<Podazanie_sciezka>().predkosc_Float= speed +(speed  *( (float)MechanikaFal.Instance.GetNumerFali() * (0.02f * (poziomtrudnsci_int+1)))); // ustalenie predkosci danego przeciwnika 
+        pf_Wrog_Transform.GetComponent<SystemHP>().Set_maxymalne_hp(pf_Wrog_Transform.GetComponent<Wrog_holder>().wrog_Wrogowie_SO.liczba_hp_Int * (int)(1 +(poziomtrudnsci_int * ((float)numerfali_Int/5))),true);
             Transform wrog_Transform = Instantiate(pf_Wrog_Transform, way[0].position, Quaternion.identity);
 
             wrog wrog_Wrog = wrog_Transform.GetComponent<wrog>();
