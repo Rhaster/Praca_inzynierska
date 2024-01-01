@@ -84,5 +84,41 @@ public class MechanikaAmunicji : MonoBehaviour
 
        
     }
+    private void UstawAmunicjeWszystkimWiezom(Amunicja_SO amunicja)
+    {
+        GameObject[] obiektyZTagiem = GameObject.FindGameObjectsWithTag("Wieza_Obszarowa");
+        GameObject[] obiektyZTagiem1 = GameObject.FindGameObjectsWithTag("Wieza_Pojedyncza");
+        foreach (GameObject obiekt in obiektyZTagiem)
+        {
+            obiekt.GetComponent<Wieza>().amunicja_Wybrana_Amunicja_SO = amunicja;
+            obiekt.GetComponent<UI_Wieze_Zasieg_klikalnosc>().Ustaw_podswietlenie();
+            obiekt.GetComponent<UI_Wieze_Zasieg_klikalnosc>().Wywolaj_event_zmiany_amunicji();
+        }
+        foreach (GameObject obiekt in obiektyZTagiem1)
+        {
+            obiekt.GetComponent<Wieza>().amunicja_Wybrana_Amunicja_SO = amunicja;
+            obiekt.GetComponent<UI_Wieze_Zasieg_klikalnosc>().Ustaw_podswietlenie();
+            obiekt.GetComponent<UI_Wieze_Zasieg_klikalnosc>().Wywolaj_event_zmiany_amunicji();
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            Debug.Log("Klawisz F1 zosta³ naciœniêty!");
+            UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[0]);
+        }
 
+        // SprawdŸ, czy klawisz F2 zosta³ naciœniêty
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            Debug.Log("Klawisz F2 zosta³ naciœniêty!");
+            UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            Debug.Log("Klawisz F3 zosta³ naciœniêty!");
+            UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[2]);
+        }
+    }
 }

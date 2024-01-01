@@ -138,9 +138,23 @@ public class UI_Wieze_Zasieg_klikalnosc : MonoBehaviour
         wyswietlany_status_TMPRO.SetText(e.status_Wiezy);
         wskaznik_czasu_przeladowania_Image.fillAmount =1 - kontrola_Wieza.GetCzasPrzeladowania();
     }
-
+    public void Wywolaj_event_zmiany_amunicji()
+    {
+        if(kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == lista_Amunicji[0])
+        {
+            przycisk_produkuj_amunicje1_button.onClick.Invoke();
+        }
+        else if(kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == lista_Amunicji[1])
+        {
+            przycisk_produkuj_amunicje2_button.onClick.Invoke();
+        }
+        else if(kontrola_Wieza.amunicja_Wybrana_Amunicja_SO == lista_Amunicji[2])
+        {
+            przycisk_produkuj_amunicje3_button.onClick.Invoke();
+        }
+    }
  
-    private void Ustaw_podswietlenie()
+   public void Ustaw_podswietlenie()
     {
         Color newColor = Color.blue;
         newColor.a = 0.5f;
