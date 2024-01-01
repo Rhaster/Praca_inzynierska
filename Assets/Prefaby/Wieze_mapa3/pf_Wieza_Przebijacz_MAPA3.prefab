@@ -158,7 +158,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 10
   m_Sprite: {fileID: 1717642499, guid: 6ffcaade505f37d42948cddc565e023b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -329,8 +329,8 @@ Transform:
   m_GameObject: {fileID: 6666761788443886502}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -0.018, y: 0.19700001, z: 0}
-  m_LocalScale: {x: 1.2948786, y: 1.0047989, z: 1}
+  m_LocalPosition: {x: -0.003, y: 0.201, z: 0}
+  m_LocalScale: {x: 0.9446068, y: 0.5652474, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3816049247844510396}
@@ -445,7 +445,7 @@ MonoBehaviour:
   timer_strzalu_Float: 0
   targetEnemy_Wrog: {fileID: 0}
   szukanie_celu_TimerMax: 1
-  lookForTargetTimerMax: 0.1
+  szukanie_celu_float: 0.1
   zasieg_wiezy_Float: 30
   wieza_sprite_rotacja_Transform: {fileID: 0}
   Punkt_wystrzalu_Transform: {fileID: 0}
