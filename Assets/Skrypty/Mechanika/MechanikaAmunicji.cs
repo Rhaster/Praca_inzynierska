@@ -103,21 +103,19 @@ public class MechanikaAmunicji : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
+        if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Debug.Log("Klawisz F1 zosta³ naciœniêty!");
+          
             UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[0]);
         }
 
         // SprawdŸ, czy klawisz F2 zosta³ naciœniêty
-        if (Input.GetKeyDown(KeyCode.F2))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            Debug.Log("Klawisz F2 zosta³ naciœniêty!");
             UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[1]);
         }
-        if (Input.GetKeyDown(KeyCode.F3))
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            Debug.Log("Klawisz F3 zosta³ naciœniêty!");
             UstawAmunicjeWszystkimWiezom(amunicja_List.amunicja_Lista[2]);
         }
     }

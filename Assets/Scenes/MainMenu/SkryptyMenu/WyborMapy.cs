@@ -113,7 +113,9 @@ public class WyborMapy : MonoBehaviour
             new TMP_Dropdown.OptionData(iloscFal_Lista[0].ToString(), domyslny_mapy_Sprite),
             new TMP_Dropdown.OptionData(iloscFal_Lista[1].ToString(), domyslny_mapy_Sprite),
             new TMP_Dropdown.OptionData(iloscFal_Lista[2].ToString(), domyslny_mapy_Sprite),
-            new TMP_Dropdown.OptionData(iloscFal_Lista[3].ToString(), domyslny_mapy_Sprite)
+            new TMP_Dropdown.OptionData(iloscFal_Lista[3].ToString(), domyslny_mapy_Sprite),
+             new TMP_Dropdown.OptionData(iloscFal_Lista[4].ToString(), domyslny_mapy_Sprite),
+             new TMP_Dropdown.OptionData(iloscFal_Lista[5].ToString(), domyslny_mapy_Sprite)
         });
         fale_Dropdown.RefreshShownValue();
         mapa_Dropdown.RefreshShownValue();
