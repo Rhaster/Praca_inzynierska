@@ -22,8 +22,8 @@ public class Przycisk_rozwin : MonoBehaviour
     {
         instance = this;
         #region Pobranie transformów dzieci 
-        UI_Menadzer_Energi_Transform = transform.Find("MenadzerEnergiOpener");
-        UI_Menadzer_Budowania_Transform = transform.Find("BudowanieOpener");
+        UI_Menadzer_Energi_Transform = transform.Find("MenadzerEnergi");
+        UI_Menadzer_Budowania_Transform = transform.Find("Budowanie");
         #endregion
         #region Wy³¹czenie domyslne tych transformów 
         UI_Menadzer_Energi_Transform.gameObject.SetActive(true);

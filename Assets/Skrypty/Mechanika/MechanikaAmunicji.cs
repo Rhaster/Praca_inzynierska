@@ -45,20 +45,7 @@ public class MechanikaAmunicji : MonoBehaviour
         return IloscAmunicji_slownik[resourceType];
     }
 
-    public bool CzyStac(StartowaIloscSur[] resourceAmountArray)
-    {
-        foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
-        {
-            if (true)
-            {
-                // stac
-            }
 
-        }
-
-        // stac na wszystko
-        return true;
-    }
 
  
     public bool CzyStac_na_Strzal(Amunicja_SO resourceType)
