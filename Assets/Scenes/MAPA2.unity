@@ -44631,6 +44631,10 @@ PrefabInstance:
       propertyPath: generatorAmunicji
       value: 
       objectReference: {fileID: 1874992500}
+    - target: {fileID: 3310883451098420489, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
+      propertyPath: m_Name
+      value: MenadzerEnergi
+      objectReference: {fileID: 0}
     - target: {fileID: 3447727742799349862, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 45
@@ -44927,6 +44931,10 @@ PrefabInstance:
       propertyPath: UI_Menadzer_Energi_Object_transform
       value: 
       objectReference: {fileID: 1209610726}
+    - target: {fileID: 4565329337013471610, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
+      propertyPath: m_Name
+      value: Budowanie
+      objectReference: {fileID: 0}
     - target: {fileID: 4871275026260850919, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_Name
       value: Sekcja_Generowana
