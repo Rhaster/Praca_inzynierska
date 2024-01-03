@@ -16,5 +16,6 @@ public class UI_Kliker_MenadzeraEnergi : MonoBehaviour
             Przycisk_rozwin.instance.DeaktywujMenuEnergi();
         }
     }
-    
+
+
 }

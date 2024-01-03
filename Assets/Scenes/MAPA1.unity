@@ -32400,9 +32400,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1994848003613686734, guid: be79cf9bcd5e4cd4fbf76bae192f42de, type: 3}
+      propertyPath: m_Name
+      value: MenadzerEnergi
+      objectReference: {fileID: 0}
     - target: {fileID: 3312172298122189115, guid: be79cf9bcd5e4cd4fbf76bae192f42de, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899539955950014350, guid: be79cf9bcd5e4cd4fbf76bae192f42de, type: 3}
+      propertyPath: m_Name
+      value: Budowanie
       objectReference: {fileID: 0}
     - target: {fileID: 4698412626180411847, guid: be79cf9bcd5e4cd4fbf76bae192f42de, type: 3}
       propertyPath: generator

@@ -47,5 +47,12 @@ public class UI_generator_energi_klikalnosc : MonoBehaviour
             isactive = false;
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            OnMouseDown();
 
+        }
+    }
 }
