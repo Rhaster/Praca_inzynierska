@@ -135,7 +135,7 @@ private Vector3 ostatni_rucu_Vector3;
                 Pociski.Create(amunicja_Wybrana_Amunicja_SO.amunicja_Transform, Punkt_wystrzalu_Transform.position, targetEnemy_Wrog,
                     (int)OBrazenia_wiezy_Float, amunicja_Wybrana_Amunicja_SO, (int)rodzaj_wiezy_Float);
                 czy_przeladowano_bool = false;
-                Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek_z_inna_glosnoscia(Menadzer_dzwieku_scena_gry.Sound.Strzal,0.1f);
+                Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek(Menadzer_dzwieku_scena_gry.Sound.Strzal);
                 return;
             }
 

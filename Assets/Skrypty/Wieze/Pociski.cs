@@ -91,7 +91,7 @@ public class Pociski : MonoBehaviour
                    
                 }
             }
-            Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek_z_inna_glosnoscia(Menadzer_dzwieku_scena_gry.Sound.Wybuch,0.1f);
+            Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek(Menadzer_dzwieku_scena_gry.Sound.Wybuch);
             Destroy(gameObject);
         }
     }

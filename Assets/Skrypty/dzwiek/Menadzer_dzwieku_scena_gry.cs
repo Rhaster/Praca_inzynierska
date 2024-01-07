@@ -34,7 +34,7 @@ public class Menadzer_dzwieku_scena_gry : MonoBehaviour
         }
         
         audioSource = GetComponent<AudioSource>();
-        audioSource.volume = glosnosc_Float;
+       
 
         dzwieki_Slownik = new Dictionary<Sound, AudioClip>();
         int i = 0;
@@ -52,13 +52,14 @@ public class Menadzer_dzwieku_scena_gry : MonoBehaviour
     public void Zagraj_Dzwiek(Sound dzwiek)
     {
         audioSource.PlayOneShot(dzwieki_Slownik[dzwiek]);
-        //audioSource.Play();
+ 
     }
     public void Zagraj_Dzwiek_z_inna_glosnoscia(Sound dzwiek, float glosnosc)
     {
+        float temp = audioSource.volume;
         audioSource.volume = glosnosc; 
         audioSource.PlayOneShot(dzwieki_Slownik[dzwiek]);
-
+        audioSource.volume = temp;
     }
 
 }

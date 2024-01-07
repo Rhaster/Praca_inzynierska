@@ -42,11 +42,11 @@ public class Menadzer_muzyki_scena_gry : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Audio list is empty. Add audio clips in the inspector.");
+            Debug.LogWarning("Pusta lista muzyki");
         }
         Instance = this;
-        wartosc_slidera_dzwieku_Slider.value = 1;
-        wartosc_slidera_muzyki_Slider.value = 1;
+        wartosc_slidera_dzwieku_Slider.value = 0.4f;
+        wartosc_slidera_muzyki_Slider.value = 0.4f;
         if (PlayerPrefs.HasKey("Volume"))
         {
             dzwiek_gloscnosc_Float = PlayerPrefs.GetFloat("Volume");
