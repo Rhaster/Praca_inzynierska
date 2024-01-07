@@ -532,7 +532,7 @@ public class Wyznacznik_fali : MonoBehaviour
     }
     public void ustalPancerz()
     {
-        Debug.Log("poz trud:" + ZczytanyPoziomTrudnosci_Int.ToString());
+       
         // SprawdŸ wartoœæ zmiennej
         if (ZczytanyPoziomTrudnosci_Int == 0)
         {

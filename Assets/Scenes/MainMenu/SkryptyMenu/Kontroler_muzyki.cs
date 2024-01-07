@@ -38,11 +38,10 @@ public class Kontroler_muzyki : MonoBehaviour
             wartosc_dzwieku_Float = PlayerPrefs.GetFloat("Volume");
             dzwiek_Slider.value = wartosc_dzwieku_Float;
             grupa_efekow_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(wartosc_dzwieku_Float) * 20);
-            //ChangeColorByVolume1(soundVolume, volumeSoundSlider);
         }
         else
         {
-            wartosc_dzwieku_Float = 1;
+            wartosc_dzwieku_Float = 0.4f;
             dzwiek_Slider.value = wartosc_dzwieku_Float;
             grupa_efekow_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(wartosc_dzwieku_Float) * 20);
         }
@@ -50,14 +49,14 @@ public class Kontroler_muzyki : MonoBehaviour
         {
             wartosc_myzuki_Float = PlayerPrefs.GetFloat("Volume1");
             myzyka_Slider.value = wartosc_myzuki_Float;
-            grupa_efekow_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(wartosc_myzuki_Float) * 20);
-            //ChangeColorByVolume1(musicVolume, volumeSoundSlider);
+            grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(wartosc_myzuki_Float) * 20);
+
         }
         else
         {
-            wartosc_myzuki_Float = 1;
+            wartosc_myzuki_Float = 0.4f;
             myzyka_Slider.value = wartosc_myzuki_Float;
-            grupa_efekow_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(wartosc_myzuki_Float) * 20);
+            grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(wartosc_myzuki_Float) * 20);
         }
         #endregion
     }

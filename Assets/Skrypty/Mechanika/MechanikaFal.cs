@@ -67,7 +67,7 @@ public class MechanikaFal : MonoBehaviour
                 czas_spawnu_nast_Fali_Float = 50f;
                 break;
         }
-        Debug.Log(czas_spawnu_nast_Fali_Float);
+
 
     }
    

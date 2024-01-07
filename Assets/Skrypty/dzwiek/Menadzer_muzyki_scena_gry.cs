@@ -19,8 +19,7 @@ public class Menadzer_muzyki_scena_gry : MonoBehaviour
     public Color niska_wart_koloru_Color = Color.green;
     public Color srednia_wart_koloru_Color = Color.yellow;
     public Color wysoka_wart_Koloru_Color = Color.red;
-    //const string MIXER_MUSIC = "MusicVolume";
-    //const string MIXER_SOUND = "SOUNDVolume";
+
     private Image napelnienie_Slidera;
     private Image napelnienie_muzyka_slider;
 
@@ -52,23 +51,29 @@ public class Menadzer_muzyki_scena_gry : MonoBehaviour
         {
             dzwiek_gloscnosc_Float = PlayerPrefs.GetFloat("Volume");
             wartosc_slidera_dzwieku_Slider.value = dzwiek_gloscnosc_Float;
+            efekty_grupy_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(dzwiek_gloscnosc_Float) * 20);
         }
         else
         {
-            dzwiek_gloscnosc_Float = GetVolumeFromAudioMixerGroup(grupa_muzyki_AMG,true);
+            dzwiek_gloscnosc_Float = GetDzwiekZGrrupyDzwieku(grupa_muzyki_AMG,true);
+            wartosc_slidera_dzwieku_Slider.value = dzwiek_gloscnosc_Float;
+            efekty_grupy_AMG.audioMixer.SetFloat("Volume", Mathf.Log10(dzwiek_gloscnosc_Float) * 20);
         }
         if (PlayerPrefs.HasKey("Volume1"))
         {
             muzyka_wartosc_Float = PlayerPrefs.GetFloat("Volume1");
             wartosc_slidera_muzyki_Slider.value = muzyka_wartosc_Float;
+            grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(muzyka_wartosc_Float) * 20);
         }
         else
         {
-            muzyka_wartosc_Float = GetVolumeFromAudioMixerGroup(grupa_muzyki_AMG, false);
+            muzyka_wartosc_Float = GetDzwiekZGrrupyDzwieku(grupa_muzyki_AMG, false);
+            wartosc_slidera_muzyki_Slider.value = muzyka_wartosc_Float;
+            grupa_muzyki_AMG.audioMixer.SetFloat("Volume1", Mathf.Log10(muzyka_wartosc_Float) * 20);
         }
         audioSource.volume = muzyka_wartosc_Float;
     }
-    float GetVolumeFromAudioMixerGroup(AudioMixerGroup audioMixerGroup, bool x)
+    float GetDzwiekZGrrupyDzwieku(AudioMixerGroup audioMixerGroup, bool x)
     {
         float volumeValue = 0f;
 
