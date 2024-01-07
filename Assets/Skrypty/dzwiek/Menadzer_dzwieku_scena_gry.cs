@@ -15,24 +15,26 @@ public class Menadzer_dzwieku_scena_gry : MonoBehaviour
     {
         ZmianaElektryki,
         DodanieEnergi,
-
+        Strzal,
+        Wybuch,
     }
 
     private AudioSource audioSource;
     private Dictionary<Sound, AudioClip> dzwieki_Slownik;
-    private float Volume;
+
 
     private void Awake()
     {
         klipy_AudioClips = new AudioClip[10];
         Instance = this;
-        float volumeValue = 1;
+        float glosnosc_Float = 0.4f;
         if (PlayerPrefs.HasKey("Volume"))
         {
-            musicAudioGroup.audioMixer.GetFloat("Volume", out volumeValue);
+            musicAudioGroup.audioMixer.GetFloat("Volume", out glosnosc_Float);
         }
-        Volume= volumeValue;
+        
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = glosnosc_Float;
 
         dzwieki_Slownik = new Dictionary<Sound, AudioClip>();
         int i = 0;
@@ -47,10 +49,16 @@ public class Menadzer_dzwieku_scena_gry : MonoBehaviour
         }
     }
 
-    public void PlaySound(Sound sound)
+    public void Zagraj_Dzwiek(Sound dzwiek)
     {
-        audioSource.PlayOneShot(dzwieki_Slownik[sound]);
+        audioSource.PlayOneShot(dzwieki_Slownik[dzwiek]);
         //audioSource.Play();
+    }
+    public void Zagraj_Dzwiek_z_inna_glosnoscia(Sound dzwiek, float glosnosc)
+    {
+        audioSource.volume = glosnosc; 
+        audioSource.PlayOneShot(dzwieki_Slownik[dzwiek]);
+
     }
 
 }

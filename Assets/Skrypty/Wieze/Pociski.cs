@@ -22,7 +22,7 @@ public class Pociski : MonoBehaviour
         }
         Pocisk.numerFali = MechanikaFal.Instance.GetNumerFali();
         Pocisk.obrazenia= (int)(obrazenia + (obrazenia* (Pocisk.numerFali * 0.04f)));
-        Debug.Log(Pocisk.obrazenia);
+
         Pocisk.amunicja_Local = amunicja;
         return Pocisk;
     }
@@ -91,6 +91,7 @@ public class Pociski : MonoBehaviour
                    
                 }
             }
+            Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek_z_inna_glosnoscia(Menadzer_dzwieku_scena_gry.Sound.Wybuch,0.1f);
             Destroy(gameObject);
         }
     }
