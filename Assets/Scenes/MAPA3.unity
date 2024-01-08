@@ -33353,7 +33353,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1716593405}
   m_Layer: 0
-  m_Name: Waypointy
+  m_Name: Sciezka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35279,7 +35279,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1940050332}
   m_Layer: 0
-  m_Name: 'CameraGrupa '
+  m_Name: Kamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38325,7 +38325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5593076480302830760, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_Name
-      value: UI
+      value: Interfejs
       objectReference: {fileID: 0}
     - target: {fileID: 5712066893024487026, guid: 3c825c5bdafc8214f8fd89ddd3c03e04, type: 3}
       propertyPath: m_AnchorMax.y
