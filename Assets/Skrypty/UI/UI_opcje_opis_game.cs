@@ -13,6 +13,8 @@ public class opcje_opis_game : MonoBehaviour
     private Transform t這_transform;
     private Transform wyjscie_transform;
     private Transform menu_transform;
+    private Transform jak_grac_transform;
+    private Transform jak_grac_przycisk_transform;
     private TextMeshProUGUI text_Poziom_Trudnosci_TMPRO;
     private TextMeshProUGUI text_ilosc_Fal_TMPRO;
     private float holder_czasu_Float;
@@ -24,6 +26,8 @@ public class opcje_opis_game : MonoBehaviour
         t這_transform = transform.Find("T這");
         wyjscie_transform = transform.Find("wyjscie");
         menu_transform = transform.Find("menu");
+        jak_grac_transform = transform.Find("Jak_grac");
+        jak_grac_przycisk_transform = transform.Find("Jak_grac_przycisk");
         #endregion
         #region sekcja poziomu trudnosci
         text_Poziom_Trudnosci_TMPRO = transform.Find("Poziom_trudnosci").Find("text1").GetComponent<TextMeshProUGUI>();
@@ -66,6 +70,11 @@ public class opcje_opis_game : MonoBehaviour
         {
             Wznow_gre(); // wzn闚 przep造w czasu 
             SceneManager.LoadScene("MenuG堯wne"); // za豉duj menu g堯wne 
+        });
+        jak_grac_przycisk_transform.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            jak_grac_transform.gameObject.SetActive(true);
+
         });
         #endregion
     }

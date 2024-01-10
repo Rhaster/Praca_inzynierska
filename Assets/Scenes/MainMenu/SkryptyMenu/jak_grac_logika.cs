@@ -19,6 +19,10 @@ public class jak_grac_logika : MonoBehaviour
 
         });
     }
+    private void OnDisable()
+    {
+        gameObject.SetActive(false);
+    }
 
 
 }
