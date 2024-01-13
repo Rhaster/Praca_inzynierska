@@ -83,7 +83,7 @@ Material:
     - _BUILTIN_QueueOffset: 0
     - _EnableExternalAlpha: 0
     m_Colors:
-    - _Color: {r: 0.8773585, g: 0.16140087, b: 0.16140087, a: 1}
+    - _Color: {r: 0.1462264, g: 1, b: 0.21219915, a: 0.09803922}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

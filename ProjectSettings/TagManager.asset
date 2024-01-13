@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - CEL
+  - wrog
+  - UstawienieWiezy
+  - Wieza_Pojedyncza
+  - Wieza_Obszarowa
+  - UI_wroga
   layers:
   - Default
   - TransparentFX
@@ -39,6 +44,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Grid0
+    uniqueID: 2020663663
+    locked: 0
   - name: Teren
     uniqueID: 2727195253
     locked: 0

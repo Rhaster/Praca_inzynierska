@@ -9,12 +9,13 @@ public class MechanikaEkonomi : MonoBehaviour
     public static MechanikaEkonomi Instance { get; private set; }
     public event EventHandler ZmianaIlosciSurowcow;
     [SerializeField] private List<StartowaIloscSur> Lista_startowych_Surowcow;
+    private int wydobyte;
 
     private Dictionary<Surowce_SO, int> IloscSurowcow_slownik;
 
     private void Awake()
     { 
-      
+      wydobyte= 0;
         Instance = this;
 
         IloscSurowcow_slownik = new Dictionary<Surowce_SO, int>();
@@ -32,13 +33,7 @@ public class MechanikaEkonomi : MonoBehaviour
         }
     }
 
-    private void TestLogResourceAmountDictionary()
-    {
-        foreach (Surowce_SO resourceType in IloscSurowcow_slownik.Keys)
-        {
-            Debug.Log(resourceType.surowiec_nazwa_String + ": " + IloscSurowcow_slownik[resourceType]);
-        }
-    }
+
     private void Update()
     {
         
@@ -46,7 +41,7 @@ public class MechanikaEkonomi : MonoBehaviour
     public void DodajSurowiec(Surowce_SO resourceType, int amount)
     {
         IloscSurowcow_slownik[resourceType] += amount;
-
+        wydobyte += 1;
         ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
     }
 
@@ -55,30 +50,42 @@ public class MechanikaEkonomi : MonoBehaviour
         return IloscSurowcow_slownik[resourceType];
     }
 
-    public bool CzyStac(StartowaIloscSur[] resourceAmountArray)
+    public bool CzyStac(List<StartowaIloscSur> resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
             if (GetIloscSurowca(resourceAmount.surowiec) >= resourceAmount.ilosc)
             {
-                // Can afford
+                // Stac wiec nic nie robie
             }
             else
             {
-                // Cannot afford 
-                return false;
+
+                return false; // nie Stac wiec return false
             }
         }
 
-        // Can afford all
         return true;
     }
 
-    public void WydajSurowce(StartowaIloscSur[] resourceAmountArray)
+    public void WydajSurowce(List<StartowaIloscSur> resourceAmountArray)
     {
         foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
         {
             IloscSurowcow_slownik[resourceAmount.surowiec] -= resourceAmount.ilosc;
         }
+        ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
+    }
+    public void DodajSurowce(List<StartowaIloscSur> resourceAmountArray)
+    {
+        foreach (StartowaIloscSur resourceAmount in resourceAmountArray)
+        {
+            IloscSurowcow_slownik[resourceAmount.surowiec] += resourceAmount.ilosc;
+        }
+        ZmianaIlosciSurowcow?.Invoke(this, EventArgs.Empty);
+    }
+    public int wydobyte_sur()
+    {
+        return wydobyte;
     }
 }

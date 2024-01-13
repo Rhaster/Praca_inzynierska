@@ -42,28 +42,42 @@ public class MechanikaEnergi : MonoBehaviour
         if (!Czy_Jest_osi¹gnieto_limit())
         {
             ilosc_energi_Int += ilosc;
-            SoundManager_game.Instance.PlaySound(SoundManager_game.Sound.DodanieEnergi);
+            Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek(Menadzer_dzwieku_scena_gry.Sound.DodanieEnergi);
             zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             Debug.Log("osiagnieto limit mocy");
         }
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
     public void Odejmij_Energi(int ilosc)
     {
         if (Czy_Jest_energia())
         {
-
             ilosc_energi_Int -= ilosc;
-            SoundManager_game.Instance.PlaySound(SoundManager_game.Sound.ZmianaElektryki);
+            Menadzer_dzwieku_scena_gry.Instance.Zagraj_Dzwiek(Menadzer_dzwieku_scena_gry.Sound.ZmianaElektryki);
             zmiana_ilosci_energi_event?.Invoke(this, EventArgs.Empty);
         }
         else
         {
-            Debug.Log("brak energi");
+            Debug.Log("osiagnieto limit mocy");
         }
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
     }
+    public void ZwiekszMaxIloscEnergi()
+    {
+        ilosc_energi_Startowa_Int += 1;
+        Dodaj_Energi(1);
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
+    }
+    public void ZmniejszMaxIloscEnergi()
+    {
+        ilosc_energi_Startowa_Int -= 1;
+        Odejmij_Energi(1);
+        UI_MenadzerEnergi.Instance.Aktualizuj_bar_UI_Menadzera_energi(null, null);
+    }
+
 
 }
 
